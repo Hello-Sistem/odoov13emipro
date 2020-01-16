@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <template id="product_price" inherit_id="website_sale.product_price">
+        <xpath expr="//div[@itemprop='offers']" position="attributes">
+            <attribute name="t-if">
+                not user_id.partner_id.name == 'Public user'
+            </attribute>
+        </xpath>
+    </template>
+    <template id="products_item" inherit_id="website_sale.products_item">
+        <xpath expr="//div[@itemprop='offers']" position="attributes">
+            <attribute name="t-if">
+                not user_id.partner_id.name == 'Public user'
+            </attribute>
+        </xpath>
+    </template>
+    <!-- Hide Add To Cart Button and quantity selector if not website_show_price -->
+    <template id="product" inherit_id="website_sale.product">
+        <xpath expr="//a[@id='add_to_cart']" position="attributes">
+            <attribute name="t-if">
+                not user_id.partner_id.name == 'Public user'
+            </attribute>
+        </xpath>
+        <xpath expr="//div[@id='product_option_block']" position="attributes">
+            <attribute name="t-if">
+                not user_id.partner_id.name == 'Public user'
+            </attribute>
+        </xpath>
+    </template>
+    <template id="product_quantity" inherit_id="website_sale.product_quantity">
+        <xpath expr="//div[hasclass('css_quantity')]" position="attributes">
+            <attribute name="t-if">
+                not user_id.partner_id.name == 'Public user'
+            </attribute>
+        </xpath>
+    </template>
+    <template id="product_buy_now" inherit_id="website_sale.product_buy_now">
+        <xpath expr="//a[@id='buy_now']" position="attributes">
+            <attribute name="t-if">
+                not user_id.partner_id.name == 'Public user'
+            </attribute>
+        </xpath>
+    </template>
+    <template id="short_cart_summary" inherit_id="website_sale.short_cart_summary">
+        <xpath expr="//a[@role='button']" position="attributes">
+            <attribute name="t-if">
+                user_id.user_role == 'l2' and website_sale_order and website_sale_order.website_order_line
+            </attribute>
+        </xpath>
+        <xpath expr="//a[@role='button']" position="after">
+            <t t-if="user_id.user_role in ['l1','l2']">
+                <a role="button" t-if="website_sale_order and website_sale_order.website_order_line"
+                   class="btn btn-secondary float-right d-none d-xl-inline-block" href="/create_order_quote">
+                    <span>Request to quote</span>
+                </a>
+            </t>
+        </xpath>
+    </template>
+
+    <template id="products_add_to_cart" inherit_id="website_sale.products_add_to_cart">
+        <xpath expr="//a[hasclass('a-submit')]" position="attributes">
+            <attribute name="t-if">
+                not user_id.partner_id.name == 'Public user'
+            </attribute>
+        </xpath>
+    </template>
+    <template id="add_to_wishlist" inherit_id="website_sale_wishlist.add_to_wishlist">
+        <xpath expr="//button[hasclass('o_add_wishlist')]" position="attributes">
+            <attribute name="t-if">
+                not user_id.partner_id.name == 'Public user' and product_variant_id
+            </attribute>
+        </xpath>
+    </template>
+    <template id="add_to_compare" inherit_id="website_sale_comparison.add_to_compare">
+        <xpath expr="//button[hasclass('o_add_compare')]" position="attributes">
+            <attribute name="t-if">
+                not user_id.partner_id.name == 'Public user' and product_variant_id
+            </attribute>
+        </xpath>
+    </template>
+    <template id="cart" inherit_id="website_sale.cart">
+        <xpath expr="//a[@href='/shop/checkout?express=1']" position="attributes">
+            <attribute name="t-if">
+                user_id.user_role == 'l2' and website_sale_order and website_sale_order.website_order_line
+            </attribute>
+        </xpath>
+    </template>
+</odoo>
