@@ -32,14 +32,14 @@ class res_config(models.TransientModel):
     banner_video_url = fields.Char(string='Video URL', related='website_id.banner_video_url', help='URL of a video for banner.', readonly=False)
 
     @api.onchange('is_load_more')
-    def get_default_icon_load_more(self):
+    def get_value_icon_load_more(self):
         if self.is_load_more == False:
             img_path = get_resource_path('theme_clarico_vega', 'static/src/img/Loadmore.gif')
             with tools.file_open(img_path, 'rb') as f:
                 self.load_more_image = base64.b64encode(f.read())
 
     @api.onchange('is_lazy_load')
-    def get_default_icon_lazy_load(self):
+    def get_value_icon_lazy_load(self):
         if self.is_lazy_load == False:
             img_path = get_resource_path('theme_clarico_vega', 'static/src/img/Lazyload.gif')
             with tools.file_open(img_path, 'rb') as f:
