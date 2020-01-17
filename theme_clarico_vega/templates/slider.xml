@@ -89,61 +89,65 @@
                                                         <h6 class="my-2 mb-0 text-truncate product_name"
                                                             t-raw="product.display_name"/>
                                                     </a>
-                                                    <div itemprop="offers" itemscope="itemscope"
-                                                         itemtype="http://schema.org/Offer"
-                                                         class="product_price">
-                                                        <h6 class="oe_price_h4 css_editable_mode_hidden">
-                                                            <span t-attf-class="text-danger oe_default_price {{'' if combination_info['has_discounted_price'] else 'd-none'}}"
-                                                                  style="text-decoration: line-through; white-space: nowrap;"
-                                                                  t-esc="combination_info['list_price']"
-                                                                  t-options="{'widget': 'monetary', 'display_currency': website.currency_id}"
-                                                            />
-                                                            <b class="oe_price" style="white-space: nowrap;"
-                                                               t-esc="combination_info['price']"
-                                                               t-options="{'widget': 'monetary', 'display_currency': website.currency_id}"/>
-                                                            <span itemprop="price" style="display:none;"
-                                                                  t-esc="combination_info['price']"/>
-                                                            <span itemprop="priceCurrency" style="display:none;"
-                                                                  t-esc="website.currency_id.name"/>
-                                                        </h6>
-                                                        <t t-if="combination_info['has_discounted_price']">
-                                                            <t t-set="difference"
-                                                               t-value="round(combination_info['list_price'] - combination_info['price'],2)"/>
-                                                            <t t-set="discount"
-                                                               t-value="round(difference*100/combination_info['list_price'])"/>
-                                                            <t t-if="category_offer_url or allproduct_offer_url or product_offer_url">
-                                                                <div class="te_discount">
-                                                                    <span class="te_prod_discount">You Save :</span>
-                                                                    <t t-esc="difference" t-options='{"widget": "monetary",
+                                                    <t t-if="not user_id.partner_id.name == 'Public user'">
+                                                        <div itemprop="offers" itemscope="itemscope"
+                                                             itemtype="http://schema.org/Offer"
+                                                             class="product_price">
+                                                            <h6 class="oe_price_h4 css_editable_mode_hidden">
+                                                                <span t-attf-class="text-danger oe_default_price {{'' if combination_info['has_discounted_price'] else 'd-none'}}"
+                                                                      style="text-decoration: line-through; white-space: nowrap;"
+                                                                      t-esc="combination_info['list_price']"
+                                                                      t-options="{'widget': 'monetary', 'display_currency': website.currency_id}"
+                                                                />
+                                                                <b class="oe_price" style="white-space: nowrap;"
+                                                                   t-esc="combination_info['price']"
+                                                                   t-options="{'widget': 'monetary', 'display_currency': website.currency_id}"/>
+                                                                <span itemprop="price" style="display:none;"
+                                                                      t-esc="combination_info['price']"/>
+                                                                <span itemprop="priceCurrency" style="display:none;"
+                                                                      t-esc="website.currency_id.name"/>
+                                                            </h6>
+                                                            <t t-if="combination_info['has_discounted_price']">
+                                                                <t t-set="difference"
+                                                                   t-value="round(combination_info['list_price'] - combination_info['price'],2)"/>
+                                                                <t t-set="discount"
+                                                                   t-value="round(difference*100/combination_info['list_price'])"/>
+                                                                <t t-if="category_offer_url or allproduct_offer_url or product_offer_url">
+                                                                    <div class="te_discount">
+                                                                        <span class="te_prod_discount">You Save :</span>
+                                                                        <t t-esc="difference" t-options='{"widget": "monetary",
                                                                                        "display_currency": product.currency_id,
                                                                                    }'/>
-                                                                    <t t-esc="'(%s'%(discount)+'&#x25;)'"/>
-                                                                </div>
+                                                                        <t t-esc="'(%s'%(discount)+'&#x25;)'"/>
+                                                                    </div>
+                                                                </t>
                                                             </t>
-                                                        </t>
-                                                        <h6 class="css_non_editable_mode_hidden decimal_precision"
-                                                            t-att-data-precision="str(website.currency_id.decimal_places)">
-                                                            <span t-field="product.list_price"
-                                                                  t-options='{"widget": "monetary",
+                                                            <h6 class="css_non_editable_mode_hidden decimal_precision"
+                                                                t-att-data-precision="str(website.currency_id.decimal_places)">
+                                                                <span t-field="product.list_price"
+                                                                      t-options='{"widget": "monetary",
                                                                                    "display_currency": product.currency_id,
                                                                                }'/>
-                                                        </h6>
-                                                    </div>
+                                                            </h6>
+                                                        </div>
+                                                    </t>
                                                     <section class="te_prod_cart_wish">
-                                                        <t t-if="request.website.viewref('website_sale.products_add_to_cart').active">
-                                                            <a role="button"
-                                                               class="btn btn-secondary btn-sm a-submit px-3 py-2"
-                                                               href="#" title="Shopping cart">
-                                                                <span class="fa fa-shopping-cart"/>
-                                                                Add to Cart
-                                                            </a>
+                                                        <t t-if="not user_id.partner_id.name == 'Public user'">
+                                                            <t t-if="request.website.viewref('website_sale.products_add_to_cart').active">
+                                                                <a role="button"
+                                                                   class="btn btn-secondary btn-sm a-submit px-3 py-2"
+                                                                   href="#" title="Shopping cart">
+                                                                    <span class="fa fa-shopping-cart"/>
+                                                                    Add to Cart
+                                                                </a>
+                                                            </t>
                                                         </t>
                                                         <t t-set="quick_view"
                                                            t-value="request.website.viewref('theme_clarico_vega.quickview_icon_shop_product_item').active"/>
                                                         <t t-if="quick_view">
                                                             <button title="Quick View"
-                                                               class="btn btn-secondary btn-sm px-3 py-2 quick-view-a te_quick_view"
-                                                               t-att-data-id="'%s' % product.id">
+                                                                    class="btn btn-secondary btn-sm px-3 py-2 quick-view-a te_quick_view"
+                                                                    t-att-data-id="'%s' % product.id">
                                                                 <span class="fa fa-eye"/>
                                                             </button>
                                                         </t>
@@ -153,17 +157,19 @@
                                                         <t t-set="product_variant_id"
                                                            t-value="product._get_first_possible_variant_id()"/>
                                                         <t t-if="show_wishlist">
-                                                            <button t-if="product_variant_id" type="button"
-                                                                    role="button"
-                                                                    class="btn btn-secondary btn-sm px-3 py-2 o_add_wishlist"
-                                                                    t-att-disabled='in_wish or None'
-                                                                    title="Add to Wishlist"
-                                                                    t-att-data-product-template-id="product.id"
-                                                                    t-att-data-product-product-id="product_variant_id"
-                                                                    data-action="o_wishlist">
-                                                                <span class="fa fa-heart" role="img"
-                                                                      aria-label="Add to wishlist"/>
-                                                            </button>
+                                                            <t t-if="not user_id.partner_id.name == 'Public user'">
+                                                                <button t-if="product_variant_id" type="button"
+                                                                        role="button"
+                                                                        class="btn btn-secondary btn-sm px-3 py-2 o_add_wishlist"
+                                                                        t-att-disabled='in_wish or None'
+                                                                        title="Add to Wishlist"
+                                                                        t-att-data-product-template-id="product.id"
+                                                                        t-att-data-product-product-id="product_variant_id"
+                                                                        data-action="o_wishlist">
+                                                                    <span class="fa fa-heart" role="img"
+                                                                          aria-label="Add to wishlist"/>
+                                                                </button>
+                                                            </t>
                                                         </t>
                                                     </section>
                                                 </section>
@@ -268,46 +274,49 @@
                                                             <h6 class="text-truncate product_name"
                                                                 t-raw="product.display_name"/>
                                                         </a>
-                                                        <div itemprop="offers" itemscope="itemscope"
-                                                             itemtype="http://schema.org/Offer"
-                                                             class="product_price">
-                                                            <h6 class="oe_price_h4 css_editable_mode_hidden">
-                                                                <span t-attf-class="text-danger oe_default_price {{'' if combination_info['has_discounted_price'] else 'd-none'}}"
-                                                                      style="text-decoration: line-through; white-space: nowrap;"
-                                                                      t-esc="combination_info['list_price']"
-                                                                      t-options="{'widget': 'monetary', 'display_currency': website.currency_id}"
-                                                                />
-                                                                <b class="oe_price" style="white-space: nowrap;"
-                                                                   t-esc="combination_info['price']"
-                                                                   t-options="{'widget': 'monetary', 'display_currency': website.currency_id}"/>
-                                                                <span itemprop="price" style="display:none;"
-                                                                      t-esc="combination_info['price']"/>
-                                                                <span itemprop="priceCurrency" style="display:none;"
-                                                                      t-esc="website.currency_id.name"/>
-                                                            </h6>
-                                                            <t t-if="combination_info['has_discounted_price']">
-                                                                <t t-set="difference"
-                                                                   t-value="round(combination_info['list_price'] - combination_info['price'],2)"/>
-                                                                <t t-set="discount"
-                                                                   t-value="round(difference*100/combination_info['list_price'])"/>
-                                                                <t t-if="category_offer_url or allproduct_offer_url or product_offer_url">
-                                                                    <div class="te_discount pt-2">
-                                                                        <span class="te_prod_discount">You Save :</span>
-                                                                        <t t-esc="difference" t-options='{"widget": "monetary",
+                                                        <t t-if="not user_id.partner_id.name == 'Public user'">
+                                                            <div itemprop="offers" itemscope="itemscope"
+                                                                 itemtype="http://schema.org/Offer"
+                                                                 class="product_price">
+                                                                <h6 class="oe_price_h4 css_editable_mode_hidden">
+                                                                    <span t-attf-class="text-danger oe_default_price {{'' if combination_info['has_discounted_price'] else 'd-none'}}"
+                                                                          style="text-decoration: line-through; white-space: nowrap;"
+                                                                          t-esc="combination_info['list_price']"
+                                                                          t-options="{'widget': 'monetary', 'display_currency': website.currency_id}"
+                                                                    />
+                                                                    <b class="oe_price" style="white-space: nowrap;"
+                                                                       t-esc="combination_info['price']"
+                                                                       t-options="{'widget': 'monetary', 'display_currency': website.currency_id}"/>
+                                                                    <span itemprop="price" style="display:none;"
+                                                                          t-esc="combination_info['price']"/>
+                                                                    <span itemprop="priceCurrency" style="display:none;"
+                                                                          t-esc="website.currency_id.name"/>
+                                                                </h6>
+                                                                <t t-if="combination_info['has_discounted_price']">
+                                                                    <t t-set="difference"
+                                                                       t-value="round(combination_info['list_price'] - combination_info['price'],2)"/>
+                                                                    <t t-set="discount"
+                                                                       t-value="round(difference*100/combination_info['list_price'])"/>
+                                                                    <t t-if="category_offer_url or allproduct_offer_url or product_offer_url">
+                                                                        <div class="te_discount pt-2">
+                                                                            <span class="te_prod_discount">You Save :
+                                                                            </span>
+                                                                            <t t-esc="difference" t-options='{"widget": "monetary",
                                                                                            "display_currency": product.currency_id,
                                                                                        }'/>
-                                                                        <t t-esc="'(%s'%(discount)+'&#x25;)'"/>
-                                                                    </div>
+                                                                            <t t-esc="'(%s'%(discount)+'&#x25;)'"/>
+                                                                        </div>
+                                                                    </t>
                                                                 </t>
-                                                            </t>
-                                                            <h6 class="css_non_editable_mode_hidden decimal_precision"
-                                                                t-att-data-precision="str(website.currency_id.decimal_places)">
-                                                                <span t-field="product.list_price"
-                                                                      t-options='{"widget": "monetary",
+                                                                <h6 class="css_non_editable_mode_hidden decimal_precision"
+                                                                    t-att-data-precision="str(website.currency_id.decimal_places)">
+                                                                    <span t-field="product.list_price"
+                                                                          t-options='{"widget": "monetary",
                                                                                        "display_currency": product.currency_id,
                                                                                    }'/>
-                                                            </h6>
-                                                        </div>
+                                                                </h6>
+                                                            </div>
+                                                        </t>
                                                         <section class="te_prod_cart_wish_2">
                                                             <t t-call="theme_clarico_vega.product_slider_btn"/>
                                                         </section>
@@ -411,46 +420,48 @@
                                                         <h6 class="text-truncate product_name"
                                                             t-raw="product.display_name"/>
                                                     </a>
-                                                    <div itemprop="offers" itemscope="itemscope"
-                                                         itemtype="http://schema.org/Offer"
-                                                         class="product_price">
-                                                        <h6 class="oe_price_h4 css_editable_mode_hidden">
-                                                            <span t-attf-class="text-danger oe_default_price {{'' if combination_info['has_discounted_price'] else 'd-none'}}"
-                                                                  style="text-decoration: line-through; white-space: nowrap;"
-                                                                  t-esc="combination_info['list_price']"
-                                                                  t-options="{'widget': 'monetary', 'display_currency': website.currency_id}"
-                                                            />
-                                                            <b class="oe_price" style="white-space: nowrap;"
-                                                               t-esc="combination_info['price']"
-                                                               t-options="{'widget': 'monetary', 'display_currency': website.currency_id}"/>
-                                                            <span itemprop="price" style="display:none;"
-                                                                  t-esc="combination_info['price']"/>
-                                                            <span itemprop="priceCurrency" style="display:none;"
-                                                                  t-esc="website.currency_id.name"/>
-                                                        </h6>
-                                                        <t t-if="combination_info['has_discounted_price']">
-                                                            <t t-set="difference"
-                                                               t-value="round(combination_info['list_price'] - combination_info['price'],2)"/>
-                                                            <t t-set="discount"
-                                                               t-value="round(difference*100/combination_info['list_price'])"/>
-                                                            <t t-if="category_offer_url or allproduct_offer_url or product_offer_url">
-                                                                <div class="te_discount pb-2">
-                                                                    <span class="te_prod_discount">You Save :</span>
-                                                                    <t t-esc="difference" t-options='{"widget": "monetary",
+                                                    <t t-if="not user_id.partner_id.name == 'Public user'">
+                                                        <div itemprop="offers" itemscope="itemscope"
+                                                             itemtype="http://schema.org/Offer"
+                                                             class="product_price">
+                                                            <h6 class="oe_price_h4 css_editable_mode_hidden">
+                                                                <span t-attf-class="text-danger oe_default_price {{'' if combination_info['has_discounted_price'] else 'd-none'}}"
+                                                                      style="text-decoration: line-through; white-space: nowrap;"
+                                                                      t-esc="combination_info['list_price']"
+                                                                      t-options="{'widget': 'monetary', 'display_currency': website.currency_id}"
+                                                                />
+                                                                <b class="oe_price" style="white-space: nowrap;"
+                                                                   t-esc="combination_info['price']"
+                                                                   t-options="{'widget': 'monetary', 'display_currency': website.currency_id}"/>
+                                                                <span itemprop="price" style="display:none;"
+                                                                      t-esc="combination_info['price']"/>
+                                                                <span itemprop="priceCurrency" style="display:none;"
+                                                                      t-esc="website.currency_id.name"/>
+                                                            </h6>
+                                                            <t t-if="combination_info['has_discounted_price']">
+                                                                <t t-set="difference"
+                                                                   t-value="round(combination_info['list_price'] - combination_info['price'],2)"/>
+                                                                <t t-set="discount"
+                                                                   t-value="round(difference*100/combination_info['list_price'])"/>
+                                                                <t t-if="category_offer_url or allproduct_offer_url or product_offer_url">
+                                                                    <div class="te_discount pb-2">
+                                                                        <span class="te_prod_discount">You Save :</span>
+                                                                        <t t-esc="difference" t-options='{"widget": "monetary",
                                                                                        "display_currency": product.currency_id,
                                                                                    }'/>
-                                                                    <t t-esc="'(%s'%(discount)+'&#x25;)'"/>
-                                                                </div>
+                                                                        <t t-esc="'(%s'%(discount)+'&#x25;)'"/>
+                                                                    </div>
+                                                                </t>
                                                             </t>
-                                                        </t>
-                                                        <h6 class="css_non_editable_mode_hidden decimal_precision"
-                                                            t-att-data-precision="str(website.currency_id.decimal_places)">
-                                                            <span t-field="product.list_price"
-                                                                  t-options='{"widget": "monetary",
+                                                            <h6 class="css_non_editable_mode_hidden decimal_precision"
+                                                                t-att-data-precision="str(website.currency_id.decimal_places)">
+                                                                <span t-field="product.list_price"
+                                                                      t-options='{"widget": "monetary",
                                                                                            "display_currency": product.currency_id,
                                                                                        }'/>
-                                                        </h6>
-                                                    </div>
+                                                            </h6>
+                                                        </div>
+                                                    </t>
                                                     <section class="te_prod_cart_wish_3">
                                                         <t t-call="theme_clarico_vega.product_slider_btn"/>
                                                     </section>
@@ -559,46 +570,48 @@
                                                     <t t-if="product.description_sale">
                                                         <div class="te_slider_4_desc">
                                                             <p class="te_slider_4_p"
-                                                               t-field="product.description_sale"></p>
+                                                               t-field="product.description_sale"/>
                                                         </div>
                                                     </t>
-                                                    <div itemprop="offers" itemscope="itemscope"
-                                                         itemtype="http://schema.org/Offer"
-                                                         class="product_price">
-                                                        <h6 class="oe_price_h4 css_editable_mode_hidden">
-                                                            <span t-attf-class="text-danger oe_default_price {{'' if combination_info['has_discounted_price'] else 'd-none'}}"
-                                                                  style="text-decoration: line-through; white-space: nowrap;"
-                                                                  t-esc="combination_info['list_price']"
-                                                                  t-options="{'widget': 'monetary', 'display_currency': website.currency_id}"/>
-                                                            <b class="oe_price" style="white-space: nowrap;"
-                                                               t-esc="combination_info['price']"
-                                                               t-options="{'widget': 'monetary', 'display_currency': website.currency_id}"/>
-                                                            <span itemprop="price" style="display:none;"
-                                                                  t-esc="combination_info['price']"/>
-                                                            <span itemprop="priceCurrency" style="display:none;"
-                                                                  t-esc="website.currency_id.name"/>
-                                                        </h6>
-                                                        <t t-if="combination_info['has_discounted_price']">
-                                                            <t t-set="difference"
-                                                               t-value="round(combination_info['list_price'] - combination_info['price'],2)"/>
-                                                            <t t-set="discount"
-                                                               t-value="round(difference*100/combination_info['list_price'])"/>
-                                                            <t t-if="category_offer_url or allproduct_offer_url or product_offer_url">
-                                                                <div class="te_discount">
-                                                                    <span class="te_prod_discount">You Save :</span>
-                                                                    <t t-esc="difference" t-options='{"widget": "monetary",
+                                                    <t t-if="not user_id.partner_id.name == 'Public user'">
+                                                        <div itemprop="offers" itemscope="itemscope"
+                                                             itemtype="http://schema.org/Offer"
+                                                             class="product_price">
+                                                            <h6 class="oe_price_h4 css_editable_mode_hidden">
+                                                                <span t-attf-class="text-danger oe_default_price {{'' if combination_info['has_discounted_price'] else 'd-none'}}"
+                                                                      style="text-decoration: line-through; white-space: nowrap;"
+                                                                      t-esc="combination_info['list_price']"
+                                                                      t-options="{'widget': 'monetary', 'display_currency': website.currency_id}"/>
+                                                                <b class="oe_price" style="white-space: nowrap;"
+                                                                   t-esc="combination_info['price']"
+                                                                   t-options="{'widget': 'monetary', 'display_currency': website.currency_id}"/>
+                                                                <span itemprop="price" style="display:none;"
+                                                                      t-esc="combination_info['price']"/>
+                                                                <span itemprop="priceCurrency" style="display:none;"
+                                                                      t-esc="website.currency_id.name"/>
+                                                            </h6>
+                                                            <t t-if="combination_info['has_discounted_price']">
+                                                                <t t-set="difference"
+                                                                   t-value="round(combination_info['list_price'] - combination_info['price'],2)"/>
+                                                                <t t-set="discount"
+                                                                   t-value="round(difference*100/combination_info['list_price'])"/>
+                                                                <t t-if="category_offer_url or allproduct_offer_url or product_offer_url">
+                                                                    <div class="te_discount">
+                                                                        <span class="te_prod_discount">You Save :</span>
+                                                                        <t t-esc="difference" t-options='{"widget": "monetary",
                                                                                        "display_currency": product.currency_id,
                                                                                    }'/>
-                                                                    <t t-esc="'(%s'%(discount)+'&#x25;)'"/>
-                                                                </div>
+                                                                        <t t-esc="'(%s'%(discount)+'&#x25;)'"/>
+                                                                    </div>
+                                                                </t>
                                                             </t>
-                                                        </t>
-                                                        <h6 class="css_non_editable_mode_hidden decimal_precision"
-                                                            t-att-data-precision="str(website.currency_id.decimal_places)">
-                                                            <span t-field="product.list_price"
-                                                                  t-options='{"widget": "monetary","display_currency": product.currency_id,}'/>
-                                                        </h6>
-                                                    </div>
+                                                            <h6 class="css_non_editable_mode_hidden decimal_precision"
+                                                                t-att-data-precision="str(website.currency_id.decimal_places)">
+                                                                <span t-field="product.list_price"
+                                                                      t-options='{"widget": "monetary","display_currency": product.currency_id,}'/>
+                                                            </h6>
+                                                        </div>
+                                                    </t>
                                                     <section class="te_prod_cart_wish_4">
                                                         <t t-call="theme_clarico_vega.product_slider_btn"/>
                                                     </section>
@@ -706,22 +719,26 @@
                                                     <t t-set="product_variant_id"
                                                        t-value="product._get_first_possible_variant_id()"/>
                                                     <t t-if="show_wishlist">
-                                                        <button t-if="product_variant_id" type="button" role="button"
-                                                                class="btn btn-secondary btn-sm o_add_wishlist"
-                                                                t-att-disabled='in_wish or None' title="Add to Wishlist"
-                                                                t-att-data-product-template-id="product.id"
-                                                                t-att-data-product-product-id="product_variant_id"
-                                                                data-action="o_wishlist">
-                                                            <span class="fa fa-heart" role="img"
-                                                                  aria-label="Add to wishlist"/>
-                                                        </button>
+                                                        <t t-if="not user_id.partner_id.name == 'Public user'">
+                                                            <button t-if="product_variant_id" type="button"
+                                                                    role="button"
+                                                                    class="btn btn-secondary btn-sm o_add_wishlist"
+                                                                    t-att-disabled='in_wish or None'
+                                                                    title="Add to Wishlist"
+                                                                    t-att-data-product-template-id="product.id"
+                                                                    t-att-data-product-product-id="product_variant_id"
+                                                                    data-action="o_wishlist">
+                                                                <span class="fa fa-heart" role="img"
+                                                                      aria-label="Add to wishlist"/>
+                                                            </button>
+                                                        </t>
                                                     </t>
                                                     <t t-set="quick_view"
                                                        t-value="request.website.viewref('theme_clarico_vega.quickview_icon_shop_product_item').active"/>
                                                     <t t-if="quick_view">
                                                         <button title="Quick View"
-                                                           class="btn btn-secondary quick-view-a te_quick_view"
-                                                           t-att-data-id="'%s' % product.id">
+                                                                class="btn btn-secondary quick-view-a te_quick_view"
+                                                                t-att-data-id="'%s' % product.id">
                                                             <span class="fa fa-eye"/>
                                                         </button>
                                                     </t>
@@ -734,56 +751,60 @@
                                                         <h6 class="my-2 mb-0 text-truncate product_name"
                                                             t-raw="product.display_name"/>
                                                     </a>
-                                                    <div itemprop="offers" itemscope="itemscope"
-                                                         itemtype="http://schema.org/Offer"
-                                                         class="product_price">
-                                                        <h6 class="oe_price_h4 css_editable_mode_hidden">
-                                                            <span t-attf-class="text-danger oe_default_price {{'' if combination_info['has_discounted_price'] else 'd-none'}}"
-                                                                  style="text-decoration: line-through; white-space: nowrap;"
-                                                                  t-esc="combination_info['list_price']"
-                                                                  t-options="{'widget': 'monetary', 'display_currency': website.currency_id}"
-                                                            />
-                                                            <b class="oe_price" style="white-space: nowrap;"
-                                                               t-esc="combination_info['price']"
-                                                               t-options="{'widget': 'monetary', 'display_currency': website.currency_id}"/>
-                                                            <span itemprop="price" style="display:none;"
-                                                                  t-esc="combination_info['price']"/>
-                                                            <span itemprop="priceCurrency" style="display:none;"
-                                                                  t-esc="website.currency_id.name"/>
-                                                        </h6>
-                                                        <t t-if="combination_info['has_discounted_price']">
-                                                            <t t-set="difference"
-                                                               t-value="round(combination_info['list_price'] - combination_info['price'],2)"/>
-                                                            <t t-set="discount"
-                                                               t-value="round(difference*100/combination_info['list_price'])"/>
-                                                            <t t-if="category_offer_url or allproduct_offer_url or product_offer_url">
-                                                                <div class="te_discount">
-                                                                    <span class="te_prod_discount">You Save :</span>
-                                                                    <t t-esc="difference" t-options='{"widget": "monetary",
+                                                    <t t-if="not user_id.partner_id.name == 'Public user'">
+                                                        <div itemprop="offers" itemscope="itemscope"
+                                                             itemtype="http://schema.org/Offer"
+                                                             class="product_price">
+                                                            <h6 class="oe_price_h4 css_editable_mode_hidden">
+                                                                <span t-attf-class="text-danger oe_default_price {{'' if combination_info['has_discounted_price'] else 'd-none'}}"
+                                                                      style="text-decoration: line-through; white-space: nowrap;"
+                                                                      t-esc="combination_info['list_price']"
+                                                                      t-options="{'widget': 'monetary', 'display_currency': website.currency_id}"
+                                                                />
+                                                                <b class="oe_price" style="white-space: nowrap;"
+                                                                   t-esc="combination_info['price']"
+                                                                   t-options="{'widget': 'monetary', 'display_currency': website.currency_id}"/>
+                                                                <span itemprop="price" style="display:none;"
+                                                                      t-esc="combination_info['price']"/>
+                                                                <span itemprop="priceCurrency" style="display:none;"
+                                                                      t-esc="website.currency_id.name"/>
+                                                            </h6>
+                                                            <t t-if="combination_info['has_discounted_price']">
+                                                                <t t-set="difference"
+                                                                   t-value="round(combination_info['list_price'] - combination_info['price'],2)"/>
+                                                                <t t-set="discount"
+                                                                   t-value="round(difference*100/combination_info['list_price'])"/>
+                                                                <t t-if="category_offer_url or allproduct_offer_url or product_offer_url">
+                                                                    <div class="te_discount">
+                                                                        <span class="te_prod_discount">You Save :</span>
+                                                                        <t t-esc="difference" t-options='{"widget": "monetary",
                                                                                        "display_currency": product.currency_id,
                                                                                    }'/>
-                                                                    <t t-esc="'(%s'%(discount)+'&#x25;)'"/>
-                                                                </div>
+                                                                        <t t-esc="'(%s'%(discount)+'&#x25;)'"/>
+                                                                    </div>
+                                                                </t>
                                                             </t>
-                                                        </t>
-                                                        <h6 class="css_non_editable_mode_hidden decimal_precision"
-                                                            t-att-data-precision="str(website.currency_id.decimal_places)">
-                                                            <span t-field="product.list_price"
-                                                                  t-options='{"widget": "monetary",
+                                                            <h6 class="css_non_editable_mode_hidden decimal_precision"
+                                                                t-att-data-precision="str(website.currency_id.decimal_places)">
+                                                                <span t-field="product.list_price"
+                                                                      t-options='{"widget": "monetary",
                                                                                    "display_currency": product.currency_id,
                                                                                }'/>
-                                                        </h6>
-                                                    </div>
-                                                    <section class="te_prod_cart_wish pt-3">
-                                                        <t t-if="request.website.viewref('website_sale.products_add_to_cart').active">
-                                                            <a role="button"
-                                                               class="btn btn-secondary btn-sm a-submit px-3 py-2 te_theme_button"
-                                                               href="#" title="Shopping cart">
-                                                                <span class="fa fa-shopping-cart"/>
-                                                                Add to Cart
-                                                            </a>
-                                                        </t>
-                                                    </section>
+                                                            </h6>
+                                                        </div>
+                                                    </t>
+                                                    <t t-if="not user_id.partner_id.name == 'Public user'">
+                                                        <section class="te_prod_cart_wish pt-3">
+                                                            <t t-if="request.website.viewref('website_sale.products_add_to_cart').active">
+                                                                <a role="button"
+                                                                   class="btn btn-secondary btn-sm a-submit px-3 py-2 te_theme_button"
+                                                                   href="#" title="Shopping cart">
+                                                                    <span class="fa fa-shopping-cart"/>
+                                                                    Add to Cart
+                                                                </a>
+                                                            </t>
+                                                        </section>
+                                                    </t>
                                                 </section>
                                             </div>
                                         </form>
@@ -884,34 +905,38 @@
                                                         <t t-set="product_variant_id"
                                                            t-value="product._get_first_possible_variant_id()"/>
                                                         <t t-if="show_wishlist">
-                                                            <button t-if="product_variant_id" type="button"
-                                                                    role="button"
-                                                                    class="btn btn-secondary btn-sm o_add_wishlist"
-                                                                    t-att-disabled='in_wish or None'
-                                                                    title="Add to Wishlist"
-                                                                    t-att-data-product-template-id="product.id"
-                                                                    t-att-data-product-product-id="product_variant_id"
-                                                                    data-action="o_wishlist">
-                                                                <span class="fa fa-heart" role="img"
-                                                                      aria-label="Add to wishlist"/>
-                                                            </button>
+                                                            <t t-if="not user_id.partner_id.name == 'Public user'">
+                                                                <button t-if="product_variant_id" type="button"
+                                                                        role="button"
+                                                                        class="btn btn-secondary btn-sm o_add_wishlist"
+                                                                        t-att-disabled='in_wish or None'
+                                                                        title="Add to Wishlist"
+                                                                        t-att-data-product-template-id="product.id"
+                                                                        t-att-data-product-product-id="product_variant_id"
+                                                                        data-action="o_wishlist">
+                                                                    <span class="fa fa-heart" role="img"
+                                                                          aria-label="Add to wishlist"/>
+                                                                </button>
+                                                            </t>
                                                         </t>
                                                         <t t-set="quick_view"
                                                            t-value="request.website.viewref('theme_clarico_vega.quickview_icon_shop_product_item').active"/>
                                                         <t t-if="quick_view">
                                                             <button title="Quick View"
-                                                               class="btn btn-secondary quick-view-a te_quick_view"
-                                                               t-att-data-id="'%s' % product.id">
+                                                                    class="btn btn-secondary quick-view-a te_quick_view"
+                                                                    t-att-data-id="'%s' % product.id">
                                                                 <span class="fa fa-eye"/>
                                                             </button>
                                                         </t>
                                                     </div>
-                                                    <t t-if="request.website.viewref('website_sale.products_add_to_cart').active">
-                                                        <a role="button" class="btn btn-primary a-submit" href="#"
-                                                           title="Shopping cart">
-                                                            <span class="fa fa-shopping-cart"/>
-                                                            Add to Cart
-                                                        </a>
+                                                    <t t-if="not user_id.partner_id.name == 'Public user'">
+                                                        <t t-if="request.website.viewref('website_sale.products_add_to_cart').active">
+                                                            <a role="button" class="btn btn-primary a-submit" href="#"
+                                                               title="Shopping cart">
+                                                                <span class="fa fa-shopping-cart"/>
+                                                                Add to Cart
+                                                            </a>
+                                                        </t>
                                                     </t>
                                                 </section>
                                                 <div class="te_prod_info_2">
@@ -921,46 +946,49 @@
                                                             <h6 class="text-truncate product_name"
                                                                 t-raw="product.display_name"/>
                                                         </a>
-                                                        <div itemprop="offers" itemscope="itemscope"
-                                                             itemtype="http://schema.org/Offer"
-                                                             class="product_price">
-                                                            <h6 class="oe_price_h4 css_editable_mode_hidden">
-                                                                <span t-attf-class="text-danger oe_default_price {{'' if combination_info['has_discounted_price'] else 'd-none'}}"
-                                                                      style="text-decoration: line-through; white-space: nowrap;"
-                                                                      t-esc="combination_info['list_price']"
-                                                                      t-options="{'widget': 'monetary', 'display_currency': website.currency_id}"
-                                                                />
-                                                                <b class="oe_price" style="white-space: nowrap;"
-                                                                   t-esc="combination_info['price']"
-                                                                   t-options="{'widget': 'monetary', 'display_currency': website.currency_id}"/>
-                                                                <span itemprop="price" style="display:none;"
-                                                                      t-esc="combination_info['price']"/>
-                                                                <span itemprop="priceCurrency" style="display:none;"
-                                                                      t-esc="website.currency_id.name"/>
-                                                            </h6>
-                                                            <t t-if="combination_info['has_discounted_price']">
-                                                                <t t-set="difference"
-                                                                   t-value="round(combination_info['list_price'] - combination_info['price'],2)"/>
-                                                                <t t-set="discount"
-                                                                   t-value="round(difference*100/combination_info['list_price'])"/>
-                                                                <t t-if="category_offer_url or allproduct_offer_url or product_offer_url">
-                                                                    <div class="te_discount pt-2">
-                                                                        <span class="te_prod_discount">You Save :</span>
-                                                                        <t t-esc="difference" t-options='{"widget": "monetary",
+                                                        <t t-if="not user_id.partner_id.name == 'Public user'">
+                                                            <div itemprop="offers" itemscope="itemscope"
+                                                                 itemtype="http://schema.org/Offer"
+                                                                 class="product_price">
+                                                                <h6 class="oe_price_h4 css_editable_mode_hidden">
+                                                                    <span t-attf-class="text-danger oe_default_price {{'' if combination_info['has_discounted_price'] else 'd-none'}}"
+                                                                          style="text-decoration: line-through; white-space: nowrap;"
+                                                                          t-esc="combination_info['list_price']"
+                                                                          t-options="{'widget': 'monetary', 'display_currency': website.currency_id}"
+                                                                    />
+                                                                    <b class="oe_price" style="white-space: nowrap;"
+                                                                       t-esc="combination_info['price']"
+                                                                       t-options="{'widget': 'monetary', 'display_currency': website.currency_id}"/>
+                                                                    <span itemprop="price" style="display:none;"
+                                                                          t-esc="combination_info['price']"/>
+                                                                    <span itemprop="priceCurrency" style="display:none;"
+                                                                          t-esc="website.currency_id.name"/>
+                                                                </h6>
+                                                                <t t-if="combination_info['has_discounted_price']">
+                                                                    <t t-set="difference"
+                                                                       t-value="round(combination_info['list_price'] - combination_info['price'],2)"/>
+                                                                    <t t-set="discount"
+                                                                       t-value="round(difference*100/combination_info['list_price'])"/>
+                                                                    <t t-if="category_offer_url or allproduct_offer_url or product_offer_url">
+                                                                        <div class="te_discount pt-2">
+                                                                            <span class="te_prod_discount">You Save :
+                                                                            </span>
+                                                                            <t t-esc="difference" t-options='{"widget": "monetary",
                                                                                            "display_currency": product.currency_id,
                                                                                        }'/>
-                                                                        <t t-esc="'(%s'%(discount)+'&#x25;)'"/>
-                                                                    </div>
+                                                                            <t t-esc="'(%s'%(discount)+'&#x25;)'"/>
+                                                                        </div>
+                                                                    </t>
                                                                 </t>
-                                                            </t>
-                                                            <h6 class="css_non_editable_mode_hidden decimal_precision"
-                                                                t-att-data-precision="str(website.currency_id.decimal_places)">
-                                                                <span t-field="product.list_price"
-                                                                      t-options='{"widget": "monetary",
+                                                                <h6 class="css_non_editable_mode_hidden decimal_precision"
+                                                                    t-att-data-precision="str(website.currency_id.decimal_places)">
+                                                                    <span t-field="product.list_price"
+                                                                          t-options='{"widget": "monetary",
                                                                                        "display_currency": product.currency_id,
                                                                                    }'/>
-                                                            </h6>
-                                                        </div>
+                                                                </h6>
+                                                            </div>
+                                                        </t>
                                                     </section>
                                                 </div>
                                             </form>
@@ -1141,16 +1169,18 @@
     </template>
     <!--============= 'Add to cart',Wishlist,Quick view icons ===================-->
     <template id="product_slider_btn">
-        <t t-if="request.website.viewref('website_sale.products_add_to_cart').active">
-            <a role="button" class="btn btn-secondary btn-sm a-submit px-3 py-2" href="#" title="Shopping cart">
-                <span class="fa fa-shopping-cart"/>
-            </a>
+        <t t-if="not user_id.partner_id.name == 'Public user'">
+            <t t-if="request.website.viewref('website_sale.products_add_to_cart').active">
+                <a role="button" class="btn btn-secondary btn-sm a-submit px-3 py-2" href="#" title="Shopping cart">
+                    <span class="fa fa-shopping-cart"/>
+                </a>
+            </t>
         </t>
         <t t-set="quick_view"
            t-value="request.website.viewref('theme_clarico_vega.quickview_icon_shop_product_item').active"/>
         <t t-if="quick_view">
             <button title="Quick View" class="btn btn-secondary btn-sm px-3 py-2 quick-view-a te_quick_view"
-               t-att-data-id="'%s' % product.id">
+                    t-att-data-id="'%s' % product.id">
                 <span class="fa fa-eye"/>
             </button>
         </t>
@@ -1158,14 +1188,16 @@
         <t t-set="in_wish" t-value="product._is_in_wishlist()"/>
         <t t-set="product_variant_id" t-value="product._get_first_possible_variant_id()"/>
         <t t-if="show_wishlist">
-            <button t-if="product_variant_id" type="button" role="button"
-                    class="btn btn-secondary btn-sm px-3 py-2 o_add_wishlist"
-                    t-att-disabled='in_wish or None' title="Add to Wishlist"
-                    t-att-data-product-template-id="product.id"
-                    t-att-data-product-product-id="product_variant_id"
-                    data-action="o_wishlist">
-                <span class="fa fa-heart" role="img" aria-label="Add to wishlist"/>
-            </button>
+            <t t-if="not user_id.partner_id.name == 'Public user'">
+                <button t-if="product_variant_id" type="button" role="button"
+                        class="btn btn-secondary btn-sm px-3 py-2 o_add_wishlist"
+                        t-att-disabled='in_wish or None' title="Add to Wishlist"
+                        t-att-data-product-template-id="product.id"
+                        t-att-data-product-product-id="product_variant_id"
+                        data-action="o_wishlist">
+                    <span class="fa fa-heart" role="img" aria-label="Add to wishlist"/>
+                </button>
+            </t>
         </t>
     </template>
 </odoo>

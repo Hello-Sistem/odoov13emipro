@@ -5,7 +5,7 @@
     'summary': 'This app contains part of user access roles and restriction',
     'version': '1.0.0',
     'license': 'OPL-1',
-    'depends':['website','sale','sale_stock','stock','sale_management'],
+    'depends':['website'],
 
     'data': [
         'views/res_config_settings_views.xml',

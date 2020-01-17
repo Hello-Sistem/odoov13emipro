@@ -28,25 +28,31 @@ class EptUserAccess(http.Controller):
         template.sudo().send_mail(so.id, force_send=True)
         return request.redirect("/shop/cart/")
 
+    @http.route(['/send/confirmation/mail'], type='http', auth="public", website=True, csrf=False)
+    def send_confirmation_mail(self):
+        return request.render("user_access.signup_confirmation")
+
+
 
 class Home(Home):
 
     @http.route()
     def web_login(self, redirect=None, **kw):
-        email_domain = request.website.email_domain
-        if request.params and request.params['login'] and email_domain:
-            user = request.env['res.users'].sudo().search([('login', '=', request.params['login'])])
-            if user.share:
-                email_has = email_domain.split("@")
-                username = request.params['login']
-                allow = username.find(email_has[1])
-                if (allow == -1):
-                    request.params['error'] = _("Email domain must be end with ") + str('"' + email_has[1] + '"')
-                    return request.render('web.login', request.params)
+        if request.params and not request.params['redirect']:
+            email_domain = request.website.email_domain
+            if request.params['login'] and email_domain:
+                user = request.env['res.users'].sudo().search([('login', '=', request.params['login'])])
+                if user.share:
+                    email_has = email_domain.split("@")
+                    username = request.params['login']
+                    allow = username.find(email_has[1])
+                    if (allow == -1):
+                        request.params['error'] = _("Email domain must be end with ") + str('"' + email_has[1] + '"')
+                        return request.render('web.login', request.params)
 
-                if user and not user.is_validate:
-                    request.params['error'] = _("User is not validate please check your email..")
-                    return request.render('web.login', request.params)
+                    if user and not user.is_validate:
+                        request.params['error'] = _("User is not validate please check your email..")
+                        return request.render('web.login', request.params)
         return super(Home, self).web_login(redirect, **kw)
 
 
