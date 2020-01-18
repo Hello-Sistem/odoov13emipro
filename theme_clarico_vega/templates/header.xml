@@ -1689,7 +1689,8 @@
                          t-if="website_sale_pricelists and len(website_sale_pricelists)&gt;1">
                         <t t-call="website_sale.pricelist_list"/>
                     </div>
-                    <div class="px-1 te_language_selector" t-if="(request and request.is_frontend_multilang and len(languages) &gt; 1) or (website and (editable or translatable))">
+                    <div class="px-1 te_language_selector"
+                         t-if="(request and request.is_frontend_multilang and len(languages) &gt; 1) or (website and (editable or translatable))">
                         <t t-call="theme_clarico_vega.header_language_ept"></t>
                     </div>
                     <t t-set="website_vertical_menu"
@@ -1712,7 +1713,8 @@
                                 <a href="/shop/cart" role="menuitem" class="dropdown-item"><span
                                         class="fa fa-check-circle"/>Checkout
                                 </a>
-                                <a href="/my/orders" role="menuitem" class="dropdown-item"><span class="fa fa-pie-chart"/>My
+                                <a href="/my/orders" role="menuitem" class="dropdown-item"><span
+                                        class="fa fa-pie-chart"/>My
                                     orders
                                 </a>
                                 <a href="/shop/wishlist" role="menuitem" class="dropdown-item"
@@ -1802,11 +1804,13 @@
     <!-- Header Cart Option-->
     <template id="header_cart">
         <t t-set="website_sale_order" t-value="website.sale_get_order()"/>
-        <a id="my_cart" href="/shop/cart" class="nav-link o_wsale_my_cart">
-            <i class="fa fa-shopping-cart"/>
-            <sup t-attf-class="my_cart_quantity badge badge-primary"
-                 t-esc="website_sale_order and website_sale_order.cart_quantity or '0'"/>
-        </a>
+        <t t-if="not user_id.partner_id.name == 'Public user'">
+            <a id="my_cart" href="/shop/cart" class="nav-link o_wsale_my_cart">
+                <i class="fa fa-shopping-cart"/>
+                <sup t-attf-class="my_cart_quantity badge badge-primary"
+                     t-esc="website_sale_order and website_sale_order.cart_quantity or '0'"/>
+            </a>
+        </t>
     </template>
 
     <!-- Replaced signin from header -->
@@ -1820,14 +1824,16 @@
 
     <!-- Header Wishlist Option-->
     <template id="header_wishlist">
-        <t t-if="request.website.viewref('website_sale_wishlist.add_to_wishlist').active">
-            <t t-set='wishcount' t-value="len(request.env['product.wishlist'].current())"/>
-            <a href="/shop/wishlist" class="nav-link te_wish_icon_head">
-                <i class="fa fa-heart"/>
-                <sup t-attf-class="my_wish_quantity o_animate_blink badge badge-primary">
-                    <t t-esc='wishcount or "0"'/>
-                </sup>
-            </a>
+        <t t-if="not user_id.partner_id.name == 'Public user'">
+            <t t-if="request.website.viewref('website_sale_wishlist.add_to_wishlist').active">
+                <t t-set='wishcount' t-value="len(request.env['product.wishlist'].current())"/>
+                <a href="/shop/wishlist" class="nav-link te_wish_icon_head">
+                    <i class="fa fa-heart"/>
+                    <sup t-attf-class="my_wish_quantity o_animate_blink badge badge-primary">
+                        <t t-esc='wishcount or "0"'/>
+                    </sup>
+                </a>
+            </t>
         </t>
     </template>
 
