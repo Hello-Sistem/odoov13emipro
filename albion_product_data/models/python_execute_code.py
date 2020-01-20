@@ -27,18 +27,21 @@ class emipro_execute_python(models.Model):
     def prepare_product_data(self):
         _logger.info("Product Template Import Starting %s<<<<<<<<<<<<<<<<<<<<<<<"%datetime.now().strftime('%H:%M:%S'))
         ProductImage = self.env['product.image'].sudo()
+        ProductTemplate = self.env['product.template'].sudo()
 
         # file_path = os.path.join(os.path.dirname(os.path.abspath(__file__)))
         # file_path = file_path.split('/models')[0]
         file_path = self.get_module_path()
         if file_path:
-            file_location = '/data/product_template.csv'
+            file_location = '/data/final_product_template.csv'
             file_location = file_path + file_location
 
             with open(file_location,'rU')as file:
                 data = csv.DictReader(file)
                 for row in data:
-
+                    available_product = ProductTemplate.search([('default_code','=',row.get('Base Model'))])
+                    if available_product:
+                        continue
                     # Images
                     images_url = []
                     images = row.get('images')
@@ -97,7 +100,7 @@ class emipro_execute_python(models.Model):
                     if product_type:
                         vals.update({'type': prod_type})
 
-                    NewProd = self.env['product.template'].create(vals)
+                    NewProd = ProductTemplate.create(vals)
                     if has_image and has_multi_image:
                         extra_image = images_url[1:]
                         for image in extra_image:
@@ -233,44 +236,44 @@ class emipro_execute_python(models.Model):
         return True
 
 
-    def assign_man_number(self):
-
-        # file_path = os.path.join(os.path.dirname(os.path.abspath(__file__)))
-        # file_path = file_path.split('/models')[0]
-        file_path = self.get_module_path()
-        if file_path:
-            file_location = '/data/MPN/imac_cto_export.csv'
-            # file_location = '/data/MPN/imac_pro_cto_export.csv'
-            # file_location = '/data/MPN/macbook_air_cto_export.csv'
-            # file_location = '/data/MPN/macbook_pro_13_2019_cto_export.csv'
-            # file_location = '/data/MPN/macbook_pro_16_2019_cto_export.csv'
-            # file_location = '/data/MPN/mac_mini_cto.csv'
-            # file_location = '/data/MPN/Mac_Pro_2019_cto_export.csv' [pending due to 12000 varieants]
-            file_location = file_path + file_location
-
-            with open(file_location,'rU')as file:
-                data = csv.DictReader(file)
-                ProductProduct = self.env['product.product'].sudo()
-
-                for row in data:
-                    imac_cto_export_domain = ["&","&","&","&","&","&","&","&",["product_template_attribute_value_ids.name","=",row.get('Processor')],["product_template_attribute_value_ids.name","=",row.get('Memory')],["product_template_attribute_value_ids.name","=",row.get('HDD')],["product_template_attribute_value_ids.name","=",row.get('Graphics')],["product_template_attribute_value_ids.name","=",row.get('Mouse and Trackpad')],["product_template_attribute_value_ids.name","=",row.get('Keyboard Options')],["product_template_attribute_value_ids.name","=",row.get('VESA Mount')],["product_template_attribute_value_ids.name","=",row.get('Power')],["product_template_attribute_value_ids.name","=",row.get('Colour')]]
-                    # imac_pro_cto_export_domain = ["&","&","&","&","&","&","&",["product_template_attribute_value_ids.name","=",row.get('Processor')],["product_template_attribute_value_ids.name","=",row.get('Memory')],["product_template_attribute_value_ids.name","=",row.get('HDD')],["product_template_attribute_value_ids.name","=",row.get('Graphics')],["product_template_attribute_value_ids.name","=",row.get('Mouse and Trackpad')],["product_template_attribute_value_ids.name","=",row.get('Keyboard Options')],["product_template_attribute_value_ids.name","=",row.get('Power')],["product_template_attribute_value_ids.name","=",row.get('Colour')]]
-                    # macbook_air_cto_export = ["&","&","&","&","&","&","&","&",["product_template_attribute_value_ids.name","=",row.get('Processor')],["product_template_attribute_value_ids.name","=",row.get('Memory')],["product_template_attribute_value_ids.name","=",row.get('HDD')],["product_template_attribute_value_ids.name","=",row.get('Graphics')],["product_template_attribute_value_ids.name","=",row.get('Touch')],["product_template_attribute_value_ids.name","=",row.get('Keyboard Options')],["product_template_attribute_value_ids.name","=",row.get('Display')],["product_template_attribute_value_ids.name","=",row.get('Power')],["product_template_attribute_value_ids.name","=",row.get('Colour')]]
-                    # macbook_pro_13_2019_cto_export = ["&","&","&","&","&","&","&",["product_template_attribute_value_ids.name","=",row.get('Processor')],["product_template_attribute_value_ids.name","=",row.get('Memory')],["product_template_attribute_value_ids.name","=",row.get('HDD')],["product_template_attribute_value_ids.name","=",row.get('Graphics')],["product_template_attribute_value_ids.name","=",row.get('Touch Bar')],["product_template_attribute_value_ids.name","=",row.get('Keyboard Options')],["product_template_attribute_value_ids.name","=",row.get('Power')],["product_template_attribute_value_ids.name","=",row.get('Colour')]]
-                    # macbook_pro_16_2019_cto_export = ["&","&","&","&","&","&",["product_template_attribute_value_ids.name","=",row.get('Processor')],["product_template_attribute_value_ids.name","=",row.get('Memory')],["product_template_attribute_value_ids.name","=",row.get('HDD')],["product_template_attribute_value_ids.name","=",row.get('Graphics')],["product_template_attribute_value_ids.name","=",row.get('Keyboard Options')],["product_template_attribute_value_ids.name","=",row.get('Power')],["product_template_attribute_value_ids.name","=",row.get('Colour')]]
-                    # mac_mini_cto_domain = ["&","&","&","&","&","&","&","&",["product_template_attribute_value_ids.name","=",row.get('Processor')],["product_template_attribute_value_ids.name","=",row.get('Memory')],["product_template_attribute_value_ids.name","=",row.get('HDD')],["product_template_attribute_value_ids.name","=",row.get('Graphics')],["product_template_attribute_value_ids.name","=",row.get('Mouse and Trackpad')],["product_template_attribute_value_ids.name","=",row.get('Keyboard Options')],["product_template_attribute_value_ids.name","=",row.get('Ethernet')],["product_template_attribute_value_ids.name","=",row.get('Power')],["product_template_attribute_value_ids.name","=",row.get('Colour')]]
-                    # Mac_Pro_2019_cto_export_domain = pending due to 12000 varieants
-                    ProdProd = ProductProduct.search(imac_cto_export_domain)
-                    if ProdProd and row.get('Manufacturer part no.') != row.get('Base model code'):
-                        ProdTmpl_sku = ProdProd.product_tmpl_id.default_code if ProdProd.product_tmpl_id.default_code else ''
-                        ProdProd.write({'default_code':row.get('Manufacturer part no.')})
-                        if ProdTmpl_sku:
-                            ProdProd.product_tmpl_id.write({'default_code' : ProdTmpl_sku})
+    # def assign_man_number(self):
+    #
+    #     # file_path = os.path.join(os.path.dirname(os.path.abspath(__file__)))
+    #     # file_path = file_path.split('/models')[0]
+    #     file_path = self.get_module_path()
+    #     if file_path:
+    #         file_location = '/data/MPN/imac_cto_export.csv'
+    #         # file_location = '/data/MPN/imac_pro_cto_export.csv'
+    #         # file_location = '/data/MPN/macbook_air_cto_export.csv'
+    #         # file_location = '/data/MPN/macbook_pro_13_2019_cto_export.csv'
+    #         # file_location = '/data/MPN/macbook_pro_16_2019_cto_export.csv'
+    #         # file_location = '/data/MPN/mac_mini_cto.csv'
+    #         # file_location = '/data/MPN/Mac_Pro_2019_cto_export.csv' [pending due to 12000 varieants]
+    #         file_location = file_path + file_location
+    #
+    #         with open(file_location,'rU')as file:
+    #             data = csv.DictReader(file)
+    #             ProductProduct = self.env['product.product'].sudo()
+    #
+    #             for row in data:
+    #                 imac_cto_export_domain = ["&","&","&","&","&","&","&","&",["product_template_attribute_value_ids.name","=",row.get('Processor')],["product_template_attribute_value_ids.name","=",row.get('Memory')],["product_template_attribute_value_ids.name","=",row.get('HDD')],["product_template_attribute_value_ids.name","=",row.get('Graphics')],["product_template_attribute_value_ids.name","=",row.get('Mouse and Trackpad')],["product_template_attribute_value_ids.name","=",row.get('Keyboard Options')],["product_template_attribute_value_ids.name","=",row.get('VESA Mount')],["product_template_attribute_value_ids.name","=",row.get('Power')],["product_template_attribute_value_ids.name","=",row.get('Colour')]]
+    #                 # imac_pro_cto_export_domain = ["&","&","&","&","&","&","&",["product_template_attribute_value_ids.name","=",row.get('Processor')],["product_template_attribute_value_ids.name","=",row.get('Memory')],["product_template_attribute_value_ids.name","=",row.get('HDD')],["product_template_attribute_value_ids.name","=",row.get('Graphics')],["product_template_attribute_value_ids.name","=",row.get('Mouse and Trackpad')],["product_template_attribute_value_ids.name","=",row.get('Keyboard Options')],["product_template_attribute_value_ids.name","=",row.get('Power')],["product_template_attribute_value_ids.name","=",row.get('Colour')]]
+    #                 # macbook_air_cto_export = ["&","&","&","&","&","&","&","&",["product_template_attribute_value_ids.name","=",row.get('Processor')],["product_template_attribute_value_ids.name","=",row.get('Memory')],["product_template_attribute_value_ids.name","=",row.get('HDD')],["product_template_attribute_value_ids.name","=",row.get('Graphics')],["product_template_attribute_value_ids.name","=",row.get('Touch')],["product_template_attribute_value_ids.name","=",row.get('Keyboard Options')],["product_template_attribute_value_ids.name","=",row.get('Display')],["product_template_attribute_value_ids.name","=",row.get('Power')],["product_template_attribute_value_ids.name","=",row.get('Colour')]]
+    #                 # macbook_pro_13_2019_cto_export = ["&","&","&","&","&","&","&",["product_template_attribute_value_ids.name","=",row.get('Processor')],["product_template_attribute_value_ids.name","=",row.get('Memory')],["product_template_attribute_value_ids.name","=",row.get('HDD')],["product_template_attribute_value_ids.name","=",row.get('Graphics')],["product_template_attribute_value_ids.name","=",row.get('Touch Bar')],["product_template_attribute_value_ids.name","=",row.get('Keyboard Options')],["product_template_attribute_value_ids.name","=",row.get('Power')],["product_template_attribute_value_ids.name","=",row.get('Colour')]]
+    #                 # macbook_pro_16_2019_cto_export = ["&","&","&","&","&","&",["product_template_attribute_value_ids.name","=",row.get('Processor')],["product_template_attribute_value_ids.name","=",row.get('Memory')],["product_template_attribute_value_ids.name","=",row.get('HDD')],["product_template_attribute_value_ids.name","=",row.get('Graphics')],["product_template_attribute_value_ids.name","=",row.get('Keyboard Options')],["product_template_attribute_value_ids.name","=",row.get('Power')],["product_template_attribute_value_ids.name","=",row.get('Colour')]]
+    #                 # mac_mini_cto_domain = ["&","&","&","&","&","&","&","&",["product_template_attribute_value_ids.name","=",row.get('Processor')],["product_template_attribute_value_ids.name","=",row.get('Memory')],["product_template_attribute_value_ids.name","=",row.get('HDD')],["product_template_attribute_value_ids.name","=",row.get('Graphics')],["product_template_attribute_value_ids.name","=",row.get('Mouse and Trackpad')],["product_template_attribute_value_ids.name","=",row.get('Keyboard Options')],["product_template_attribute_value_ids.name","=",row.get('Ethernet')],["product_template_attribute_value_ids.name","=",row.get('Power')],["product_template_attribute_value_ids.name","=",row.get('Colour')]]
+    #                 # Mac_Pro_2019_cto_export_domain = pending due to 12000 varieants
+    #                 ProdProd = ProductProduct.search(imac_cto_export_domain)
+    #                 if ProdProd and row.get('Manufacturer part no.') != row.get('Base model code'):
+    #                     ProdTmpl_sku = ProdProd.product_tmpl_id.default_code if ProdProd.product_tmpl_id.default_code else ''
+    #                     ProdProd.write({'default_code':row.get('Manufacturer part no.')})
+    #                     if ProdTmpl_sku:
+    #                         ProdProd.product_tmpl_id.write({'default_code' : ProdTmpl_sku})
 
     def get_dynamic_domain_values(self,product_name,row):
         domain = []
         if product_name == 'imac':
-            domain = ["&", "&", "&", "&", "&", "&", "&", "&",
+            domain = ["&", "&", "&", "&", "&", "&", "&", "&","&",["product_tmpl_id.default_code", "=", row.get('Base model code')],
                                       ["product_template_attribute_value_ids.name", "=", row.get('Processor')],
                                       ["product_template_attribute_value_ids.name", "=", row.get('Memory')],
                                       ["product_template_attribute_value_ids.name", "=", row.get('HDD')],
@@ -282,10 +285,10 @@ class emipro_execute_python(models.Model):
                                       ["product_template_attribute_value_ids.name", "=", row.get('Colour')]]
 
         if product_name =='imac_pro':
-            domain = ["&","&","&","&","&","&","&",["product_template_attribute_value_ids.name","=",row.get('Processor')],["product_template_attribute_value_ids.name","=",row.get('Memory')],["product_template_attribute_value_ids.name","=",row.get('HDD')],["product_template_attribute_value_ids.name","=",row.get('Graphics')],["product_template_attribute_value_ids.name","=",row.get('Mouse and Trackpad')],["product_template_attribute_value_ids.name","=",row.get('Keyboard Options')],["product_template_attribute_value_ids.name","=",row.get('Power')],["product_template_attribute_value_ids.name","=",row.get('Colour')]]
+            domain = ["&","&","&","&","&","&","&","&",["product_tmpl_id.default_code", "=", row.get('Base model code')],["product_template_attribute_value_ids.name","=",row.get('Processor')],["product_template_attribute_value_ids.name","=",row.get('Memory')],["product_template_attribute_value_ids.name","=",row.get('HDD')],["product_template_attribute_value_ids.name","=",row.get('Graphics')],["product_template_attribute_value_ids.name","=",row.get('Mouse and Trackpad')],["product_template_attribute_value_ids.name","=",row.get('Keyboard Options')],["product_template_attribute_value_ids.name","=",row.get('Power')],["product_template_attribute_value_ids.name","=",row.get('Colour')]]
 
         if product_name == 'macbook_air':
-            domain = ["&", "&", "&", "&", "&", "&", "&", "&",
+            domain = ["&", "&", "&", "&", "&", "&", "&", "&","&",["product_tmpl_id.default_code", "=", row.get('Base model code')],
              ["product_template_attribute_value_ids.name", "=", row.get('Processor')],
              ["product_template_attribute_value_ids.name", "=", row.get('Memory')],
              ["product_template_attribute_value_ids.name", "=", row.get('HDD')],
@@ -297,10 +300,10 @@ class emipro_execute_python(models.Model):
              ["product_template_attribute_value_ids.name", "=", row.get('Colour')]]
 
         if product_name == 'macbook_pro_13_2019':
-            domain = ["&","&","&","&","&","&","&",["product_template_attribute_value_ids.name","=",row.get('Processor')],["product_template_attribute_value_ids.name","=",row.get('Memory')],["product_template_attribute_value_ids.name","=",row.get('HDD')],["product_template_attribute_value_ids.name","=",row.get('Graphics')],["product_template_attribute_value_ids.name","=",row.get('Touch Bar')],["product_template_attribute_value_ids.name","=",row.get('Keyboard Options')],["product_template_attribute_value_ids.name","=",row.get('Power')],["product_template_attribute_value_ids.name","=",row.get('Colour')]]
+            domain = ["&","&","&","&","&","&","&","&",["product_tmpl_id.default_code","=",row.get('Base model code')],["product_template_attribute_value_ids.name","=",row.get('Processor')],["product_template_attribute_value_ids.name","=",row.get('Memory')],["product_template_attribute_value_ids.name","=",row.get('HDD')],["product_template_attribute_value_ids.name","=",row.get('Graphics')],["product_template_attribute_value_ids.name","=",row.get('Touch Bar')],["product_template_attribute_value_ids.name","=",row.get('Keyboard Options')],["product_template_attribute_value_ids.name","=",row.get('Power')],["product_template_attribute_value_ids.name","=",row.get('Colour')]]
 
         if product_name == 'macbook_pro_16_2019':
-            domain = ["&","&","&","&","&","&",["product_template_attribute_value_ids.name","=",row.get('Processor')],["product_template_attribute_value_ids.name","=",row.get('Memory')],["product_template_attribute_value_ids.name","=",row.get('HDD')],["product_template_attribute_value_ids.name","=",row.get('Graphics')],["product_template_attribute_value_ids.name","=",row.get('Keyboard Options')],["product_template_attribute_value_ids.name","=",row.get('Power')],["product_template_attribute_value_ids.name","=",row.get('Colour')]]
+            domain = ["&","&","&","&","&","&","&",["product_tmpl_id.default_code","=",row.get('Base model code')],["product_template_attribute_value_ids.name","=",row.get('Processor')],["product_template_attribute_value_ids.name","=",row.get('Memory')],["product_template_attribute_value_ids.name","=",row.get('HDD')],["product_template_attribute_value_ids.name","=",row.get('Graphics')],["product_template_attribute_value_ids.name","=",row.get('Keyboard Options')],["product_template_attribute_value_ids.name","=",row.get('Power')],["product_template_attribute_value_ids.name","=",row.get('Colour')]]
 
         if product_name == 'mac_mini':
             domain = ["&","&","&","&","&","&","&","&","&",["product_tmpl_id.default_code","=",row.get('Base model code')],["product_template_attribute_value_ids.name","=",row.get('Processor')],["product_template_attribute_value_ids.name","=",row.get('Memory')],["product_template_attribute_value_ids.name","=",row.get('HDD')],["product_template_attribute_value_ids.name","=",row.get('Graphics')],["product_template_attribute_value_ids.name","=",row.get('Mouse and Trackpad')],["product_template_attribute_value_ids.name","=",row.get('Keyboard Options')],["product_template_attribute_value_ids.name","=",row.get('Ethernet')],["product_template_attribute_value_ids.name","=",row.get('Power')],["product_template_attribute_value_ids.name","=",row.get('Colour')]]
@@ -308,40 +311,40 @@ class emipro_execute_python(models.Model):
         if domain:
             return domain
 
-    def check_method(self):
-        import csv
-        file_path = self.get_module_path()
-        # ===============================================
-        # file_location = '/data/MPN/imac_cto_export.csv'
-        # product_name = 'imac'
-        # file_location = '/data/MPN/imac_pro_cto_export.csv'
-        # product_name = 'imac_pro'
-        # -----------file_location = '/data/MPN/macbook_air_cto_export.csv'
-        # -----------product_name = 'macbook_air'
-        # -----------file_location = '/data/MPN/macbook_pro_13_2019_cto_export.csv'
-        # -----------product_name = 'macbook_pro_13_2019'
-        # -----------file_location = '/data/MPN/macbook_pro_16_2019_cto_export.csv'
-        # -----------product_name = 'macbook_pro_16_2019'
-        file_location = '/data/MPN/mac_mini_cto.csv'
-        product_name = 'mac_mini'
-        file_location = file_path + file_location
-        with open(file_location, 'rU')as file:
-            data = csv.DictReader(file)
-            ProductProduct = self.env['product.product'].sudo()
-
-            for row in data:
-                domain = self.get_dynamic_domain_values(product_name=product_name, row=row)
-                if domain:
-                    for each_element in domain:
-                        if len(each_element) > 1:
-                            if '\xa0' in each_element[2]:
-                                tmp = each_element[2].replace('\xa0', ' ')
-                                tmp = " ".join(tmp.split())
-                                each_element[2] = tmp
-                    ProdProd = ProductProduct.search(domain)
-                    print(ProdProd)
-                    if ProdProd and row.get('Manufacturer part no.') != row.get('Base model code'):
-                       ProdTmpl_sku = ProdProd.product_tmpl_id.default_code if ProdProd.product_tmpl_id.default_code else ''
-                       ProdProd.write({'default_code':row.get('Manufacturer part no.')})
-                       if ProdTmpl_sku:
-                           ProdProd.product_tmpl_id.write({'default_code' : ProdTmpl_sku})
+    # def check_method(self):
+    #     import csv
+    #     file_path = self.get_module_path()
+    #     # ===============================================
+    #     # file_location = '/data/MPN/imac_cto_export.csv'
+    #     # product_name = 'imac'
+    #     # file_location = '/data/MPN/imac_pro_cto_export.csv'
+    #     # product_name = 'imac_pro'
+    #     # -----------file_location = '/data/MPN/macbook_air_cto_export.csv'
+    #     # -----------product_name = 'macbook_air'
+    #     # -----------file_location = '/data/MPN/macbook_pro_13_2019_cto_export.csv'
+    #     # -----------product_name = 'macbook_pro_13_2019'
+    #     # -----------file_location = '/data/MPN/macbook_pro_16_2019_cto_export.csv'
+    #     # -----------product_name = 'macbook_pro_16_2019'
+    #     file_location = '/data/MPN/mac_mini_cto.csv'
+    #     product_name = 'mac_mini'
+    #     file_location = file_path + file_location
+    #     with open(file_location, 'rU')as file:
+    #         data = csv.DictReader(file)
+    #         ProductProduct = self.env['product.product'].sudo()
+    #
+    #         for row in data:
+    #             domain = self.get_dynamic_domain_values(product_name=product_name, row=row)
+    #             if domain:
+    #                 for each_element in domain:
+    #                     if len(each_element) > 1:
+    #                         if '\xa0' in each_element[2]:
+    #                             tmp = each_element[2].replace('\xa0', ' ')
+    #                             tmp = " ".join(tmp.split())
+    #                             each_element[2] = tmp
+    #                 ProdProd = ProductProduct.search(domain)
+    #                 print(ProdProd)
+    #                 if ProdProd and row.get('Manufacturer part no.') != row.get('Base model code'):
+    #                    ProdTmpl_sku = ProdProd.product_tmpl_id.default_code if ProdProd.product_tmpl_id.default_code else ''
+    #                    ProdProd.write({'default_code':row.get('Manufacturer part no.')})
+    #                    if ProdTmpl_sku:
+    #                        ProdProd.product_tmpl_id.write({'default_code' : ProdTmpl_sku})
