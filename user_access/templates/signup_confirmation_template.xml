@@ -10,6 +10,19 @@
     		</div>
     	</t>
     </template>
+
+	<!-- Confirmation Quote Template -->
+    <template id="quote_confirmation">
+    	<t t-call="website.layout">
+    		<div class="signup-common-div">
+    			<div class="block">
+					<h4 class="text-center">Order Quotation email was sent sucessfully!</h4>
+    			</div>
+    		</div>
+    	</t>
+    </template>
+
+
 	<!-- Not Confirmed Email Template -->
     <template id="signup_not_valid_user">
     	<t t-call="website.layout">

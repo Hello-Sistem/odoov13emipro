@@ -26,12 +26,14 @@ class EptUserAccess(http.Controller):
         so.with_context(**email_ctx).message_post_with_template(email_ctx.get('default_template_id'))
         template = request.env['mail.template'].browse(email_ctx.get('default_template_id'))
         template.sudo().send_mail(so.id, force_send=True)
-        return request.redirect("/shop/cart/")
+        if so:
+            for line in so.website_order_line:
+                line.unlink()
+        return request.render("user_access.quote_confirmation")
 
     @http.route(['/send/confirmation/mail'], type='http', auth="public", website=True, csrf=False)
     def send_confirmation_mail(self):
         return request.render("user_access.signup_confirmation")
-
 
 
 class Home(Home):
