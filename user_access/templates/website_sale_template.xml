@@ -85,4 +85,12 @@
             </attribute>
         </xpath>
     </template>
+    <template id="website_sale_products_search_box_ept" inherit_id="website_sale.website_sale_products_search_box">
+        <xpath expr="//input[@name='search']" position="attributes">
+            <attribute name="t-attf-data-display-price" add="#{'false' if user_id.partner_id.name == 'Public user' else 'true'}" separator=" "/>
+            <attribute name="data-limit">5</attribute>
+            <attribute name="data-display-description">true</attribute>
+            <attribute name="data-display-image">true</attribute>
+        </xpath>
+    </template>
 </odoo>
