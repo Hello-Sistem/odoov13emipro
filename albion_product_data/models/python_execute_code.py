@@ -16,6 +16,31 @@ color_code = {
 class emipro_execute_python(models.Model):
     _inherit = "emipro.execute.python"
 
+    def assign_sequence_attribute_value(self):
+        print("Process Start")
+        ProductAttributeValue = self.env['product.attribute.value'].sudo()
+        ProductTemplate = self.env['product.template'].sudo()
+        file_path = self.get_module_path()
+        if file_path:
+            file_location = '/data/live_purchase_full.csv'
+            file_location = file_path + file_location
+
+            with open(file_location, 'rU')as file:
+                data = csv.DictReader(file)
+                value_list = []
+                for row in data:
+                    if ProductTemplate.search([('default_code','=',row.get('Model'))]):
+                        if row.get('Status') == 'Default Value':
+                            attr_value = " ".join(row.get('Desc').split())
+                            attr_value = attr_value.replace('\xa0', ' ')
+                            if attr_value not in value_list:
+                                value_list.append(attr_value)
+                if value_list:
+                    values_records = ProductAttributeValue.search([('name','in',value_list)])
+                    for rec in values_records:
+                        rec.write({'sequence':0})
+        print("Process Complete")
+
     def get_module_path(self):
         file_path = os.path.join(os.path.dirname(os.path.abspath(__file__)))
         file_path = file_path.split('/models')[0]

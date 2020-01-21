@@ -32,7 +32,6 @@ with open(file_location,'rU')as file:
                         tmp = each_element[2].replace('\xa0', ' ')
                         tmp = "" "".join(tmp.split())
                         each_element[2] = tmp
-
             ProdProd = ProductProduct.search(domain)
             if ProdProd and row.get('Manufacturer part no.') != row.get('Base model code'):
                 if ProdProd.default_code != row.get('Manufacturer part no.'):
