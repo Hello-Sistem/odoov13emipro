@@ -15,8 +15,8 @@ product_name = 'imac'
 #product_name = 'macbook_pro_13_2019'
 #file_location = '/data/MPN/macbook_pro_16_2019_cto_export.csv'
 #product_name = 'macbook_pro_16_2019'
-#file_location = '/data/MPN/mac_mini_cto.csv'
-#product_name = 'mac_mini'
+file_location = '/data/MPN/mac_mini_cto.csv'
+product_name = 'mac_mini'
 #===============================================
 file_location = file_path + file_location
 with open(file_location,'rU')as file:
@@ -32,10 +32,13 @@ with open(file_location,'rU')as file:
                         tmp = each_element[2].replace('\xa0', ' ')
                         tmp = "" "".join(tmp.split())
                         each_element[2] = tmp
+
             ProdProd = ProductProduct.search(domain)
+            print(domain)
             if ProdProd and row.get('Manufacturer part no.') != row.get('Base model code'):
                 if ProdProd.default_code != row.get('Manufacturer part no.'):
                     ProdTmpl_sku = ProdProd.product_tmpl_id.default_code if ProdProd.product_tmpl_id.default_code else ''
-                    ProdProd.write({'default_code':row.get('Manufacturer part no.')})
+                    ProdProd.write({'default_code':row.get('Manufacturer part no.'),
+                                               'lst_price':row.get('ALP'),'standard_price':row.get('DAC'),})
                     if ProdTmpl_sku:
                         ProdProd.product_tmpl_id.write({'default_code' : ProdTmpl_sku})"

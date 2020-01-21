@@ -141,8 +141,6 @@ class emipro_execute_python(models.Model):
     def prepare_category_data(self):
         _logger.info(">>>>>>>>>>>>>>>>>>>>Website Category Import Starting<<<<<<<<<<<<<<<<<<<<<<<")
 
-        # file_path = os.path.join(os.path.dirname(os.path.abspath(__file__)))
-        # file_path = file_path.split('/models')[0]
         file_path = self.get_module_path()
         if file_path:
             file_location = '/data/website_category.csv'
@@ -152,8 +150,8 @@ class emipro_execute_python(models.Model):
                 data = csv.reader(file)
                 for row in data:
                     # Ignore First Column
-                    if row[0] == 'name':
-                        continue
+                    if row[1] == 'Model':
+                        result = row
 
                     # Check if category already created or not
                     available_category = self.env['product.public.category'].search([('name', '=', row[0])])
@@ -209,14 +207,14 @@ class emipro_execute_python(models.Model):
                                 vals = {
                                     'name' : value_name,
                                     'attribute_id' : current_attribute.id,
-                                    'display_name' : value_name
+                                    'display_name' : value_name,
+                                    'sequence' : 0 if row.get('Status') == 'Default Value' else 10
                                 }
                                 if current_attribute.name == 'Colour':
                                     vals.update({
                                         'html_color' : "#808080" if value_name=='Space Grey' else "#C0C0C0"
                                     })
                                 current_attr_value = ProductAttributeValue.create(vals)
-
 
                             ProdAttrLine = ProductAttributeLine.search([('product_tmpl_id','=',ProdTmpl.id),('attribute_id','=',current_attribute.id)])
                             if ProdAttrLine:
@@ -325,7 +323,18 @@ class emipro_execute_python(models.Model):
              ["product_template_attribute_value_ids.name", "=", row.get('Colour')]]
 
         if product_name == 'macbook_pro_13_2019':
-            domain = ["&","&","&","&","&","&","&","&",["product_tmpl_id.default_code","=",row.get('Base model code')],["product_template_attribute_value_ids.name","=",row.get('Processor')],["product_template_attribute_value_ids.name","=",row.get('Memory')],["product_template_attribute_value_ids.name","=",row.get('HDD')],["product_template_attribute_value_ids.name","=",row.get('Graphics')],["product_template_attribute_value_ids.name","=",row.get('Touch Bar')],["product_template_attribute_value_ids.name","=",row.get('Keyboard Options')],["product_template_attribute_value_ids.name","=",row.get('Power')],["product_template_attribute_value_ids.name","=",row.get('Colour')]]
+            if row.get('Touch Bar') == 'YES':
+                domain = ["&","&","&","&","&","&","&","&",["product_tmpl_id.default_code","=",row.get('Base model code')],["product_template_attribute_value_ids.name","=",row.get('Processor')],["product_template_attribute_value_ids.name","=",row.get('Memory')],["product_template_attribute_value_ids.name","=",row.get('HDD')],["product_template_attribute_value_ids.name","=",row.get('Graphics')],["product_template_attribute_value_ids.name","=",row.get('Touch Bar')],["product_template_attribute_value_ids.name","=",row.get('Keyboard Options')],["product_template_attribute_value_ids.name","=",row.get('Power')],["product_template_attribute_value_ids.name","=",row.get('Colour')]]
+            else:
+                domain = ["&", "&", "&", "&", "&", "&", "&",
+                          ["product_tmpl_id.default_code", "=", row.get('Base model code')],
+                          ["product_template_attribute_value_ids.name", "=", row.get('Processor')],
+                          ["product_template_attribute_value_ids.name", "=", row.get('Memory')],
+                          ["product_template_attribute_value_ids.name", "=", row.get('HDD')],
+                          ["product_template_attribute_value_ids.name", "=", row.get('Graphics')],
+                          ["product_template_attribute_value_ids.name", "=", row.get('Keyboard Options')],
+                          ["product_template_attribute_value_ids.name", "=", row.get('Power')],
+                          ["product_template_attribute_value_ids.name", "=", row.get('Colour')]]
 
         if product_name == 'macbook_pro_16_2019':
             domain = ["&","&","&","&","&","&","&",["product_tmpl_id.default_code","=",row.get('Base model code')],["product_template_attribute_value_ids.name","=",row.get('Processor')],["product_template_attribute_value_ids.name","=",row.get('Memory')],["product_template_attribute_value_ids.name","=",row.get('HDD')],["product_template_attribute_value_ids.name","=",row.get('Graphics')],["product_template_attribute_value_ids.name","=",row.get('Keyboard Options')],["product_template_attribute_value_ids.name","=",row.get('Power')],["product_template_attribute_value_ids.name","=",row.get('Colour')]]
