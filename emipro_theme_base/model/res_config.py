@@ -5,7 +5,6 @@
 import base64
 from odoo import fields, models, tools, api, _
 from odoo.modules.module import get_resource_path
-from odoo.addons.website.tools import get_video_embed_code
 
 class res_config(models.TransientModel):
     _inherit = "res.config.settings"
@@ -44,4 +43,5 @@ class res_config(models.TransientModel):
             img_path = get_resource_path('theme_clarico_vega', 'static/src/img/Lazyload.gif')
             with tools.file_open(img_path, 'rb') as f:
                 self.lazy_load_image = base64.b64encode(f.read())
+
 

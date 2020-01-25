@@ -21,8 +21,6 @@ odoo.define('emipro_theme_base.price_slider', function(require) {
             var maxValue = parseFloat($("#price_slider_max").val());
             var urlMinVal = parseFloat(searchParams.get('min_price'));
             var urlMaxVal = parseFloat(searchParams.get('max_price'));
-            var inputMinVal = parseFloat($("input.ept_price_min").val());
-            var inputMaxVal = parseFloat($("input.ept_price_max").val());
             var showMinVal;
             var showMaxVal;
             if(urlMinVal && urlMaxVal)
@@ -47,6 +45,8 @@ odoo.define('emipro_theme_base.price_slider', function(require) {
                     }
                 }
             });
+            var inputMinVal = parseFloat($("input.ept_price_min").val());
+            var inputMaxVal = parseFloat($("input.ept_price_max").val());
             if(inputMinVal != minValue || inputMaxVal != maxValue) {
                 $(".price_filter_reset").show();
                 $(".te_pricerange_content").show();

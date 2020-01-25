@@ -34,6 +34,7 @@ class Website(models.Model):
     lazy_load_image = fields.Binary('Lazyload Image', help="Display this image while lazy load applies.",
                                     readonly=False)
     banner_video_url = fields.Char(string='Video URL', help='URL of a video for banner.', readonly=False)
+    module_user_access = fields.Boolean("User Access")
 
 
     # @api.depends('banner_video_url')
@@ -119,16 +120,9 @@ class Website(models.Model):
 
         if not prices_list: return False
 
-        if not cust_min_val and not cust_max_val:
-            range_list.append(min(prices_list))
-            range_list.append(max(prices_list))
-            range_list.append(round(min(prices_list),2))
-            range_list.append(round(max(prices_list),2))
-        else:
-            range_list.append(cust_min_val)
-            range_list.append(cust_max_val)
-            range_list.append(round(min(prices_list), 2))
-            range_list.append(round(max(prices_list), 2))
+        range_list.append(round(min(prices_list), 2))
+        range_list.append(round(max(prices_list), 2))
+
         return range_list
 
     def get_brand(self, products=False):
