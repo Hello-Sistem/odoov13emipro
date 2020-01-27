@@ -815,7 +815,7 @@
                         .new_span img {
                             @include object-fit(scale-down);
                             @media (min-width: 1599.98px){
-                                height: 20.7rem;
+                                height: 20rem;
                             }
                             @media (min-width: 1199.98px) and (max-width: 1599.98px){
                                 height: 17.2rem;
