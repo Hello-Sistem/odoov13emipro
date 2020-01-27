@@ -34,7 +34,6 @@ class Website(models.Model):
     lazy_load_image = fields.Binary('Lazyload Image', help="Display this image while lazy load applies.",
                                     readonly=False)
     banner_video_url = fields.Char(string='Video URL', help='URL of a video for banner.', readonly=False)
-    module_user_access = fields.Boolean("User Access")
 
 
     # @api.depends('banner_video_url')
