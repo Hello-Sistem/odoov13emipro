@@ -133,7 +133,7 @@
 
     <template id="product_ept_extended_dthg" inherit_id="website_sale.product" priority="25">
         <xpath expr="//div[@id='product_details']/h1" position="before">
-            <h1 class="te_product_name ept" style="float: left;margin-right: 5px;">Customize your:</h1>
+            <h1 class="te_product_name ept">Customize your: </h1>
         </xpath>
     </template>
 
