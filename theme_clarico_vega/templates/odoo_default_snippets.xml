@@ -223,7 +223,7 @@
                             <a href="/start" class="btn btn-primary te_theme_button">Know more</a>
                         </div>
                         <div class="col-lg-8 offset-lg-2">
-                            <figure class="figure">
+                            <figure class="figure t_img_hover_1">
                                 <img src="/theme_clarico_vega/static/src/img/snippets/structure/picture/950_450.png"
                                      class="figure-img img-fluid rounded img-thumbnail padding-large"
                                      alt="Clarico-Picture"/>

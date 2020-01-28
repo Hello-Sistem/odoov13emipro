@@ -184,4 +184,24 @@
         </xpath>
 	</template>
 
+    <!--========================== To add class for add heading of Quotation table in mobile view (Quotations Page) ===============================-->
+    <template id="portal_my_quotations_ept" inherit_id="sale.portal_my_quotations">
+        <xpath expr="//t[@t-foreach='quotations']" position="replace">
+            <t t-foreach="quotations" t-as="quotation">
+                <tr>
+                    <td class="te_quotation"><a t-att-href="quotation.get_portal_url()"><t t-esc="quotation.name"/></a></td>
+                    <td class="text-right te_quotation_date"><span t-field="quotation.date_order"/></td>
+                    <td t-attf-class="text-right te_quotation_valid #{'' if quotation.validity_date else 'disable'}"><span t-field="quotation.validity_date"/></td>
+                    <td t-attf-class="text-center te_quotation_cancel_expired #{'' if quotation.state == 'cancel' or quotation.is_expired else 'disable'}">
+                        <span t-if="quotation.state == 'cancel'" class=""><i class="fa fa-fw fa-remove"/> Cancelled</span>
+                        <span t-if="quotation.is_expired" class=""><i class="fa fa-fw fa-clock-o"/> Expired</span>
+                    </td>
+                    <td class="text-right te_quotation_total">
+                        <span t-field="quotation.amount_total"/>
+                    </td>
+                </tr>
+            </t>
+        </xpath>
+    </template>
+
 </odoo>

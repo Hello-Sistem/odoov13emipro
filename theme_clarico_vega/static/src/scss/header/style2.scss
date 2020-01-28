@@ -200,6 +200,17 @@
 			display: inline-block !important;
 		}
 	}
+	@include media-breakpoint-down(md)
+	{
+        .dropdown-menu{
+            &:before{
+                right: 12px;
+            }
+            &:after{
+                right: 11px;
+            }
+        }
+    }
 	@include media-breakpoint-down(sm)
 	{
 		.te_user_account_icon
@@ -210,6 +221,7 @@
 			}
 		}
 	}
+
 }
 .te_login_right
 {
@@ -238,6 +250,34 @@
 				left:-5px !important;
 			}
 		}
+	}
+	.te_pricelist
+	{
+	    .dropdown-menu
+        {
+            &:before{
+                left:20px;
+            }
+            &:after{
+                left:19px;
+            }
+        }
+	}
+	.te_header_lang{
+	    @include media-breakpoint-down(sm)
+	    {
+            .dropdown-menu
+            {
+                &:before{
+                    left:unset;
+                    right:21px;
+                }
+                &:after{
+                    left:unset;
+                    right:20px;
+                }
+            }
+        }
 	}
 }
 .te_header_before_overlay

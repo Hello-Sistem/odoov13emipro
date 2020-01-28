@@ -1655,6 +1655,21 @@
 	}
 }
 /*================  41. 3 Columns (Style 8) ======================*/
+.te_3_column_style_8
+{
+	@include media-breakpoint-down(lg)
+	{
+		padding-bottom: 56px !important;
+	}
+	@include media-breakpoint-down(md)
+	{
+		padding-bottom: 32px !important;
+	}
+	@include media-breakpoint-down(sm)
+	{
+		padding-bottom: 0px !important;
+	}
+}
 .te_3_col_section
 {
 	.te_3_col_img
@@ -2303,19 +2318,10 @@ font-size:nth($f_sizes,8);
 /*========================= 48. 2 Column Style 1 ====================*/
 .te_2_col_bg
 {
-	overflow: hidden;
-	img
-	{
-		@include transition(all,0.4s,ease);
-	}
 	.te_2_col_section
 	{
 		@include position(absolute,0);
 		padding:10%;
-	}
-	&:hover img
-	{
-		transform: scale(1.1);
 	}
 }
 /*====================== 49. 3 Column Style 9 ===================*/
@@ -2664,7 +2670,7 @@ font-size:nth($f_sizes,8);
 	@include transition(all,0.5s,ease);
 	z-index: 1;
 }
-.te_2_col_s2_img
+/*.te_2_col_s2_img
 {
 	@include position(relative);
 	&:after
@@ -2685,7 +2691,7 @@ font-size:nth($f_sizes,8);
 			transform: scale(1);
 		}
 	}
-}
+}*/
 /*========================== 57. Offer Style 6 ======================*/
 .te_offer_main_content
 {
@@ -2789,7 +2795,7 @@ font-size:nth($f_sizes,8);
 	padding: 10%;
 	text-align: center;
 }
-.te_2_col_s3_img
+/*.te_2_col_s3_img
 {
 	&:before, &:after
 	{
@@ -2815,7 +2821,7 @@ font-size:nth($f_sizes,8);
 			left: 50%;
 		}
 	}
-}
+}*/
 /*========================== 60. Offer Timer Style 2 ======================*/
 .te_offer_s2_img
 {
@@ -2829,13 +2835,13 @@ font-size:nth($f_sizes,8);
 		{
 			max-width: 490px;
 		}
-		@include media-breakpoint-down(md)
-		{
-			margin-left: auto !important;
-		}
 		@include media-breakpoint-down(xs)
 		{
 			max-width: 300px;
+		}
+		@media (max-width:400px)
+		{
+			margin-left: auto !important;
 		}
 	}
 	.te_offer_s2_img_before
@@ -2865,11 +2871,16 @@ font-size:nth($f_sizes,8);
 		{
 			text-align: center;
 		}
-	}
-	.s_hr_solid {
-	    @include media-breakpoint-down(sm) {
+		.s_hr_solid {
 	        margin: 0 auto;
-	    }
+		}
+	}
+}
+.o_rtl
+{
+	.te_offer_s2_img img
+	{
+		transform: scale(-1,1);
 	}
 }
 /*======================= 61. Offer Style 8 =================*/
@@ -4021,7 +4032,7 @@ font-size:nth($f_sizes,8);
 	{
 		padding: 0 20px;
 		margin-bottom: 10px;
-		.te_s_6_img_sec
+		/*.te_s_6_img_sec
 		{
 			@include position(relative);
 			&:before
@@ -4042,7 +4053,7 @@ font-size:nth($f_sizes,8);
 				background-color: rgba(nth($f_color,3),0.3);
 				}
 			}
-		}
+		}*/
 	}
 	.te_4_col2_content
 	{
@@ -4079,7 +4090,7 @@ font-size:nth($f_sizes,8);
 	{
 		padding: 0 20px;
 		margin-bottom: 10px;
-		.te_s_7_main_div
+		/*.te_s_7_main_div
 		{
 			position: relative;
 			overflow: hidden;
@@ -4099,7 +4110,7 @@ font-size:nth($f_sizes,8);
 				background: linear-gradient(to right, rgba(nth($f_color,5), 0) 0%, rgba(nth($f_color,5), 0.3) 100%);
 				@include transform(skewX(-25deg));
 			}
-		}
+		}*/
 	}
 	.te_4_col3_content
 	{
@@ -4943,5 +4954,80 @@ font-size:nth($f_sizes,8);
 	we-collapse
 	{
 		overflow: scroll !important;
+	}
+}
+/* For snippet animation */
+body {
+    overflow-x:hidden;
+}
+.te_footer_map
+{
+	max-height: 220px;
+	max-width: 240px;
+	overflow: hidden;
+
+	#map {
+    	padding-top: 0 !important;
+		padding-bottom: 0 !important;
+	}
+	.mapouter
+	{
+		max-height: 220px;
+    	max-width: 240px;
+		padding:5px;
+		@media (min-width: 992px) and (max-width: 1200px) {
+			max-width: 190px;
+		}
+	}
+}
+.te_s3_map
+{
+	&.te_footer_map
+	{
+		max-width: 340px;
+		max-height: 280px;
+		overflow: hidden;
+
+		#map {
+			padding-top: 10px !important;
+			padding-bottom: 16px !important;
+		}
+		.mapouter
+		{
+			height: 290px;
+			max-width: 340px;
+			max-height: 280px;
+		}
+		@media (min-width: 1500px)
+		{
+			max-width: 400px;
+			.mapouter
+			{
+				max-width: 400px;
+			}
+		}
+	}
+}
+.te_s6_map
+{
+	&.te_footer_map
+	{
+		max-width: 360px;
+		max-height: 290px;
+		overflow: hidden;
+		.mapouter
+		{
+			height: 300px;
+			max-width: 360px;
+			max-height: 290px;
+		}
+		@media (min-width: 992px) and (max-width: 1300px)
+		{
+			max-width: 265px;
+			.mapouter
+			{
+				max-width: 265px;
+			}
+		}
 	}
 }

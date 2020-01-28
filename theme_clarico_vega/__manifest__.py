@@ -4,7 +4,7 @@
     'name': 'Theme Clarico Vega',
     'category': 'Theme/eCommerce',
     'summary': 'Fully Responsive Odoo Theme suitable for eCommerce Businesses',
-    'version': '1.0.0',
+    'version': '1.0.2',
     'license': 'OPL-1',
     'depends': [
         'website_theme_install',

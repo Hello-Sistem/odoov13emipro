@@ -174,6 +174,8 @@
                 <!-- Full Width -->
                 <t t-snippet="theme_clarico_vega.full_width_image"
                    t-thumbnail="/theme_clarico_vega/static/src/img/snippets/snippets_icon/snippet_12.jpg"/>
+                <t t-snippet="theme_clarico_vega.full_width_image_banner"
+                   t-thumbnail="/theme_clarico_vega/static/src/img/snippets/snippets_icon/snippet_12.jpg"/>
             </div>
             <!--==== Timeline Snippets ===-->
             <div class="o_panel_header">
@@ -710,8 +712,8 @@
                          data-name="Box">
                         <div class="row pt32">
                             <div class="col-lg-6 col-md-6 p-0">
-                                <section class="te_img_hover_overflow d-inline-block">
-                                    <img class="img  te_img_height img-responsive img-fluid mx-auto"
+                                <section class="te_img_hover_overflow d-inline-block t_img_hover_1 te_img_effect2">
+                                    <img class="img img-responsive img-fluid mx-auto"
                                          src="/theme_clarico_vega/static/src/img/snippets/structure/banner/350_366.png"
                                          alt="Clarico-Banner"/>
                                 </section>
@@ -1471,7 +1473,7 @@
                      style="background-color:rgb(239,239,239);" data-name="Slide">
                     <div class="container">
                         <div class="row align-items-center">
-                            <section class="te_slider_left_content col-lg-6 col-md-6">
+                            <section class="te_slider_left_content col-lg-6 col-md-6 t_img_hover_1">
                                 <img class="img img-fluid"
                                      src="/theme_clarico_vega/static/src/img/snippets/slider_styles/style_4/437_500.jpg"/>
                             </section>
@@ -1490,7 +1492,7 @@
                      style="background-color:rgb(239,239,239);" data-name="Slide">
                     <div class="container">
                         <div class="row align-items-center">
-                            <section class="te_slider_left_content col-lg-6 col-md-6">
+                            <section class="te_slider_left_content col-lg-6 col-md-6 t_img_hover_1">
                                 <img class="img img-fluid"
                                      src="/theme_clarico_vega/static/src/img/snippets/slider_styles/style_4/437_500.jpg"/>
                             </section>
@@ -4014,7 +4016,7 @@
                 <div class="row d-flex align-items-stretch">
                     <div class="col-lg-4 col-md-4 s_col_no_bgcolor te_ts_img_hvr">
                         <div class="te_3_column_left_heading">
-                            <section class="te_img_hover_overflow">
+                            <section class="te_img_hover_overflow t_img_hover_1">
                                 <img class="card-img-top img img-responsive te_feature_image"
                                      src="/theme_clarico_vega/static/src/img/snippets/3_column/style_2/437_500.jpg"
                                      alt="Clarico-3 Columns Style 2"/>
@@ -4040,7 +4042,7 @@
                     </div>
                     <div class="col-lg-4 col-md-4 s_col_no_bgcolor te_ts_img_hvr">
                         <div class="te_3_column_left_heading">
-                            <section class="te_img_hover_overflow">
+                            <section class="te_img_hover_overflow t_img_hover_1">
                                 <img class="card-img-top img img-responsive te_feature_image"
                                      src="/theme_clarico_vega/static/src/img/snippets/3_column/style_2/437_500.jpg"
                                      alt="Clarico-3 Columns Style 2"/>
@@ -4068,7 +4070,7 @@
                     </div>
                     <div class="col-lg-4 col-md-4 s_col_no_bgcolor te_ts_img_hvr">
                         <div class="te_3_column_left_heading">
-                            <section class="te_img_hover_overflow">
+                            <section class="te_img_hover_overflow t_img_hover_1">
                                 <img class="card-img-top img img-responsive te_feature_image"
                                      src="/theme_clarico_vega/static/src/img/snippets/3_column/style_2/437_500.jpg"
                                      alt="Clarico-3 Columns Style 2"/>
@@ -4273,7 +4275,7 @@
                     <div class="col-lg-4 col-md-4 s_col_no_bgcolor te_col_ind">
                         <section>
                             <div>
-                                <div class="te_image_overflow">
+                                <div class="te_image_overflow t_img_hover_1">
                                     <img class="card-img-top img img-responsive te_feature_image"
                                          src="/theme_clarico_vega/static/src/img/snippets/3_column/style_5/436_424.jpg"
                                          alt="Clarico-3 Columns Style 5"/>
@@ -4292,7 +4294,7 @@
                     <div class="col-lg-4 col-md-4 s_col_no_bgcolor te_col_ind">
                         <section>
                             <div>
-                                <div class="te_image_overflow">
+                                <div class="te_image_overflow t_img_hover_1">
                                     <img class="card-img-top img img-responsive te_feature_image"
                                          src="/theme_clarico_vega/static/src/img/snippets/3_column/style_5/436_424.jpg"
                                          alt="Clarico-3 Columns Style 5"/>
@@ -4311,7 +4313,7 @@
                     <div class="col-lg-4 col-md-4 s_col_no_bgcolor te_col_ind">
                         <section>
                             <div>
-                                <div class="te_image_overflow">
+                                <div class="te_image_overflow t_img_hover_1">
                                     <img class="card-img-top img img-responsive te_feature_image"
                                          src="/theme_clarico_vega/static/src/img/snippets/3_column/style_5/436_424.jpg"
                                          alt="Clarico-3 Columns Style 5"/>
@@ -4341,7 +4343,7 @@
                             class="col-lg-2 col-md-4 col-6 col-sm-6 s_col_no_bgcolor text-center te_ts_img_hvr"
                             data-name="Box">
                         <section>
-                            <div class="d-inline-block te_img_hover_overflow te_img_height_3col6">
+                            <div class="d-inline-block te_img_hover_overflow te_img_height_3col6 t_img_hover_1">
                                 <img class="card-img-top img img-responsive te_feature_image"
                                      src="/theme_clarico_vega/static/src/img/snippets/3_column/style_6/130_130.png"
                                      alt="Clarico-3 Columns Style 6"/>
@@ -4352,7 +4354,7 @@
                             class="col-lg-2 col-md-4 col-6 col-sm-6 s_col_no_bgcolor text-center te_ts_img_hvr "
                             data-name="Box">
                         <section>
-                            <div class="d-inline-block te_img_hover_overflow te_img_height_3col6">
+                            <div class="d-inline-block te_img_hover_overflow te_img_height_3col6 t_img_hover_1">
                                 <img class="card-img-top img img-responsive te_feature_image zoom_image"
                                      src="/theme_clarico_vega/static/src/img/snippets/3_column/style_6/130_130.png"
                                      alt="Clarico-3 Columns Style 6"/>
@@ -4363,7 +4365,7 @@
                             class="col-lg-2 col-md-4 col-6 col-sm-6 s_col_no_bgcolor text-center te_ts_img_hvr"
                             data-name="Box">
                         <section>
-                            <div class="d-inline-block te_img_hover_overflow te_img_height_3col6">
+                            <div class="d-inline-block te_img_hover_overflow te_img_height_3col6 t_img_hover_1">
                                 <img class="card-img-top img img-responsive te_feature_image"
                                      src="/theme_clarico_vega/static/src/img/snippets/3_column/style_6/130_130.png"
                                      alt="Clarico-3 Columns Style 6"/>
@@ -4374,7 +4376,7 @@
                             class="col-lg-2 col-md-4 col-6 col-sm-6 s_col_no_bgcolor text-center te_ts_img_hvr"
                             data-name="Box">
                         <section>
-                            <div class="d-inline-block te_img_hover_overflow te_img_height_3col6">
+                            <div class="d-inline-block te_img_hover_overflow te_img_height_3col6 t_img_hover_1">
                                 <img class="card-img-top img img-responsive te_feature_image"
                                      src="/theme_clarico_vega/static/src/img/snippets/3_column/style_6/130_130.png"
                                      alt="Clarico-3 Columns Style 6"/>
@@ -4385,7 +4387,7 @@
                             class="col-lg-2 col-md-4 col-6 col-sm-6 s_col_no_bgcolor text-center te_ts_img_hvr"
                             data-name="Box">
                         <section>
-                            <div class="d-inline-block te_img_hover_overflow te_img_height_3col6">
+                            <div class="d-inline-block te_img_hover_overflow te_img_height_3col6 t_img_hover_1">
                                 <img class="card-img-top img img-responsive te_feature_image"
                                      src="/theme_clarico_vega/static/src/img/snippets/3_column/style_6/130_130.png"
                                      alt="Clarico-3 Columns Style 6"/>
@@ -4396,7 +4398,7 @@
                             class="col-lg-2 col-md-4 col-6 col-sm-6 s_col_no_bgcolor text-center te_ts_img_hvr"
                             data-name="Box">
                         <section>
-                            <div class="d-inline-block te_img_hover_overflow te_img_height_3col6">
+                            <div class="d-inline-block te_img_hover_overflow te_img_height_3col6 t_img_hover_1">
                                 <img class="card-img-top img img-responsive te_feature_image"
                                      src="/theme_clarico_vega/static/src/img/snippets/3_column/style_6/130_130.png"
                                      alt="Clarico-3 Columns Style 6"/>
@@ -4422,7 +4424,7 @@
                                         "Lorem ipsum dolor sit amet, eam et reque justo quidam, te est audire persius.
                                         Duis meis quas vim ex"
                                     </p>
-                                    <div>
+                                    <div class="t_img_hover_1">
                                         <img alt="Clarico-3 Columns Style 7"
                                              src="/theme_clarico_vega/static/src/img/snippets/3_column/style_7/100_100.png"
                                              class="te_img_emp mt16 mb16 col-lg-2 col-2 te_emp_img"/>
@@ -4444,7 +4446,7 @@
                                         "Lorem ipsum dolor sit amet, eam et reque justo quidam, te est audire persius.
                                         Duis meis quas vim ex"
                                     </p>
-                                    <div>
+                                    <div class="t_img_hover_1">
                                         <img alt="Clarico-3 Columns Style 7"
                                              src="/theme_clarico_vega/static/src/img/snippets/3_column/style_7/100_100.png"
                                              class="te_img_emp mt16 mb16 col-lg-2 col-2 te_emp_img"/>
@@ -4466,7 +4468,7 @@
                                         "Lorem ipsum dolor sit amet, eam et reque justo quidam, te est audire persius.
                                         Duis meis quas vim ex"
                                     </p>
-                                    <div>
+                                    <div class="t_img_hover_1">
                                         <img alt="Clarico-3 Columns Style 7"
                                              src="/theme_clarico_vega/static/src/img/snippets/3_column/style_7/100_100.png"
                                              class="te_img_emp mt16 mb16 col-lg-2 col-2 te_emp_img"/>
@@ -4490,7 +4492,7 @@
             <div class="container">
                 <div class="row d-flex align-items-stretch">
                     <section class="col-lg-4 col-md-4 te_3_col_section">
-                        <div class="te_3_col_img mb-2">
+                        <div class="te_3_col_img mb-2 t_img_hover_1 te_img_effect2">
                             <a href="#">
                                 <img class="card-img-top img img-responsive te_feature_image"
                                      src="/theme_clarico_vega/static/src/img/snippets/3_column/style_5/436_424.jpg"/>
@@ -4514,7 +4516,7 @@
                                 <span>Lorem ipsum dolor sit amet, eam et req</span>
                             </section>
                         </div>
-                        <div class="te_3_col_img">
+                        <div class="te_3_col_img t_img_hover_1 te_img_effect2">
                             <a href="#">
                                 <img class="card-img-top img img-responsive te_feature_image"
                                      src="/theme_clarico_vega/static/src/img/snippets/3_column/style_5/436_424.jpg"/>
@@ -4522,7 +4524,7 @@
                         </div>
                     </section>
                     <section class="col-lg-4 col-md-4 te_3_col_section">
-                        <div class="te_3_col_img mb-2">
+                        <div class="te_3_col_img mb-2 t_img_hover_1 te_img_effect2">
                             <a href="#">
                                 <img class="card-img-top img img-responsive te_feature_image"
                                      src="/theme_clarico_vega/static/src/img/snippets/3_column/style_5/436_424.jpg"/>
@@ -4643,14 +4645,14 @@
         <section class="container te_max_width_4_column pt32 pb32">
             <div class="row">
                 <div class="col-lg-4">
-                    <section class="te_ts_img_hvr mb16">
+                    <section class="te_ts_img_hvr mb16 t_img_hover_1">
                         <a class="te_img_hover_overflow" href="#" style="display: block;">
                             <img alt="Clarico-Offer style 1"
                                  class="img img-responsive img-fluid mx-auto d-block te_img_hover_light"
                                  src="/theme_clarico_vega/static/src/img/snippets/offer_styles/style_1/385_500.jpg"></img>
                         </a>
                     </section>
-                    <section class="te_ts_img_hvr">
+                    <section class="te_ts_img_hvr t_img_hover_1">
                         <a class="te_img_hover_overflow" href="#" style="display: block;">
                             <img alt="Clarico-Offer style 1"
                                  class="img img-responsive img-fluid mx-auto d-block te_img_hover_light"
@@ -4673,7 +4675,7 @@
                             </a>
                         </section>
                     </div>
-                    <section class="te_ts_img_hvr te_offer_middle_img">
+                    <section class="te_ts_img_hvr te_offer_middle_img t_img_hover_1">
                         <a class="te_img_hover_overflow" href="#" style="display: block;">
                             <img alt="Clarico-Offer style 1"
                                  class="img img-responsive img-fluid mx-auto d-block te_img_hover_light"
@@ -4682,14 +4684,14 @@
                     </section>
                 </div>
                 <div class="col-lg-4">
-                    <section class="mb16 te_ts_img_hvr">
+                    <section class="mb16 te_ts_img_hvr t_img_hover_1">
                         <a class="te_img_hover_overflow" href="#" style="display: block;">
                             <img alt="Clarico-Offer style 1"
                                  class="img img-responsive img-fluid mx-auto d-block te_img_hover_light"
                                  src="/theme_clarico_vega/static/src/img/snippets/offer_styles/style_1/385_385.jpg"></img>
                         </a>
                     </section>
-                    <section class="te_ts_img_hvr">
+                    <section class="te_ts_img_hvr t_img_hover_1">
                         <a class="te_img_hover_overflow" href="#" style="display: block;">
                             <img alt="Clarico-Offer style 1"
                                  class="img img-responsive img-fluid mx-auto d-block te_img_hover_light"
@@ -4711,7 +4713,7 @@
                     <div class="container-fluid">
                         <div class="row align-items-center">
                             <section class="col-lg-2 col-md-6 col-sm-6 te_space_section">
-                                <div class="te_img_hover_overflow">
+                                <div class="t_img_hover_1 te_img_effect2">
                                     <img class="img img-responsive img-fluid d-block mx-auto"
                                          alt="Clarico-Offer style 2"
                                          src="/theme_clarico_vega/static/src/img/snippets/offer_styles/style_2/240_460.jpg"/>
@@ -4747,7 +4749,7 @@
                                 </div>
                             </section>
                             <section class="col-lg-2 col-md-6 col-sm-6 te_space_section">
-                                <div class="te_img_hover_overflow">
+                                <div class="t_img_hover_1 te_img_effect2">
                                     <img class="img img-responsive img-fluid d-block mx-auto"
                                          alt="Clarico-Offer style 2"
                                          src="/theme_clarico_vega/static/src/img/snippets/offer_styles/style_2/240_460.jpg"/>
@@ -4903,7 +4905,7 @@
                         <section class="card bg-200 px-2 pt16 te_ts_img_hvr">
                             <div class="row align-items-center te_offerleft_h">
                                 <section class="px-4 col-12 text-center">
-                                    <div class="te_img_hover_overflow d-inline-block">
+                                    <div class="t_img_hover_1 te_img_effect2">
                                         <img
                                                 class="img img-responsive img-fluid d-block mx-auto"
                                                 alt="Clarico-Offer style 4"
@@ -4946,7 +4948,7 @@
                         <section class="card bg-200 px-2 pt16 te_ts_img_hvr">
                             <div class="row align-items-center te_offerleft_h">
                                 <section class="px-4 col-12 text-center">
-                                    <div class="te_img_hover_overflow d-inline-block">
+                                    <div class="t_img_hover_1 te_img_effect2">
                                         <img
                                                 class="img img-responsive img-fluid d-block mx-auto"
                                                 alt="Clarico-Offer style 4"
@@ -5050,7 +5052,7 @@
                         </section>
                     </div>
                     <div class="col-lg-8 align-self-center text-center">
-                        <div class="t_img_hover_1">
+                        <div class="t_img_hover_1 te_img_effect1">
                             <img class="img img-responsive img-fluid d-block mx-auto" alt="Clarico-Offer Timer"
                                  src="/theme_clarico_vega/static/src/img/snippets/offer_styles/offer_timer/850_330.png"/>
                         </div>
@@ -5366,7 +5368,7 @@
         <section class="container">
             <div class="row pt32 pb32">
                 <div class="col-lg-6 col-md-6 pb-lg-0 pb-2">
-                    <section class="te_2_col_bg ">
+                    <section class="t_img_hover_1 te_img_effect2 te_2_col_bg">
                         <img class="img img-fluid" src="/theme_clarico_vega/static/src/img/snippets/2_column/box2.jpg"/>
                         <section class="te_2_col_section">
                             <div class="">
@@ -5384,7 +5386,7 @@
                     </section>
                 </div>
                 <div class="col-lg-6 col-md-6 pb-lg-0 pb-2">
-                    <section class="te_2_col_bg ">
+                    <section class="t_img_hover_1 te_img_effect2 te_2_col_bg">
                         <img class="img img-fluid" src="/theme_clarico_vega/static/src/img/snippets/2_column/box2.jpg"/>
                         <section class="te_2_col_section">
                             <div class="">
@@ -5410,7 +5412,7 @@
         <section class="container">
             <div class="row pt32 pb32">
                 <div class="col-lg-4 col-md-4 col-sm-12 pb-lg-0 pb-3 te_3_col_image">
-                    <div class="overflow-hidden">
+                    <div class="overflow-hidden t_img_hover_1">
                         <img class="img img-fluid mx-auto d-block"
                              src="/theme_clarico_vega/static/src/img/snippets/3_column/style_2/437_500.jpg"/>
                     </div>
@@ -5803,7 +5805,7 @@
         <section class="container">
             <div class="row pt32 pb32">
                 <div class="col-lg-4 col-md-4 col-sm-12 pb-lg-0 pb-3 te_3_s11_image">
-                    <div class="overflow-hidden">
+                    <div class="t_img_hover_1 te_img_effect4">
                         <img class="img img-fluid mx-auto d-block"
                              src="/theme_clarico_vega/static/src/img/snippets/menu_snippets/style_4/370_300.png"/>
                     </div>
@@ -5813,7 +5815,7 @@
                     </div>
                 </div>
                 <div class="col-lg-4 col-md-4 col-sm-12 pb-lg-0 pb-3 te_3_s11_image">
-                    <div class="overflow-hidden">
+                    <div class="t_img_hover_1 te_img_effect4">
                         <img class="img img-fluid mx-auto d-block"
                              src="/theme_clarico_vega/static/src/img/snippets/menu_snippets/style_4/370_300.png"/>
                     </div>
@@ -5823,7 +5825,7 @@
                     </div>
                 </div>
                 <div class="col-lg-4 col-md-4 col-sm-12 pb-lg-0 pb-3 te_3_s11_image">
-                    <div class="overflow-hidden">
+                    <div class="t_img_hover_1 te_img_effect4">
                         <img class="img img-fluid mx-auto d-block"
                              src="/theme_clarico_vega/static/src/img/snippets/menu_snippets/style_4/370_300.png"/>
                     </div>
@@ -5841,7 +5843,7 @@
         <section class="container">
             <div class="row pt32 pb32">
                 <div class="col-lg-6 col-md-6 pb-lg-0 pb-2">
-                    <section class="te_2_col_s2_img ">
+                    <section class="te_img_effect5 t_img_hover_1">
                         <img class="img img-fluid" src="/theme_clarico_vega/static/src/img/snippets/2_column/box2.jpg"/>
                         <section class="te_2_col_s2_section">
                             <div class="">
@@ -5858,7 +5860,7 @@
                     </section>
                 </div>
                 <div class="col-lg-6 col-md-6 pb-lg-0 pb-2">
-                    <section class="te_2_col_s2_img ">
+                    <section class="te_img_effect5 t_img_hover_1">
                         <img class="img img-fluid" src="/theme_clarico_vega/static/src/img/snippets/2_column/box2.jpg"/>
                         <section class="te_2_col_s2_section">
                             <div class="">
@@ -5884,8 +5886,10 @@
             <div class="container">
                 <div class="row align-items-center">
                     <div class="col-lg-6 pb-3 pb-sm-0">
-                        <img class="img img-fluid"
+                        <div class="t_img_hover_1">
+                            <img class="img img-fluid"
                              src="/theme_clarico_vega/static/src/img/snippets/slider_styles/style_5/785_700.jpg"/>
+                        </div>
                         <div class="te_offer_main_content">
                             <span>Lorem Ipsum</span>
                             <h3>My Heading 3</h3>
@@ -5895,8 +5899,10 @@
                     <section class="col-lg-6">
                         <div class="row align-items-center pb-5 pb-sm-0">
                             <div class="col-lg-6 col-sm-6 col-md-6">
+                                <div class="t_img_hover_1">
                                 <img class="img img-fluid"
                                      src="/theme_clarico_vega/static/src/img/snippets/offer_styles/style_6/470_451.png"/>
+                                </div>
                             </div>
                             <div class="col-lg-6 col-sm-6 col-md-6 pt-4 pt-sm-0">
                                 <div class="te_offer_right_content">
@@ -5915,8 +5921,10 @@
                                 </div>
                             </div>
                             <div class="col-lg-6 col-sm-6 col-md-6">
+                                <div class="t_img_hover_1">
                                 <img class="img img-fluid"
                                      src="/theme_clarico_vega/static/src/img/snippets/offer_styles/style_6/470_451.png"/>
+                                </div>
                             </div>
                         </div>
                     </section>
@@ -5931,7 +5939,7 @@
             <div class="container">
                 <div class="row align-items-center">
                     <div class="col-lg-6 pb-0 pb-sm-3 pb-lg-0">
-                        <div class="overflow-hidden te_offer_img">
+                        <div class="t_img_hover_1 te_img_effect2">
                             <img class="img img-fluid"
                                  src="/theme_clarico_vega/static/src/img/snippets/slider_styles/style_5/785_700.jpg"/>
                             <div class="te_offer_big_img_content">
@@ -5941,7 +5949,7 @@
                         </div>
                         <div class="row align-items-center te_offer_s7_left">
                             <div class="col-lg-6 col-sm-6 col-md-6">
-                                <div class="overflow-hidden te_offer_img">
+                                <div class="t_img_hover_1 te_img_effect2">
                                     <img class="img img-fluid"
                                          src="/theme_clarico_vega/static/src/img/snippets/offer_styles/style_6/470_451.png"/>
                                 </div>
@@ -5951,7 +5959,7 @@
                                 </div>
                             </div>
                             <div class="col-lg-6 col-sm-6 col-md-6">
-                                <div class="overflow-hidden te_offer_img">
+                                <div class="t_img_hover_1 te_img_effect2">
                                     <img class="img img-fluid"
                                          src="/theme_clarico_vega/static/src/img/snippets/offer_styles/style_6/470_451.png"/>
                                 </div>
@@ -5965,7 +5973,7 @@
                     <section class="col-lg-6 pt-3 pt-lg-0">
                         <div class="row align-items-center te_offer_s7_right">
                             <div class="col-lg-6 col-sm-6 col-md-6">
-                                <div class="overflow-hidden te_offer_img">
+                                <div class="t_img_hover_1 te_img_effect2">
                                     <img class="img img-fluid"
                                          src="/theme_clarico_vega/static/src/img/snippets/offer_styles/style_6/470_451.png"/>
                                 </div>
@@ -5975,7 +5983,7 @@
                                 </div>
                             </div>
                             <div class="col-lg-6 col-sm-6 col-md-6">
-                                <div class="overflow-hidden te_offer_img">
+                                <div class="t_img_hover_1 te_img_effect2">
                                     <img class="img img-fluid"
                                          src="/theme_clarico_vega/static/src/img/snippets/offer_styles/style_6/470_451.png"/>
                                 </div>
@@ -5985,7 +5993,7 @@
                                 </div>
                             </div>
                         </div>
-                        <div class="overflow-hidden te_offer_img">
+                        <div class="t_img_hover_1 te_img_effect2">
                             <img class="img img-fluid"
                                  src="/theme_clarico_vega/static/src/img/snippets/slider_styles/style_5/785_700.jpg"/>
                             <div class="te_offer_big_img2_content">
@@ -6004,7 +6012,7 @@
         <section class="container">
             <div class="row pt32 pb32">
                 <div class="col-lg-6 col-md-6 pb-lg-0 pb-2 te_2_col_s3_section">
-                    <section class="te_2_col_s3_img oe_img_bg"
+                    <section class="t_img_hover_1 te_img_effect4 oe_img_bg"
                              style="background-image:url('/theme_clarico_vega/static/src/img/snippets/2_column/box2.jpg')">
                         <div class="te_2_col_s3_content">
                             <h2>
@@ -6020,7 +6028,7 @@
                     </section>
                 </div>
                 <div class="col-lg-6 col-md-6 pb-lg-0 pb-2 te_2_col_s3_section">
-                    <section class="te_2_col_s3_img oe_img_bg"
+                    <section class="t_img_hover_1 te_img_effect4 oe_img_bg"
                              style="background-image:url('/theme_clarico_vega/static/src/img/snippets/2_column/box2.jpg')">
                         <div class="te_2_col_s3_content">
                             <h2>
@@ -6083,7 +6091,7 @@
             <div class="container">
                 <div class="row align-items-center">
                     <div class="col-lg-6">
-                        <div class="te_offer_s8_img">
+                        <div class="t_img_hover_1 te_img_effect2">
                             <img class="img img-fluid mx-auto"
                                  src="/theme_clarico_vega/static/src/img/snippets/offer_styles/style_7/657_654.png"/>
                         </div>
@@ -6095,7 +6103,7 @@
                     <section class="col-lg-6">
                         <div class="row align-items-center pt-2 pt-lg-0">
                             <div class="col-lg-12 col-sm-6 col-md-6">
-                                <div class="te_offer_s8_img">
+                                <div class="t_img_hover_1 te_img_effect2">
                                     <img class="img img-fluid"
                                          src="/theme_clarico_vega/static/src/img/snippets/offer_styles/style_7/550_270.png"/>
                                 </div>
@@ -6105,7 +6113,7 @@
                                 </div>
                             </div>
                             <div class="col-lg-12 col-sm-6 col-md-6 pt-lg-2">
-                                <div class="te_offer_s8_img">
+                                <div class="t_img_hover_1 te_img_effect2">
                                     <img class="img img-fluid"
                                          src="/theme_clarico_vega/static/src/img/snippets/offer_styles/style_7/550_270.png"/>
                                 </div>
@@ -6318,7 +6326,7 @@
                     <div class="col-md-6">
                         <div class="te_banner_box te_banner_offer te_banner_effect">
                             <div class="te_banner_inner">
-                                <section class="t_img_hover_1">
+                                <section class="t_img_hover_1 te_img_effect1">
                                     <img src="/theme_clarico_vega/static/src/img/snippets/offer_styles/style_9/865_750.png"
                                          class="img img-fluid mx-auto" alt="Equino"/>
                                     <div class="te_banner_info">
@@ -6347,7 +6355,7 @@
                     <div class="col-md-6">
                         <div class="te_banner_box te_banner_offer te_banner_effect">
                             <div class="te_banner_inner">
-                                <section class="t_img_hover_1">
+                                <section class="t_img_hover_1 te_img_effect1">
                                     <img src="/theme_clarico_vega/static/src/img/snippets/offer_styles/style_9/865_750.png"
                                          class="img img-fluid mx-auto" alt="Equino"/>
                                     <div class="te_banner_info te_fix">
@@ -6393,7 +6401,7 @@
                     <div class="col-md-4 p-0 te_image_box_hover_effect">
                         <section
                                 class="te_banner_box te_banner_offer_three te_banner_offer_three_one te_banner_effect_three">
-                            <div class="t_img_hover_1">
+                            <div class="t_img_hover_1 te_img_effect1">
                                 <section class="te_trending_img_h"
                                          style="background-image: url(&quot;/theme_clarico_vega/static/src/img/snippets/offer_styles/style_9/570_490.png&quot;);">
                                 </section>
@@ -6416,7 +6424,7 @@
                     <div class="col-md-4 p-0 te_image_box_hover_effect">
                         <section
                                 class="te_banner_box te_banner_offer_three te_banner_offer_three_one te_banner_effect_three">
-                            <div class="t_img_hover_1">
+                            <div class="t_img_hover_1 te_img_effect1">
                                 <section class="te_trending_img_h"
                                          style="background-image: url(&quot;/theme_clarico_vega/static/src/img/snippets/offer_styles/style_9/570_490.png&quot;);">
                                 </section>
@@ -6439,7 +6447,7 @@
                     <div class="col-md-4 p-0 te_image_box_hover_effect">
                         <section
                                 class="te_banner_box te_banner_offer_three te_banner_offer_three_one te_banner_effect_three">
-                            <div class="t_img_hover_1">
+                            <div class="t_img_hover_1 te_img_effect1">
                                 <section class="te_trending_img_h"
                                          style="background-image: url(&quot;/theme_clarico_vega/static/src/img/snippets/offer_styles/style_9/570_490.png&quot;);">
                                 </section>
@@ -6462,7 +6470,7 @@
                     <div class="col-md-4 p-0 te_image_box_hover_effect">
                         <section
                                 class="te_banner_box te_banner_offer_three te_banner_offer_three_one te_banner_effect_three">
-                            <div class="t_img_hover_1">
+                            <div class="t_img_hover_1 te_img_effect1">
                                 <section class="te_trending_img_h"
                                          style="background-image: url(&quot;/theme_clarico_vega/static/src/img/snippets/offer_styles/style_9/570_490.png&quot;);">
                                 </section>
@@ -6485,7 +6493,7 @@
                     <div class="col-md-4 p-0 te_image_box_hover_effect">
                         <section
                                 class="te_banner_box te_banner_offer_three te_banner_offer_three_one te_banner_effect_three">
-                            <div class="t_img_hover_1">
+                            <div class="t_img_hover_1 te_img_effect1">
                                 <section class="te_trending_img_h"
                                          style="background-image: url(&quot;/theme_clarico_vega/static/src/img/snippets/offer_styles/style_9/570_490.png&quot;);">
                                 </section>
@@ -6508,7 +6516,7 @@
                     <div class="col-md-4 p-0 te_image_box_hover_effect">
                         <section
                                 class="te_banner_box te_banner_offer_three te_banner_offer_three_one te_banner_effect_three">
-                            <div class="t_img_hover_1">
+                            <div class="t_img_hover_1 te_img_effect1">
                                 <section class="te_trending_img_h"
                                          style="background-image: url(&quot;/theme_clarico_vega/static/src/img/snippets/offer_styles/style_9/570_490.png&quot;);">
                                 </section>
@@ -6552,7 +6560,7 @@
                         <div
                                 class="row content te_text_img_left_right t_zoom_img_effect align-items-center">
                             <div class="col-lg-6 py-5 text-center">
-                                <div class="te_slider13_img">
+                                <div class="te_slider13_img t_img_hover_1">
                                     <img class="img img-responsive img-fluid d-block mx-auto"
                                          alt="snippets"
                                          src="/theme_clarico_vega/static/src/img/snippets/3_column/style_2/437_500.jpg"/>
@@ -6583,7 +6591,7 @@
                         <div
                                 class="row content te_text_img_left_right t_zoom_img_effect align-items-center">
                             <div class="col-lg-6 py-5 text-center">
-                                <div class="te_slider13_img">
+                                <div class="te_slider13_img t_img_hover_1">
                                     <img class="img img-responsive img-fluid d-block mx-auto"
                                          alt="snippets"
                                          src="/theme_clarico_vega/static/src/img/snippets/3_column/style_2/437_500.jpg"/>
@@ -6984,7 +6992,7 @@
                 <p class="te_col_5_sub_title">Lorem ipsum dolor</p>
                 <div class="row">
                     <div class="col-lg-3 col-sm-6 te_col_5_main">
-                        <section>
+                        <section class="t_img_hover_1">
                             <img class="img img-responsive img-fluid mx-auto d-block" alt=""
                                  src="/theme_clarico_vega/static/src/img/snippets/3_column/style_2/437_500.jpg"/>
                         </section>
@@ -7001,7 +7009,7 @@
                         </section>
                     </div>
                     <div class="col-lg-3 col-sm-6 te_col_5_main">
-                        <section>
+                        <section class="t_img_hover_1">
                             <img class="img img-responsive img-fluid mx-auto d-block" alt=""
                                  src="/theme_clarico_vega/static/src/img/snippets/3_column/style_2/437_500.jpg"/>
                         </section>
@@ -7018,7 +7026,7 @@
                         </section>
                     </div>
                     <div class="col-lg-3 col-sm-6 te_col_5_main">
-                        <section>
+                        <section class="t_img_hover_1">
                             <img class="img img-responsive img-fluid mx-auto d-block" alt=""
                                  src="/theme_clarico_vega/static/src/img/snippets/3_column/style_2/437_500.jpg"/>
                         </section>
@@ -7035,7 +7043,7 @@
                         </section>
                     </div>
                     <div class="col-lg-3 col-sm-6 te_col_5_main">
-                        <section>
+                        <section class="t_img_hover_1">
                             <img class="img img-responsive img-fluid mx-auto d-block" alt=""
                                  src="/theme_clarico_vega/static/src/img/snippets/3_column/style_2/437_500.jpg"/>
                         </section>
@@ -7063,7 +7071,7 @@
                 <p class="te_col_5_sub_title">Lorem ipsum dolor</p>
                 <div class="row te_col_6_main">
                     <div class="col-lg-3 col-sm-6">
-                        <section class="te_s_6_img_sec">
+                        <section class="t_img_hover_1 te_img_effect3">
                             <img class="img img-responsive img-fluid d-block mx-auto" alt=""
                                  src="/theme_clarico_vega/static/src/img/snippets/menu_snippets/style_1/340_300.png"/>
                         </section>
@@ -7076,7 +7084,7 @@
                         </section>
                     </div>
                     <div class="col-lg-3 col-sm-6">
-                        <section class="te_s_6_img_sec">
+                        <section class="t_img_hover_1 te_img_effect3">
                             <img class="img img-responsive img-fluid d-block mx-auto" alt=""
                                  src="/theme_clarico_vega/static/src/img/snippets/menu_snippets/style_1/340_300.png"/>
                         </section>
@@ -7089,7 +7097,7 @@
                         </section>
                     </div>
                     <div class="col-lg-3 col-sm-6">
-                        <section class="te_s_6_img_sec">
+                        <section class="t_img_hover_1 te_img_effect3">
                             <img class="img img-responsive img-fluid d-block mx-auto" alt=""
                                  src="/theme_clarico_vega/static/src/img/snippets/menu_snippets/style_1/340_300.png"/>
                         </section>
@@ -7102,7 +7110,7 @@
                         </section>
                     </div>
                     <div class="col-lg-3 col-sm-6">
-                        <section class="te_s_6_img_sec">
+                        <section class="t_img_hover_1 te_img_effect3">
                             <img class="img img-responsive img-fluid d-block mx-auto" alt=""
                                  src="/theme_clarico_vega/static/src/img/snippets/menu_snippets/style_1/340_300.png"/>
                         </section>
@@ -7126,7 +7134,7 @@
                 <p class="te_col_5_sub_title">Lorem ipsum dolor</p>
                 <div class="row te_col_7_main">
                     <div class="col-lg-3 col-sm-6">
-                        <div class="te_s_7_main_div">
+                        <div class="t_img_hover_1 te_img_effect1">
                             <section>
                                 <img class="img img-responsive img-fluid d-block mx-auto"
                                      alt="Clarico-Mega Menus Style 1"
@@ -7145,7 +7153,7 @@
                         </div>
                     </div>
                     <div class="col-lg-3 col-sm-6">
-                        <div class="te_s_7_main_div">
+                        <div class="t_img_hover_1 te_img_effect1">
                             <section>
                                 <img class="img img-responsive img-fluid d-block mx-auto"
                                      alt="Clarico-Mega Menus Style 1"
@@ -7164,7 +7172,7 @@
                         </div>
                     </div>
                     <div class="col-lg-3 col-sm-6">
-                        <div class="te_s_7_main_div">
+                        <div class="t_img_hover_1 te_img_effect1">
                             <section>
                                 <img class="img img-responsive img-fluid d-block mx-auto"
                                      alt="Clarico-Mega Menus Style 1"
@@ -7183,7 +7191,7 @@
                         </div>
                     </div>
                     <div class="col-lg-3 col-sm-6">
-                        <div class="te_s_7_main_div">
+                        <div class="t_img_hover_1 te_img_effect1">
                             <section>
                                 <img class="img img-responsive img-fluid d-block mx-auto"
                                      alt="Clarico-Mega Menus Style 1"
@@ -7214,7 +7222,7 @@
                 <p class="te_col_5_sub_title">Lorem ipsum dolor</p>
                 <div class="row align-items-center te_2_col_style_4">
                     <section class="col-sm-6">
-                        <div class="te_s_4_img">
+                        <div class="te_s_4_img t_img_hover_1">
                             <img class="img img-responsive img-fluid mx-auto"
                                  src="/theme_clarico_vega/static/src/img/snippets/offer_styles/style_9/865_750.png"/>
                         </div>
@@ -7229,7 +7237,7 @@
                     </section>
                     <section class="col-sm-6">
                         <section class="row align-items-center te_img_txt">
-                            <div class="col-sm-6 col-6">
+                            <div class="col-sm-6 col-6 t_img_hover_1">
                                 <img class="img img-responsive img-fluid mx-auto"
                                      src="/theme_clarico_vega/static/src/img/snippets/offer_styles/style_6/470_451.png"/>
                             </div>
@@ -7245,7 +7253,7 @@
                             </div>
                         </section>
                         <section class="row align-items-center te_img_txt">
-                            <div class="col-sm-6 col-6">
+                            <div class="col-sm-6 col-6 t_img_hover_1">
                                 <img class="img img-responsive img-fluid mx-auto"
                                      src="/theme_clarico_vega/static/src/img/snippets/offer_styles/style_6/470_451.png"/>
                             </div>
@@ -7273,7 +7281,7 @@
                 <p class="te_col_5_sub_title">Lorem ipsum dolor</p>
                 <div class="row align-items-center te_2_col_style_5">
                     <section class="col-sm-6">
-                        <div class="te_s_5_img">
+                        <div class="te_s_5_img t_img_hover_1">
                             <img class="img img-responsive img-fluid mx-auto"
                                  src="/theme_clarico_vega/static/src/img/snippets/offer_styles/style_9/865_750.png"/>
                         </div>
@@ -7288,7 +7296,7 @@
                     </section>
                     <section class="col-sm-6">
                         <section class="row align-items-center te_img_txt">
-                            <div class="col-sm-7 col-7">
+                            <div class="col-sm-7 col-7 t_img_hover_1">
                                 <img class="img img-responsive img-fluid mx-auto"
                                      src="/theme_clarico_vega/static/src/img/snippets/menu_snippets/style_5/290_210.jpg"/>
                             </div>
@@ -7304,7 +7312,7 @@
                             </div>
                         </section>
                         <section class="row align-items-center te_img_txt">
-                            <div class="col-sm-7 col-7">
+                            <div class="col-sm-7 col-7 t_img_hover_1">
                                 <img class="img img-responsive img-fluid mx-auto"
                                      src="/theme_clarico_vega/static/src/img/snippets/menu_snippets/style_5/290_210.jpg"/>
                             </div>
@@ -7320,7 +7328,7 @@
                             </div>
                         </section>
                         <section class="row align-items-center te_img_txt">
-                            <div class="col-sm-7 col-7">
+                            <div class="col-sm-7 col-7 t_img_hover_1">
                                 <img class="img img-responsive img-fluid mx-auto"
                                      src="/theme_clarico_vega/static/src/img/snippets/menu_snippets/style_5/290_210.jpg"/>
                             </div>
@@ -7458,6 +7466,20 @@
             </section>
         </t>
     </template>
+    <!--================== Full Width =====================-->
+    <template id="full_width_image_banner" name="Full Image Banner">
+        <div class="oe_structure"/>
+        <section class="d-inline-block w-100">
+            <div class="w-100">
+                <a href="#">
+                    <div class="t_img_hover_1 te_banner_img w-100">
+                        <img class="img-fluid d-block mx-auto" alt="Clarico-Full Image"
+                             src="/theme_clarico_vega/static/src/img/shop/1920_110.jpg"></img>
+                    </div>
+                </a>
+            </div>
+        </section>
+    </template>
     <!--=================================== Snippets Animation Options =================================-->
     <template id="snippets_animation_option" name="Animaion Option"
               inherit_id="website.snippet_options">
@@ -7501,6 +7523,19 @@
                         <we-button data-select-class="zoom-out-right">out-right</we-button>
                         <we-button data-select-class="zoom-out-left">out-left</we-button>
 
+                    </we-collapse>
+                </we-collapse-area>
+            </div>
+            <div data-selector=".t_img_hover_1">
+                <we-collapse-area class="te_remove_css_ept">
+                    <we-toggler>Transition Effect</we-toggler>
+                    <we-collapse>
+                        <we-button data-toggle-class="te_img_effect1">Effect 1</we-button>
+                        <we-button data-toggle-class="te_img_effect2">Effect 2</we-button>
+                        <we-button data-toggle-class="te_img_effect3">Effect 3</we-button>
+                        <we-button data-toggle-class="te_img_effect4">Effect 4</we-button>
+                        <we-button data-toggle-class="te_img_effect5">Effect 5</we-button>
+                        <we-button data-toggle-class="te_img_effect6">Effect 6</we-button>
                     </we-collapse>
                 </we-collapse-area>
             </div>

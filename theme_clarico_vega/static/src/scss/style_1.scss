@@ -47,6 +47,13 @@
             display: none;
         }
     }
+    label {
+        margin-bottom: 0.2rem;
+        @include media-breakpoint-down(sm) {
+            margin-bottom: 0rem;
+        }
+
+    }
 }
 /* --------Snippet area z-index in cart page----- */
 body
@@ -87,6 +94,12 @@ hr{
 
     td.td-price{
         font-weight: bold;
+    }
+    .te_cart_del.mr8 {
+        margin-right: 0px !important;
+    }
+    .text-muted.small {
+        margin: 0.5rem 0;
     }
 }
 td.text-center.text-xl-right.border-0
@@ -303,7 +316,6 @@ body .modal.o_technical_modal .btn:not(.o_btn_preview).btn-secondary
 		}
 		> tbody
 		{
-			/*display: inline-block;*/ /* remove style for Ipad view table alignment*/
 			width: 100%;
 
 			& > tr
@@ -325,7 +337,6 @@ body .modal.o_technical_modal .btn:not(.o_btn_preview).btn-secondary
 			{
 				display: table-cell;
 				padding: 8px;
-				/*padding-left: 0 !important;*/
 			}
 			& .td-product_name
 			{
@@ -341,11 +352,6 @@ body .modal.o_technical_modal .btn:not(.o_btn_preview).btn-secondary
 				@include media-breakpoint-down(sm){
 				    display: inline-block;
 				    padding-top:0px;
-				}
-
-				.form-control.quantity
-				{
-					/*height: calc(1.9625rem + 2px);*/
 				}
 			}
 			& .td-price
@@ -391,6 +397,13 @@ body .modal.o_technical_modal .btn:not(.o_btn_preview).btn-secondary
 	.wizard .progress-wizard-step.active .progress-wizard-steplabel
 	{
 		border-bottom: 1px solid nth($f_color,3);
+	}
+	#o_cart_summary .js_cart_summary
+	{
+        #cart_total .table
+        {
+            margin-bottom: 0;
+        }
 	}
 }
 /*----------------- Suggested Products --------------------*/
@@ -484,7 +497,19 @@ body .modal.o_technical_modal .btn:not(.o_btn_preview).btn-secondary
 		}
 	}
 }
-
+@include media-breakpoint-down(xs)
+{
+    .oe_website_sale table#suggested_products
+	{
+	    tr
+		{
+		    & > td.w-25
+		    {
+                width:40% !important;
+		    }
+		}
+	}
+}
 /*=================== 4. Header Cart Popover ========================*/
 .te_overlay
 {
@@ -561,11 +586,15 @@ body .modal.o_technical_modal .btn:not(.o_btn_preview).btn-secondary
 		.col-sm-3
 		{
 			padding: 0;
-			border: 1px solid #ededed;
-			.te_mini_img img
+			.te_mini_img
 			{
-				object-fit: scale-down;
-    			height: 90px;
+				border: 1px solid #ededed;
+				display:block;
+				img
+				{
+					object-fit: scale-down;
+    				height: 90px;
+				}
 			}
 		}
 		.col-sm-9
@@ -1058,6 +1087,9 @@ form.o_wsale_products_searchbar_form.dropdown.show button.dropdown-item.text-cen
 .o_wsale_products_searchbar_form .dropdown-menu {
    max-height: calc(100vh - 360px);
    overflow-y: auto;
+   @include media-breakpoint-down(md){
+       max-height: calc(100vh - 150px);
+   }
 }
 .te_header_search {
     form.o_wsale_products_searchbar_form{
@@ -1235,7 +1267,6 @@ $menu-link-padding: 1em;
 .menu {
 
   .menu-item {
-    /*display: block;*/
 
     &.has-children {
       &, .menu-item {
@@ -1395,8 +1426,6 @@ $menu-link-padding: 1em;
 /*--------------- 4. Themeing of Dynamic Category Menu --------------*/
 
 .nav {
-  /*background-color: $menu-bg;*/
-
   .menu {
     > .menu-item {
       &,
@@ -1591,6 +1620,36 @@ form#editor_new_product_slider_template span.show-format-span {
         width: 100%;
         position: absolute;
     }
+}
+form#google_map_editor_template .choose_an_option{
+    width:100%;
+    display:inline-block;
+}
+.static_location.d-none{
+    display:none !important;
+}
+#static_loc:checked ~ .static_location.d-none{
+    display:block !important;
+    max-width:100%;
+    flex:0 0 100%;
+    padding:0px;
+}
+#dynamic_loc:checked ~ .location_dynamic.d-none{
+    display:block !important;
+}
+input.static_location{
+    padding:6px 12px;
+    height:34px;
+    line-height:1.5;
+    font-size:14px;
+    border:1px solid #d4d5d7;
+    color:#555;
+    background-color:#FFF;
+    border-radius:0px;
+    width:100%;
+}
+form#google_map_editor_template input[type='radio']{
+    cursor:pointer;
 }
 /*================== 1. Header Menu Sale Label ===================*/
 /*------- Header Menu sale label styles ---------*/
@@ -1934,6 +1993,9 @@ header#top > .product_details_sticky {
                 padding: 0.375rem 0.675rem;
                 margin: 0px 15px;
             }
+             @include media-breakpoint-down(xs){
+                margin: 0px;
+             }
         }
         a#buy_now {
             @include media-breakpoint-down(sm){

@@ -46,6 +46,7 @@
             <!-- End by ept_2 -->
 
             <script type="text/javascript" src="/theme_clarico_vega/static/src/js/frontend/jquery.mixitup.min.js"/>
+            <script type="text/javascript" src="/theme_clarico_vega/static/src/js/frontend/jquery.ui.touch-punch.min.js"/>
         </xpath>
     </template>
     <!--============================ Inclusion of editor js Files =======================-->
@@ -98,8 +99,9 @@
             <script>
 				AOS.init({
 			  		easing: 'ease-out-back',
-					duration: 1500,
+					duration: 1700,
 					offset: 0,
+                    delay: 150,
 				});
 			</script>
         </xpath>

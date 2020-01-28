@@ -13,9 +13,6 @@
 			>li {
 			    >a {
 			        color: inherit;
-			        /*&:hover {
-			            color: nth($f_color,05);
-			        }*/
 			    }
 			}
 		}
@@ -114,7 +111,7 @@
 	  }
 	 h2
 	  {
-		margin: 16px 0 8px 0;
+		margin: 5px 0 8px 0;
 		font-size:nth($f_sizes,4);
 		color: inherit;
 	  }
@@ -147,7 +144,7 @@ section.te_newsletter_margin {
 		padding: 0;
 		 li
 		{
-			padding: 14px;
+			padding: 0 14px 14px;
 			display: inline-block;
 			@include transition(null,0.3s)
 

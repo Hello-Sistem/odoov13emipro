@@ -41,6 +41,7 @@ footer.o_footer
     {
         padding: 0;
         list-style-type: none;
+		margin: 0;
         li
         {
             padding: 12px 0;
@@ -57,7 +58,7 @@ footer.o_footer
     .te_end_ftr_container
     {
         border-top: 1px solid nth($f_color,8);
-        padding-top: 2.5rem;
+        padding-top: 1.5rem;
         margin-top: 1rem;
     }
     .te_footer_info_text
@@ -143,8 +144,8 @@ footer.o_footer
     {
         .te_account_info
         {
-            border-bottom: 1px solid nth($f_color,8);
-            margin-bottom: 30px;
+            //border-bottom: 1px solid nth($f_color,8);
+            //margin-bottom: 30px;
         }
     }
 }

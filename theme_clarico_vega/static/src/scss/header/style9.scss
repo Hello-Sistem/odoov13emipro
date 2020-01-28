@@ -20,6 +20,37 @@
             bottom: auto;
             left: auto !important;
         }
+        .te_pricelist .dropdown-menu{
+            @include media-breakpoint-down(sm){
+                &:before{
+                    right:20px;
+                    left:unset;
+                }
+                &:after{
+                    right:19px;
+                    left:unset;
+                }
+            }
+        }
+        .te_language_selector .dropdown-menu{
+            @include media-breakpoint-down(sm){
+                margin-top: 5px !important;
+            }
+            &:before{
+                left:unset;
+                right:50px;
+                @include media-breakpoint-down(sm){
+                    right:20px;
+                }
+            }
+            &:after{
+                left:unset;
+                right:49px;
+                @include media-breakpoint-down(sm){
+                    right:19px;
+                }
+            }
+        }
     }
 }
 .te_header_before_overlay .js_language_selector .dropdown-menu,
@@ -66,6 +97,17 @@
             display: block;
             @include media-breakpoint-down(sm){
                 padding: 10px;
+            }
+        }
+        @include media-breakpoint-down(md)
+        {
+            .dropdown-menu{
+                &:before{
+                    right: 20px;
+                }
+                &:after{
+                    right: 20px;
+                }
             }
         }
     }

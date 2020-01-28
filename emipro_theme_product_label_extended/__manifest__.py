@@ -13,7 +13,7 @@
 
     #Odoo Store Specific
     'images': [
-	'static/description/emipro_theme_brand.jpg',
+	'static/description/emipro_theme_product_label_extended.jpg',
     ],
 
     # Author

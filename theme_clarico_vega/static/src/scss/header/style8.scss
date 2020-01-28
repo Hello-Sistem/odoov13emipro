@@ -328,6 +328,27 @@
 	.h8_pricelist, .te_header_lang{
 	    padding:10px;
 	}
+	.te_header_lang
+	{
+	    .dropdown-menu{
+            &:before{
+                left:unset;
+                right:35px;
+                @include media-breakpoint-down(sm)
+                {
+                    right:16px;
+                }
+            }
+            &:after{
+                left:unset;
+                right:34px;
+                @include media-breakpoint-down(sm)
+                {
+                    right:15px;
+                }
+            }
+        }
+	}
 	& ul.js_language_selector{
 	    padding-left: 7px;
 	}
@@ -405,6 +426,14 @@
 	    .te_user_account_icon{
 	        display:inline-block;
 	    }
+	    .dropdown-menu{
+            &:before{
+                right: 12px;
+            }
+            &:after{
+                right: 12px;
+            }
+        }
 	}
 	> div {
         display: inline-block;
@@ -484,6 +513,22 @@
             .h8_pricelist{
                 .dropdown{
                     padding: 0px 8px;
+                }
+                .dropdown-menu{
+                    &:before{
+                        left:61px;
+                        @include media-breakpoint-down(sm)
+                        {
+                            left:78px;
+                        }
+                    }
+                    &:after{
+                        left:60px;
+                        @include media-breakpoint-down(sm)
+                        {
+                            left:77px;
+                        }
+                    }
                 }
                 .te_currency_name
                 {

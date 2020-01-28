@@ -39,6 +39,9 @@
         <xpath expr="//div[@id='product_details']/h1" position="attributes">
             <attribute name="class">te_product_name</attribute>
         </xpath>
+        <xpath expr="//div[@id='product_details']/h1" position="after">
+            <span id="te_rect_cnt" class="d-none" t-esc="website.number_of_product_line"/>
+        </xpath>
         <xpath expr="//h1[@t-field='product.name']" position="after">
             <div class="o_not_editable">
                 <p t-field="product.description_sale" class="te_prod_desc"/>
@@ -138,7 +141,7 @@
                                                t-attf-href="/shop/product/#{ slug(alt_product) }">
                                                 <h6>
                                                     <span t-att-title="alt_product.name" t-field="alt_product.name"
-                                                          class="o_text_overflow"/>
+                                                          t-attf-class="alt_prod_name #{'te_2_line' if (website.number_of_product_line == '2') else 'te_3_line' if (website.number_of_product_line == '3') else ''}"/>
                                                 </h6>
                                             </a>
                                             <del t-attf-class="te_shop_del mr-2 {{'' if combination_info['has_discounted_price'] else 'd-none'}}"
@@ -187,7 +190,7 @@
                                            t-attf-href="/shop/product/#{ slug(alt_product.product_tmpl_id) }">
                                             <h6>
                                                 <span t-att-title="alt_product.name" t-field="alt_product.name"
-                                                      class="o_text_overflow"/>
+                                                      t-attf-class="alt_prod_name #{'te_2_line' if (website.number_of_product_line == '2') else 'te_3_line' if (website.number_of_product_line == '3') else ''}"/>
                                             </h6>
                                         </a>
                                         <del t-attf-class="te_shop_del mr-2 {{'' if combination_info['has_discounted_price'] else 'd-none'}}"
@@ -263,10 +266,10 @@
         <t t-if="product.product_brand_ept_id.logo or product.product_brand_ept_id.description">
             <div class="row my-3"
                  t-if="product.product_brand_ept_id and product.product_brand_ept_id.website_id.id == request.website.id or not product.product_brand_ept_id.website_id.id">
-                <div class="te_brand_img col-lg-4 col-xl-3" t-if="product.product_brand_ept_id.logo"
+                <div class="te_brand_img  col-xl-3 col-lg-4" t-if="product.product_brand_ept_id.logo"
                      t-field="product.product_brand_ept_id.logo"
                      t-options="{'widget': 'image','class':'te_product_brand_img'}"/>
-                <div class="col-sm-8">
+                <div class=" col-xl-9 col-lg-8 col-sm col">
                     <p class="te_product_brand_desc" t-if="product.product_brand_ept_id.description"
                        t-field="product.product_brand_ept_id.description"/>
                 </div>
@@ -457,7 +460,7 @@
                                                                 <tr class="clickable" data-toggle="collapse"
                                                                     t-att-data-target="'.o_ws_category_%d' % category.id">
                                                                     <th class="text-left" t-att-colspan="2">
-                                                                        <i class="fa fa-chevron-circle-down te_ctg_icon"/>
+                                                                        <i class="fa fa-chevron-down te_ctg_icon"/>
                                                                         <span t-if="category" t-field="category.name"/>
                                                                         <span t-else="">Uncategorized</span>
                                                                     </th>
@@ -546,7 +549,7 @@
 
                 <div class="te_discount">
                     <span class="te_prod_discount">You Save :</span>
-                    <t t-esc="difference" 
+                    <t t-esc="difference"
                        t-options='{"widget": "monetary",
                         "display_currency": product.currency_id, }'/>
                      <span class="te_percentage" t-esc="'(%s'%(discount)+'&#x25;)'"/>

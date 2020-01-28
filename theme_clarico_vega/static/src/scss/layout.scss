@@ -22,7 +22,7 @@ INDEX:
 	> .dropdown-menu a.dropdown-item
 	{
 		padding: 0.55rem 1.5rem;
-		border-bottom: 1px dashed #c0c0c0;
+		border-bottom: 1px solid #ededed;
 		font-size:nth($f_sizes,3);
 		text-transform: capitalize;
 
@@ -36,6 +36,89 @@ INDEX:
 	{
 		border:none;
 	}
+	.dropdown-menu
+	{
+	    padding: 0.2rem 0 0 0;
+	    margin-top: 8px !important;
+	    &:before
+	    {
+	        content: "";
+	        @include position(absolute,-12px,28px)
+            border: 6px solid;
+            border-color:transparent transparent #fff transparent;
+            z-index: 4;
+            display: block;
+            height: 0;
+            width: 0;
+	    }
+	    &:after
+	    {
+            content: "";
+            @include position(absolute,-15px,27px)
+            border: 7px solid;
+            border-color:transparent transparent #ededed transparent;
+            z-index: 3;
+            display: block;
+            height: 0px;
+            width: 0px;
+	    }
+	    .te_user_drop_item
+	    {
+	        @include transition(padding-left,0.4s,ease);
+	        display:inline-block;
+	    }
+	    .dropdown-item
+	    {
+	        &:hover
+            {
+                .te_user_drop_item
+                {
+                    padding-left:5px;
+                }
+            }
+	    }
+	}
+}
+.te_header_lang, .te_header_pricelist, .te_pricelist, .te_header_style_3_inner, .te_header_style_4_inner, .te_header_style_5_main, .te_header_style_6_main, .h8_pricelist,
+.te_language_selector, .h10_pricelist
+{
+    .dropdown-menu
+	{
+	    margin-top: 8px !important;
+	    &:before
+	    {
+	        content: "";
+	        @include position(absolute,-12px,null,null,41px)
+            border: 6px solid;
+            border-color:transparent transparent #fff transparent;
+            z-index: 4;
+            display: block;
+            height: 0;
+            width: 0;
+	    }
+	    &:after
+	    {
+            content: "";
+            @include position(absolute,-15px,null,null,40px)
+            border: 7px solid;
+            border-color:transparent transparent #ededed transparent;
+            z-index: 3;
+            display: block;
+            height: 0px;
+            width: 0px;
+	    }
+	    .dropdown-item
+	    {
+	        position:relative;
+	        left:0;
+            transition: all 0.4s ease;
+            display: inline-block;
+            padding: 0.55rem 1.5rem;
+            &:hover{
+                left:0.5rem;
+            }
+	    }
+    }
 }
 /*------ Company Logo Customize option---------*/
 .te_header_before_logo, .navbar-brand.logo
@@ -263,7 +346,10 @@ div[name="mail_button"]
     cursor: pointer;
     @include transition(null,.3s,null)
     z-index:9999;
-
+    @include media-breakpoint-down(md)
+    {
+		z-index:99;
+	}
     &:hover{
     	 background: nth($f_color,19);
     }

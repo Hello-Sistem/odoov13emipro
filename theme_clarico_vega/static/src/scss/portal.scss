@@ -2,6 +2,7 @@
 			   01. Portal Details
 			   02. Portal Table
 			   03. Portal Main Page
+			   04. Quotation Page
 ******************************************/
 /*=================== 01. Portal Details ================================*/
 #portal_grid {
@@ -239,6 +240,12 @@
 			padding-right: 0;
 		}
 	}
+	@include media-breakpoint-down(xs)
+	{
+        .te_theme_button{
+                width:100%;
+            }
+    }
 }
 #sale_order_communication
 {
@@ -402,4 +409,69 @@
 			display: none !important;
 		}
 	}
+}
+
+/*================== 04. Quotation Page ====================*/
+.o_portal_my_doc_table{
+    @media (max-width:800px){
+        .te_quotation{
+            &:before{
+                content: "Quotations : ";
+                font-weight: 600;
+            }
+            a{
+                @include style(2,15);
+                &:hover{
+                    color:nth($f_color,19);
+                }
+            }
+            margin-bottom: 5px;
+        }
+        .te_quotation_date{
+            &:before{
+                content: "Quotation Date : ";
+                font-weight: 600;
+            }
+            span{
+                @include style(2,15);
+            }
+            margin-bottom: 5px;
+        }
+        .te_quotation_valid{
+            &:before{
+                content: "Valid Until : ";
+                font-weight: 600;
+            }
+            span{
+                @include style(2,15);
+            }
+            &.disable{
+                display:none;
+            }
+            margin-bottom: 5px;
+        }
+        .te_quotation_cancel_expired{
+            &:before{
+                content: "Quotation State : ";
+                font-weight: 600;
+            }
+            span{
+                color:nth($f_color,19);
+            }
+            &.disable{
+                display:none;
+            }
+            margin-bottom: 5px;
+        }
+        .te_quotation_total{
+            &:before{
+                content: "Total : ";
+                font-weight: 600;
+            }
+            span{
+                @include style(2,15);
+            }
+            margin-bottom: 5px;
+        }
+    }
 }

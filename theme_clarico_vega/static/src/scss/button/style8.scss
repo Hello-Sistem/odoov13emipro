@@ -8,6 +8,7 @@
     transition: 0.5s;
     @include border(2px,19,solid)
     background-color:nth($f_color,27);
+	z-index: 1;
     
     &.btn-secondary, &.btn-link
     {
@@ -41,7 +42,7 @@
     &:before {
         width: 100%;
         height: calc(100% - 0.5px);
-        z-index: 3;
+        z-index: -1;
         content: '';
         @include position(absolute,0,null,null,0);
         box-sizing: border-box;
@@ -54,7 +55,7 @@
     &:after {
         width: 100%;
         height: calc(100% - 0.5px);
-        z-index: 3;
+        z-index: -1;
         content: '';
         @include position(absolute,0,null,null,0);
         box-sizing: border-box;

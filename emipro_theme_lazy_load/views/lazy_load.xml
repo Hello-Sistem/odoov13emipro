@@ -2,9 +2,9 @@
 <odoo>
 
     <record id="res_config_settings_view_form" model="ir.ui.view">
-        <field name="name">res.config.settings</field>
+        <field name="name">res.config.settings.lazy.load</field>
         <field name="model">res.config.settings</field>
-        <field name="inherit_id" ref="website.res_config_settings_view_form"/>
+        <field name="inherit_id" ref="emipro_theme_base.res_config_settings_view_form"/>
         <field name="arch" type="xml">
             <div id="clarico_settings_main" position="inside">
                 <div class="row o_settings_container mt16" id="clarico_lazy_load">

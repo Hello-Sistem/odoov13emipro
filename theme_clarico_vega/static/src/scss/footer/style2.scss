@@ -111,7 +111,6 @@
 		{
 			margin-right:0;
 			width:100%;
-			//margin-bottom: 19px;
 		}
 		.js_language_selector
 		{
@@ -130,8 +129,6 @@
 	@include media-breakpoint-down(md)
 	{
 		text-align:left;
-		//margin-bottom: 10px;
-		line-height: 0;
 	}
 	@include media-breakpoint-down(sm)
 	{
@@ -174,7 +171,7 @@
         	 	    display: inline-block;
 				    margin: 5px 0;
 				    border-right: none;
-				    width: 100%;
+				    width: 49%;
 				}
 			 a
 			{

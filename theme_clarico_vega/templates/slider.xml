@@ -86,8 +86,9 @@
                                                 <section class="d-block position-relative p-3 te_prod_info_sub">
                                                     <a t-att-href="product.website_url"
                                                        class="text-decoration-none">
-                                                        <h6 class="my-2 mb-0 text-truncate product_name"
-                                                            t-raw="product.display_name"/>
+                                                        <h6
+                                                                t-attf-class="my-2 mb-0 product_name #{'te_2_line' if (website.number_of_product_line == '2') else 'te_3_line' if (website.number_of_product_line == '3') else ''}"
+                                                                t-raw="product.display_name"/>
                                                     </a>
                                                     <t t-if="not user_id.partner_id.name == 'Public user'">
                                                         <div itemprop="offers" itemscope="itemscope"
@@ -156,8 +157,8 @@
                                                         <t t-set="in_wish" t-value="product._is_in_wishlist()"/>
                                                         <t t-set="product_variant_id"
                                                            t-value="product._get_first_possible_variant_id()"/>
-                                                        <t t-if="show_wishlist">
-                                                            <t t-if="not user_id.partner_id.name == 'Public user'">
+                                                        <t t-if="not user_id.partner_id.name == 'Public user'">
+                                                            <t t-if="show_wishlist">
                                                                 <button t-if="product_variant_id" type="button"
                                                                         role="button"
                                                                         class="btn btn-secondary btn-sm px-3 py-2 o_add_wishlist"
@@ -271,8 +272,9 @@
                                                     <section class="d-block position-relative p-3 te_prod_info_sub">
                                                         <a t-att-href="product.website_url"
                                                            class="text-decoration-none">
-                                                            <h6 class="text-truncate product_name"
-                                                                t-raw="product.display_name"/>
+                                                            <h6
+                                                                    t-attf-class="product_name #{'te_2_line' if (website.number_of_product_line == '2') else 'te_3_line' if (website.number_of_product_line == '3') else ''}"
+                                                                    t-raw="product.display_name"/>
                                                         </a>
                                                         <t t-if="not user_id.partner_id.name == 'Public user'">
                                                             <div itemprop="offers" itemscope="itemscope"
@@ -417,8 +419,9 @@
                                                 <section class="d-block position-relative te_prod_info_sub">
                                                     <a t-att-href="product.website_url"
                                                        class="text-decoration-none">
-                                                        <h6 class="text-truncate product_name"
-                                                            t-raw="product.display_name"/>
+                                                        <h6
+                                                                t-attf-class="product_name #{'te_2_line' if (website.number_of_product_line == '2') else 'te_3_line' if (website.number_of_product_line == '3') else ''}"
+                                                                t-raw="product.display_name"/>
                                                     </a>
                                                     <t t-if="not user_id.partner_id.name == 'Public user'">
                                                         <div itemprop="offers" itemscope="itemscope"
@@ -564,13 +567,14 @@
                                             <div class="te_prod_info_4 col-lg-5 col-md-12 col-sm-11">
                                                 <section class="d-block te_prod_info_sub">
                                                     <a t-att-href="product.website_url" class="text-decoration-none">
-                                                        <h6 class="my-2 text-truncate product_name"
-                                                            t-raw="product.display_name"/>
+                                                        <h6
+                                                                t-attf-class="my-2 product_name #{'te_2_line' if (website.number_of_product_line == '2') else 'te_3_line' if (website.number_of_product_line == '3') else ''}"
+                                                                t-raw="product.display_name"/>
                                                     </a>
                                                     <t t-if="product.description_sale">
                                                         <div class="te_slider_4_desc">
                                                             <p class="te_slider_4_p"
-                                                               t-field="product.description_sale"/>
+                                                               t-field="product.description_sale"></p>
                                                         </div>
                                                     </t>
                                                     <t t-if="not user_id.partner_id.name == 'Public user'">
@@ -718,8 +722,8 @@
                                                     <t t-set="in_wish" t-value="product._is_in_wishlist()"/>
                                                     <t t-set="product_variant_id"
                                                        t-value="product._get_first_possible_variant_id()"/>
-                                                    <t t-if="show_wishlist">
-                                                        <t t-if="not user_id.partner_id.name == 'Public user'">
+                                                    <t t-if="not user_id.partner_id.name == 'Public user'">
+                                                        <t t-if="show_wishlist">
                                                             <button t-if="product_variant_id" type="button"
                                                                     role="button"
                                                                     class="btn btn-secondary btn-sm o_add_wishlist"
@@ -748,8 +752,9 @@
                                                 <section class="d-block position-relative p-3 te_prod_info_sub">
                                                     <a t-att-href="product.website_url"
                                                        class="text-decoration-none">
-                                                        <h6 class="my-2 mb-0 text-truncate product_name"
-                                                            t-raw="product.display_name"/>
+                                                        <h6
+                                                                t-attf-class="my-2 mb-0 product_name #{'te_2_line' if (website.number_of_product_line == '2') else 'te_3_line' if (website.number_of_product_line == '3') else ''}"
+                                                                t-raw="product.display_name"/>
                                                     </a>
                                                     <t t-if="not user_id.partner_id.name == 'Public user'">
                                                         <div itemprop="offers" itemscope="itemscope"
@@ -793,8 +798,8 @@
                                                             </h6>
                                                         </div>
                                                     </t>
-                                                    <t t-if="not user_id.partner_id.name == 'Public user'">
-                                                        <section class="te_prod_cart_wish pt-3">
+                                                    <section class="te_prod_cart_wish pt-3">
+                                                        <t t-if="not user_id.partner_id.name == 'Public user'">
                                                             <t t-if="request.website.viewref('website_sale.products_add_to_cart').active">
                                                                 <a role="button"
                                                                    class="btn btn-secondary btn-sm a-submit px-3 py-2 te_theme_button"
@@ -803,8 +808,8 @@
                                                                     Add to Cart
                                                                 </a>
                                                             </t>
-                                                        </section>
-                                                    </t>
+                                                        </t>
+                                                    </section>
                                                 </section>
                                             </div>
                                         </form>
@@ -904,8 +909,8 @@
                                                         <t t-set="in_wish" t-value="product._is_in_wishlist()"/>
                                                         <t t-set="product_variant_id"
                                                            t-value="product._get_first_possible_variant_id()"/>
-                                                        <t t-if="show_wishlist">
-                                                            <t t-if="not user_id.partner_id.name == 'Public user'">
+                                                        <t t-if="not user_id.partner_id.name == 'Public user'">
+                                                            <t t-if="show_wishlist">
                                                                 <button t-if="product_variant_id" type="button"
                                                                         role="button"
                                                                         class="btn btn-secondary btn-sm o_add_wishlist"
@@ -943,8 +948,9 @@
                                                     <section class="d-block position-relative p-3 te_prod_info_sub">
                                                         <a t-att-href="product.website_url"
                                                            class="text-decoration-none">
-                                                            <h6 class="text-truncate product_name"
-                                                                t-raw="product.display_name"/>
+                                                            <h6
+                                                                    t-attf-class="product_name #{'te_2_line' if (website.number_of_product_line == '2') else 'te_3_line' if (website.number_of_product_line == '3') else ''}"
+                                                                    t-raw="product.display_name"/>
                                                         </a>
                                                         <t t-if="not user_id.partner_id.name == 'Public user'">
                                                             <div itemprop="offers" itemscope="itemscope"
@@ -1187,8 +1193,8 @@
         <t t-set="show_wishlist" t-value="request.website.viewref('website_sale_wishlist.add_to_wishlist').active"/>
         <t t-set="in_wish" t-value="product._is_in_wishlist()"/>
         <t t-set="product_variant_id" t-value="product._get_first_possible_variant_id()"/>
-        <t t-if="show_wishlist">
-            <t t-if="not user_id.partner_id.name == 'Public user'">
+        <t t-if="not user_id.partner_id.name == 'Public user'">
+            <t t-if="show_wishlist">
                 <button t-if="product_variant_id" type="button" role="button"
                         class="btn btn-secondary btn-sm px-3 py-2 o_add_wishlist"
                         t-att-disabled='in_wish or None' title="Add to Wishlist"

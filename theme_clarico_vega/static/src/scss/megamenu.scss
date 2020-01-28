@@ -892,7 +892,10 @@ li.nav-item.dropdown.o_extra_menu_items.show ul.dropdown-menu.dropdown-menu-righ
 .o_rtl
 {
 	#custom_menu .ctg_arrow {
-		transform: rotate(-180deg) !important;
+		transform: unset;
+		&:before {
+			content: "\f104";
+		}
 	}
 }
 /*======================= 08 - Header Stick =====================*/

@@ -16,7 +16,9 @@
         'views/product_tabs.xml',
         'security/ir.model.access.csv',
     ],
-
+'images': [
+	'static/description/emipro_theme_product_tabs.jpg',
+    ],
     # Author
     'author': 'Emipro Technologies Pvt. Ltd.',
     'website': 'http://www.emiprotechnologies.com',

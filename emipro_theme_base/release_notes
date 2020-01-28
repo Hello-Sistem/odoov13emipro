@@ -1,3 +1,19 @@
+Version 13.0.2.0.2 - 21 January 20
+===================================
+Bug Fixes
+
+ - Made some changes in   module level dependency.
+
+Features
+
+ - Number of rows to show in product name selection.
+
+Version 13.0.2.0.1 - 18 January 20
+===================================
+Bug Fixes
+
+ - Fixed compare popover issue.
+
 Version 13.0.2.0.0 - 10 January 20
 ===================================
 

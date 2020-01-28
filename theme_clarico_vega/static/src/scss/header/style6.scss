@@ -177,6 +177,17 @@
 		& .te_header_search{
 			width:100%;
 		}
+		.js_language_selector
+		{
+		     .dropdown-menu{
+                &:before{
+                    left:8px;
+                }
+                &:after{
+                    left:7px;
+                }
+            }
+		}
 	}
 	@include media-breakpoint-down(xs)
 	{
@@ -235,6 +246,24 @@
             border-color: transparent;
         }
 
+	}
+	.te_header_account
+	{
+	    .dropdown-menu{
+            &:before{
+                right: 8px;
+                left:unset;
+            }
+            &:after{
+                right: 8px;
+                left:unset;
+            }
+            &:hover{
+                .dropdown-item{
+                    left:unset;
+                }
+            }
+        }
 	}
 }
 /*---- search icon ----*/
@@ -361,6 +390,14 @@
             right:0;
             @include media-breakpoint-down(lg){
                left:0 !important;
+            }
+            @include media-breakpoint-down(md){
+                &:before{
+                    left:6px;
+                }
+                &:after{
+                    left:5px;
+                }
             }
             @include media-breakpoint-down(xs)
             {

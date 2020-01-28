@@ -265,6 +265,7 @@
 		}
 		.btn:not(:disabled):not(.disabled){
 			margin:5px 5px;
+			width:100%;
 		}
 	}
 }
@@ -353,7 +354,6 @@
     border-radius: 10px;
     box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.15);
 
-    //.close:not(:disabled):not(.disabled):hover,
     .close:not(:disabled):not(.disabled):focus,
     .close {
         @include position(absolute,-15px,-15px);
@@ -423,6 +423,10 @@
 		.quick-add-to-cart
 		{
 			padding: 0.613rem 2rem;
+			@include media-breakpoint-down(xs)
+			{
+			    display: block;
+			}
 		}
         #buy_now{
             padding: 0.613rem 2rem;
@@ -432,6 +436,12 @@
             @include media-breakpoint-down(md) {
                 margin-top: 17px !important;
                 margin-left: 0rem !important;
+            }
+            @include media-breakpoint-down(xs)
+            {
+                font-size: 0.8125rem;
+                display: block !important;
+                margin-right: 0;
             }
         }
         .product_price{
@@ -466,6 +476,9 @@
             margin: 0px auto;
             .owl-carousel {
                 width: 74%;
+                @include media-breakpoint-down(sm){
+                    width: 100%;
+                }
             }
         }
     }
@@ -815,7 +828,7 @@
                         .new_span img {
                             @include object-fit(scale-down);
                             @media (min-width: 1599.98px){
-                                height: 20rem;
+                                height: 20.7rem;
                             }
                             @media (min-width: 1199.98px) and (max-width: 1599.98px){
                                 height: 17.2rem;
@@ -1001,7 +1014,6 @@
 }
 #o_comparelist_table.te_compare_table {
     border: 0 !important;
-    //width:auto;
     @media (max-width:1000px)
 	{
 		max-width: 1000px;
@@ -1013,14 +1025,6 @@
 			min-width: 240px !important;
 		}
 	}
-	/*@include media-breakpoint-down(xs)
-	{
-		max-width: 600px;
-		td
-		{
-			min-width: 100px !important;
-		}
-	}*/
 	thead {
 		td {
 			border: 0!important;
@@ -1098,6 +1102,14 @@
 	}
 }
 /*====================== 05. Wishlist =======================*/
+#oe_structure_website_sale_wishlist_product_wishlist_1, #oe_structure_website_sale_products_1
+{
+	.te_banner_img img
+	{
+		object-fit: cover;
+		height: 110px;
+	}
+}
 .te_product_wishlist{
 	margin-left: 4px;
 	background: nth($f_color,27);
@@ -1320,9 +1332,6 @@
 		border-top:none;
         text-transform: capitalize;
 	}
-	/* td.td-price {
-		min-width: 130px;
-	} */
 	@include media-breakpoint-down(md)
 	{
 		tbody
@@ -1379,7 +1388,6 @@
 
 			td
 			{
-				/*display: table-cell !important;*/
 				width: 100%;
 			}
 		}
@@ -1666,7 +1674,7 @@ button:focus {
 		margin-top:10px;
 	}
     .prod_details {
-        margin: 0 6px 10px;
+        margin: 0 7px 10px;
         @include transition(all,.4s);
         &:hover {
             box-shadow: 0 1px 10px #ddd;
@@ -1693,6 +1701,27 @@ button:focus {
             width:100%;
             background: nth($f_color,5);
             border-top: 1px solid #eee;
+
+			.alt_prod_name
+			{
+				overflow: hidden;
+				display: -webkit-box;
+				-webkit-line-clamp: 1;
+				-webkit-box-orient: vertical;
+				height: 23px;
+				margin-bottom: 3px;
+
+				&.te_2_line
+				{
+					-webkit-line-clamp: 2;
+					height: 44px;
+				}
+				&.te_3_line
+				{
+					-webkit-line-clamp: 3;
+					height: 65px;
+				}
+			}
         }
         .prod_name {
             @include style(2,22,inherit,null,capitalize);
@@ -1713,12 +1742,12 @@ button:focus {
 
 /*================ 08. Product Image Gallery =========================*/
 #mainSlider {
+    /*display: none;*/
+    width: 80%;
+    float: right;
     &.mainslider-full{
         width: 100%;
     }
-    display: none;
-    width: 80%;
-    float: right;
 
     @include media-breakpoint-down(sm) {
         width: 90%;
@@ -1748,6 +1777,7 @@ button:focus {
     .owl-carousel .owl-item img {
         max-height: 440px !important;
         width: auto;
+        margin: 0 auto;
     }
 }
 #thumbnailSlider {

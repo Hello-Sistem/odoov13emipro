@@ -9,30 +9,10 @@
                     <div class="container">
                         <div class="row">
                             <div class="te_footer_add_tel_email col-lg-3">
-                                <!-- Website Logo -->
-                                <div class="d-block mb16">
-                                    <a href="/" class="te_footer_logo logo">
-                                        <span t-field="website.logo" class="te_footer_logo_img"
-                                              t-options="{'widget': 'image'}" role="img"
-                                              t-att-aria-label="'Logo of %s' % website.name"
-                                              t-att-title="website.name"/>
-                                    </a>
-                                </div>
+                                <!-- Footer Map -->
+                                <div class="oe_structure te_footer_map"></div>
                                 <!-- Company Address -->
                                 <ul class="te_footer_info_text">
-                                    <li t-if="res_company.street or res_company.street2 or res_company.city or res_company.state_id or res_company.zip or res_company.country_id">
-                                        <span class="te_footer_add_tel_email_text_ept">
-                                            <span class="fa fa-map-marker"></span>
-                                        </span>
-                                        <span class="te_ftr_text_style d-inline-block pl-sm-2">
-                                            <span t-field="res_company.street"/>
-                                            <span t-field="res_company.street2"/>
-                                            <span t-field="res_company.city"/>
-                                            <span t-field="res_company.state_id"/>
-                                            <span t-field="res_company.zip"/>
-                                            <span t-field="res_company.country_id"/>
-                                        </span>
-                                    </li>
                                     <li t-if="res_company.phone">
                                         <span class="te_footer_add_tel_email_text_ept">
                                             <span class="fa fa-phone"></span>
@@ -410,25 +390,11 @@
                     <div class="container">
                         <div class="row">
                             <div class="te_footer_logo_title_socialicon col-lg-4 col-md-12 py-4 px-4">
-                                <!-- Company Logo -->
-                                <a href="/" class="te_footer_logo logo">
-                                    <span t-field="website.logo" class="te_footer_logo_img"
-                                          t-options="{'widget': 'image'}" role="img"
-                                          t-att-aria-label="'Logo of %s' % website.name" t-att-title="website.name"/>
-                                </a>
-                                <!-- Demo Content -->
-                                <div class="py-4">
-                                    <h5>
-                                        <span t-field="res_company.name"/>
-                                    </h5>
-                                    <section>
-                                        <p class="te_company_content">
-                                            We are a team of passionate people whose goal is to improve everyone's
-                                            life through disruptive products. We build great products to solve your
-                                            business problems.
-                                        </p>
-                                    </section>
-                                </div>
+                                <h5>
+                                    <span t-field="res_company.name"/>
+                                </h5>
+                                <!-- Footer Map -->
+                                <div class="oe_structure te_s3_map te_footer_map"></div>
                                 <!-- Multiple Language Selected-->
                                 <div class="te_footer_language">
                                     <span>
@@ -437,7 +403,7 @@
                                 </div>
                             </div>
                             <!-- Static Menu-->
-                            <div class="col-lg-5 col-md-6 py-4 px-4 te_informations_s">
+                            <div class="col-lg-5 col-md-7 py-4 px-4 te_informations_s">
                                 <section>
                                     <div>
                                         <h4 class="te_footer_menu_info">Informations</h4>
@@ -519,7 +485,7 @@
                                 </div>
                             </div>
                             <!-- Contact Info -->
-                            <div class="col-lg-3 col-md-6 py-4 px-4 te_contact_info_s">
+                            <div class="col-lg-3 col-md-5 py-4 px-4 te_contact_info_s">
                                 <section>
                                     <div>
                                         <h4 class="te_footer_menu_info">Contact Info</h4>
@@ -591,9 +557,6 @@
                                                 </a>
 
                                             </div>
-                                        </li>
-                                        <li class="te_ftr_add_info">
-                                            <p class="text-center"></p>
                                         </li>
                                     </ul>
                                 </div>
@@ -830,7 +793,7 @@
                                 </ul>
                             </div>
                             <!-- about us Menu -->
-                            <div class="footer-column-2 col-md-4 col-sm-6">
+                            <div class="footer-column-2 te_footer-column-2 col-md-4 col-sm-6">
                                 <div class="footer_top_title_div">
                                     <h5 class="footer-sub-title">About The Store</h5>
                                     <span><span class="fa fa-angle-down"></span></span>
@@ -871,6 +834,10 @@
                                             <span t-field="res_company.phone"
                                                   class="te_ftr_text_style d-inline-block pl-sm-2"/>
                                         </a>
+                                        <!-- Multiple Language Selected-->
+                                        <section class="te_s4_lang">
+                                            <t t-call="website.language_selector"></t>
+                                        </section>
                                     </li>
                                     <li class="footer_payment_icons">
                                          <section>
@@ -958,6 +925,7 @@
                             <div class="col-lg-2 col-md-4 col-sm-6">
                                 <div class="te_block_title">My Account</div>
                                 <a class="te_collapse_icon collapsed" data-toggle="collapse" data-target="#my_account">
+                                    <div class="te_block_title_col">My Account</div>
                                     <i class="fa fa-plus"></i>
                                 </a>
                                 <ul class="te_footer_info_ept collapse" id="my_account">
@@ -993,6 +961,7 @@
                             <div class="col-lg-3 col-md-4 col-sm-6">
                                 <div class="te_block_title">Main Features</div>
                                 <a class="te_collapse_icon collapsed" data-toggle="collapse" data-target="#feature">
+                                    <div class="te_block_title_col">Main Features</div>
                                     <i class="fa fa-plus"></i>
                                 </a>
                                 <ul class="te_footer_info_ept collapse" id="feature">
@@ -1105,25 +1074,12 @@
     <template id="customize_footer_style_6" inherit_id="website.footer_custom" active="False">
         <xpath expr="//div[@id='footer']" position="replace">
             <div id="footer" class="oe_structure oe_structure_solo">
-                <section class="s_text_block pt32 pb32">
+                <section class="s_text_block pt32">
                     <div class="container">
                         <div class="row">
-                            <div class="te_footer_add_tel_email col-lg-3">
-                                <div class="te_block_title">About Us</div>
-                                <!-- Website Logo -->
-                                <div class="d-block mb16">
-                                    <a href="/" class="te_footer_logo logo">
-                                        <span t-field="website.logo" class="te_footer_logo_img"
-                                              t-options="{'widget': 'image'}" role="img"
-                                              t-att-aria-label="'Logo of %s' % website.name"
-                                              t-att-title="website.name"/>
-                                    </a>
-                                </div>
-                                <p class="te_logo_text">
-                                    Lorem ipsum dolor sit amet,
-                                    consectetur adipiscing elit.
-                                    Duis nec vestibulum magna.
-                                </p>
+                            <div class="te_footer_add_tel_email col-lg-4 col-md-12">
+                                <!-- Footer Map -->
+                                <div class="oe_structure te_footer_map te_s6_map"></div>
                                 <!-- Social Icon -->
                                 <div class="te_footer_social_icon">
                                     <a t-if="website.social_facebook" t-att-href="website.social_facebook"
@@ -1154,72 +1110,76 @@
                                 <!-- Multiple Language Selected-->
                                 <t t-call="website.language_selector"></t>
                             </div>
-                            <div class="col-lg-3 col-md-4 col-sm-6 te_account_info">
-                                <div class="te_block_title">My Account</div>
-                                <ul class="te_footer_info_ept">
-                                    <li>
-                                        <section>
-                                            <a href="#">Help</a>
-                                        </section>
-                                    </li>
-                                    <li>
-                                        <section>
-                                            <a href="#">Gift Cards</a>
-                                        </section>
-                                    </li>
-                                    <li>
-                                        <section>
-                                            <a href="#">Order Status</a>
-                                        </section>
-                                    </li>
-                                    <li>
-                                        <section>
-                                            <a href="#">Free Shipping</a>
-                                        </section>
-                                    </li>
-                                    <li>
-                                        <section>
-                                            <a href="#">Returns Exchanges</a>
-                                        </section>
-                                    </li>
-                                    <li>
-                                        <section>
-                                            <a href="#">International</a>
-                                        </section>
-                                    </li>
-                                </ul>
+                            <div class="col-lg-5 col-md-7 col-sm-12">
+                                <div class="row">
+                                    <div class="col-sm-6 col-6 te_account_info">
+                                        <div class="te_block_title">My Account</div>
+                                        <ul class="te_footer_info_ept">
+                                            <li>
+                                                <section>
+                                                    <a href="#">Help</a>
+                                                </section>
+                                            </li>
+                                            <li>
+                                                <section>
+                                                    <a href="#">Gift Cards</a>
+                                                </section>
+                                            </li>
+                                            <li>
+                                                <section>
+                                                    <a href="#">Order Status</a>
+                                                </section>
+                                            </li>
+                                            <li>
+                                                <section>
+                                                    <a href="#">Free Shipping</a>
+                                                </section>
+                                            </li>
+                                            <li>
+                                                <section>
+                                                    <a href="#">Returns Exchanges</a>
+                                                </section>
+                                            </li>
+                                            <li>
+                                                <section>
+                                                    <a href="#">International</a>
+                                                </section>
+                                            </li>
+                                        </ul>
+                                    </div>
+                                    <div class="col-sm-6 col-6">
+                                        <div class="te_block_title">Main Features</div>
+                                        <ul class="te_footer_info_ept">
+                                            <li>
+                                                <section>
+                                                    <a href="#">About Us</a>
+                                                </section>
+                                            </li>
+                                            <li>
+                                                <section>
+                                                    <a href="#">Jobs</a>
+                                                </section>
+                                            </li>
+                                            <li>
+                                                <section>
+                                                    <a href="#">Affiliates</a>
+                                                </section>
+                                            </li>
+                                            <li>
+                                                <section>
+                                                    <a href="#">Meet The Maker</a>
+                                                </section>
+                                            </li>
+                                            <li>
+                                                <section>
+                                                    <a href="#">Contact</a>
+                                                </section>
+                                            </li>
+                                        </ul>
+                                    </div>
+                                </div>
                             </div>
-                            <div class="col-lg-3 col-md-4 col-sm-6">
-                                <div class="te_block_title">Main Features</div>
-                                <ul class="te_footer_info_ept">
-                                    <li>
-                                        <section>
-                                            <a href="#">About Us</a>
-                                        </section>
-                                    </li>
-                                    <li>
-                                        <section>
-                                            <a href="#">Jobs</a>
-                                        </section>
-                                    </li>
-                                    <li>
-                                        <section>
-                                            <a href="#">Affiliates</a>
-                                        </section>
-                                    </li>
-                                    <li>
-                                        <section>
-                                            <a href="#">Meet The Maker</a>
-                                        </section>
-                                    </li>
-                                    <li>
-                                        <section>
-                                            <a href="#">Contact</a>
-                                        </section>
-                                    </li>
-                                </ul>
-                            </div>
-                            <div class="col-lg-3 col-md-4 te_contact_info">
+                            <div class="col-lg-3 col-md-5 te_contact_info">
                                 <div class="te_block_title">Contact Information</div>
                                 <ul class="te_footer_info_text">
                                     <li t-if="res_company.street or res_company.street2 or res_company.city or res_company.state_id or res_company.zip or res_company.country_id">
@@ -1288,7 +1248,7 @@
     <template id="customize_footer_style_7" inherit_id="website.footer_custom" active="False">
         <xpath expr="//div[@id='footer']" position="replace">
             <div id="footer" class="oe_structure oe_structure_solo">
-                <section class="s_text_block pb32 pt32">
+                <section class="s_text_block pt32">
                     <div class="container">
                         <div class="row">
                             <div class="col-lg-4 col-md-12 te_footer_detail">

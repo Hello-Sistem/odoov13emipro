@@ -5,6 +5,7 @@
 import base64
 from odoo import fields, models, tools, api, _
 from odoo.modules.module import get_resource_path
+from odoo.addons.website.tools import get_video_embed_code
 
 class res_config(models.TransientModel):
     _inherit = "res.config.settings"
@@ -29,6 +30,12 @@ class res_config(models.TransientModel):
     lazy_load_image = fields.Binary(string='Lazyload Image', related='website_id.lazy_load_image', readonly=False,
                                    help="Display this image while lazy load applies.")
     banner_video_url = fields.Char(string='Video URL', related='website_id.banner_video_url', help='URL of a video for banner.', readonly=False)
+    number_of_product_line = fields.Selection([
+        ('1', 1),
+        ('2', 2),
+        ('3', 3)
+        ], string="Number of lines for product name", related='website_id.number_of_product_line',
+        required=True, default='1', readonly=False, help="Number of lines to show in product name for shop.")
 
     @api.onchange('is_load_more')
     def get_value_icon_load_more(self):
@@ -43,5 +50,4 @@ class res_config(models.TransientModel):
             img_path = get_resource_path('theme_clarico_vega', 'static/src/img/Lazyload.gif')
             with tools.file_open(img_path, 'rb') as f:
                 self.lazy_load_image = base64.b64encode(f.read())
-
 

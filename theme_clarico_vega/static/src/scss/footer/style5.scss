@@ -1,6 +1,6 @@
 #footer
 {
-    .te_block_title
+    .te_block_title,.te_block_title_col
     {
         font-size:nth($f_sizes,8);
         font-weight: 600;
@@ -8,6 +8,13 @@
         letter-spacing: 1px;
         text-transform: uppercase;
         display: inline-block;
+	}
+	@include media-breakpoint-down(xs)
+    {
+		.te_block_title
+		{
+    		display:none;
+    	}
     }
     ul
     {
@@ -102,8 +109,13 @@
 	}
     .te_collapse_icon
     {
-        float: right;
         cursor: pointer;
+		display: block;
+		>i
+		{
+			float: right;
+			padding-top: 5px;
+		}
         i:before
         {
             content: "\f068";

@@ -129,6 +129,17 @@ header.affixed > nav.navbar
 		}
 	}
 }
+.te_user_account
+{
+    .dropdown-menu{
+        &:before{
+            right: 12px;
+        }
+        &:after{
+            right: 11px;
+        }
+    }
+}
 .te_header_1_right
 {
 	text-align:right;
@@ -202,7 +213,7 @@ header.affixed > nav.navbar
 			@include style(7,4);
 		}
 	}
-	 .te_search_popover {
+	.te_search_popover {
 	    opacity: 0;
 		visibility: hidden;
 		@include transform(translate(0,10px))
@@ -284,6 +295,16 @@ header.affixed > nav.navbar
 		{
 			display: inline-block !important;
 		}
+		.te_header_pricelist{
+		    .dropdown-menu{
+                &:before{
+                    left:12px;
+                }
+                &:after{
+                    left:11px;
+                }
+            }
+		}
 	}
 	@include media-breakpoint-down(sm)
 	{
@@ -310,6 +331,15 @@ header.affixed > nav.navbar
 			> .px-2{
 				padding-left:0.5rem !important;
 				padding-right: 0.5rem !important;
+			}
+			.dropdown-menu
+			{
+				&:before{
+				    left:11px;
+				}
+				&:after{
+				    left:10px;
+				}
 			}
 		}
 		& .te_header_1_right{

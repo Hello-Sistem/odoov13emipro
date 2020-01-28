@@ -15,7 +15,6 @@ odoo.define('emipro_theme_base.quick_view', function(require) {
         initQuickView: function(ev) {
             /* This method is called while click on the quick view icon
              and show the model and quick view data */
-
             ev.preventDefault()
             self = this;
             var element = ev.currentTarget;

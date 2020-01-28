@@ -11,6 +11,7 @@ odoo.define('theme_clarico_vega.theme_script', function(require) {
     'use strict';
 
     var sAnimations = require('website.content.snippets.animation');
+    var publicWidget = require('web.public.widget');
     var Widget = require('web.Widget');
     var core = require('web.core');
     var _t = core._t
@@ -156,6 +157,9 @@ odoo.define('theme_clarico_vega.theme_script', function(require) {
             }
             //style10
             if ($(".te_srch_icon_mobile_header").length) {
+                setTimeout(function(){
+                    $('input[name="search"]').focus();
+                }, 500);
                 if ($(window).width() <= 991) {
                     $(".te_header_10_search").addClass("active");
                     $(".navbar-expand-md .navbar-nav").hide();
@@ -383,6 +387,7 @@ odoo.define('theme_clarico_vega.theme_script', function(require) {
                 }
                 if (type_value) {
                     self.addClass("open_select").css('display','inline-block');
+                    self.siblings('.te_attr_title').addClass('te_fa-minus');
                 }
             });
         },
@@ -431,6 +436,7 @@ odoo.define('theme_clarico_vega.theme_script', function(require) {
             var main_li = $(self).parents("li.nav-item");
             var ul_H = main_li.find("ul").height();
             if (main_li.find("select").length == 1) {
+                $("select.form-control.open_select").css('display','block');
                 var main_select = main_li.find("select");
                 if (main_select.hasClass("open_select")) {
                     main_select.removeClass("open_select");
@@ -443,7 +449,6 @@ odoo.define('theme_clarico_vega.theme_script', function(require) {
                     main_select.toggle('slow');
                 }
             }
-
             var main_ul = main_li.find("ul");
 
             if (main_ul.hasClass("open_ul")) {
@@ -493,6 +498,12 @@ odoo.define('theme_clarico_vega.theme_script', function(require) {
             $("#wrapwrap").toggleClass("wrapwrap_trans");
             $('body').css("overflow-x", "hidden");
             $("#wsale_products_attributes_collapse").addClass("show");
+            if($('#products_grid_before').find('#wsale_products_attributes_collapse').length < 1) {
+                $("#wsale_products_categories_collapse").addClass("show");
+                if($("#wsale_products_categories_collapse .show")){
+                    $(".te_show_category").find("i").addClass('fa-chevron-down').removeClass('fa-chevron-right');
+                }
+            }
             if($("#wsale_products_attributes_collapse .show")){
                 $(".te_show_option").find("i").addClass('fa-chevron-down').removeClass('fa-chevron-right');
             }
@@ -533,11 +544,138 @@ odoo.define('theme_clarico_vega.theme_script', function(require) {
         this._super.apply(this, arguments);
         },
     });
+
+
+
+
+    /** Product image gallery for product page */
+    sAnimations.registry.product_detail = sAnimations.Class.extend({
+        selector: "#product_detail",
+        start: function() {
+            this.productStickyGallery();
+        },
+        productGallery: function(){
+            var slider = $('#mainSlider .owl-carousel');
+            var thumbnailSlider = $('#thumbnailSlider .owl-carousel');
+            $('#thumbnailSlider').show();
+            var duration = 400;
+            var img_length = $('#len-ept-image').val();
+
+            if($('#len-ept-image').val() < 2) {
+                $('#mainSlider').addClass('mainslider-full');
+            }
+
+            if($('#len-ept-image').val() > 5) {
+                var slider_length = ($('#len-ept-image').val() - 2);
+                var thumb_length =  $('#len-ept-image').val() - ($('#len-ept-image').val() - 5);
+            } else {
+                var slider_length = 0;
+                var thumb_length = 0;
+            }
+            slider.owlCarousel({
+                nav:true,
+                navText : ['<i class="fa fa-angle-left"></i>','<i class="fa fa-angle-right"></i>'],
+                items:1,
+                lazyLoad:true,
+                loop: $('#len-ept-image').val() > 1 ? true : false,
+                rewind: true,
+            }).on('changed.owl.carousel', function (event) {
+                // On change of main item to trigger thumbnail item
+                let currentIndex = event.item.index + slider_length;
+                thumbnailSlider.trigger('to.owl.carousel', [currentIndex, duration, true]);
+                if($('#len-ept-image').val() <= 5) {
+                    thumbnailSlider.find('.owl-item').removeClass('center');
+                    thumbnailSlider.find('.owl-item').eq(currentIndex - 2).addClass('center');
+                }
+            });
+
+                // carousel function for thumbnail slider
+            thumbnailSlider.owlCarousel({
+                loop: $('#len-ept-image').val() > 5 ? true : false,
+                center: $('#len-ept-image').val() > 5 ? true : false,
+                margin: 4,
+                nav:true,
+                navText : ['<i class="fa fa-angle-left"></i>','<i class="fa fa-angle-right"></i>'],
+                responsive:{
+                    0:{
+                        items:5,
+                    },
+                    600:{
+                        items:5
+                    },
+                    1000:{
+                        items:5
+                    }
+                }
+            }).on('click', '.owl-item', function () {
+                // On click of thumbnail items to trigger same main item
+                let currentIndex = $(this).find('li').attr('data-slide-to');
+                slider.trigger('to.owl.carousel', [currentIndex, duration, true]);
+            }).on('refreshed.owl.carousel', function () {
+                if($('#len-ept-image').val() <= 5) {
+                    $('#thumbnailSlider .owl-carousel .owl-item').first().addClass('center');
+                }
+            });
+
+            var thumb_width = $('#thumbnailSlider').find('.owl-item').width();
+            $('#thumbnailSlider').find('.owl-item').height(thumb_width);
+            if ($(window).width() > 767) {
+                if($('.o_rtl').length == 1){
+                    $('#thumbnailSlider').find('.owl-carousel').css('right', (0-(thumb_width*2)));
+                }
+                $('#thumbnailSlider').find('.owl-carousel').css('left', (0-(thumb_width*2)));
+                $('#thumbnailSlider').find('.owl-carousel').css('top', (thumb_width*2)+26);
+            }
+        },
+        productStickyGallery: function(){
+            if($( window ).width() > 991) {
+                var $sticky = $('#product_detail .row > .col-lg-6:first-child');
+                if (!!$sticky.offset()) {
+                    var sidebar_height = $sticky.innerHeight();
+                    var stickyTop = $sticky.offset().top;
+                    $(window).scroll(function(){
+                        if($('#oe_main_menu_navbar').length) {
+                            var header_height = $('#oe_main_menu_navbar').height() + $('.te_header_navbar').height() + 20;
+                        } else {
+                            var header_height = $('.te_header_navbar').height() + 20;
+                        }
+                        var stickOffset = header_height;
+                        var windowTop = $(window).scrollTop();
+                        if (stickyTop < windowTop+stickOffset+stickOffset) {
+                            $sticky.css({ position: 'sticky', top: stickOffset });
+                            $sticky.addClass('sticky-media');
+                        } else {
+                            $sticky.css({ position: 'relative', top: 'initial'});
+                            $sticky.removeClass('sticky-media');
+                        }
+                    });
+                }
+            }
+        },
+    });
+
+
     //------------------------------------------
     // 06. Theme layout
     //------------------------------------------
 
     $(document).ready(function($) {
+        if($(document).find('.te_recently_viewed'))
+        {
+            var r_name = $("#te_rect_cnt").text();
+            $('.te_recently_viewed').find('h6').each(function(){
+
+                $(document).find('h6.card-title').addClass("te_rect_name")
+                if(r_name == 2)
+                {
+                    $('h6.card-title').addClass('te_2_line');
+                }
+                if(r_name == 3)
+                {
+                    $('h6.card-title').addClass('te_3_line');
+                }
+            });
+        }
         if($('.o_comparelist_button')) {
             setTimeout(function(){
                 $('.o_comparelist_button').find('a').addClass('te_theme_button');
@@ -751,6 +889,8 @@ odoo.define('theme_clarico_vega.theme_script', function(require) {
                 }
             });
         });
+        var product_detail = new sAnimations.registry.product_detail();
+        product_detail.productGallery();
     })
 
 
@@ -834,108 +974,6 @@ odoo.define('theme_clarico_vega.theme_script', function(require) {
         });
     });
 
-
-    /** Product image gallery for product page */
-    sAnimations.registry.product_detail = sAnimations.Class.extend({
-        selector: "#product_detail",
-        start: function() {
-            this.productGallery();
-            this.productStickyGallery();
-        },
-        productGallery: function(){
-            var slider = $('#mainSlider .owl-carousel');
-            var thumbnailSlider = $('#thumbnailSlider .owl-carousel');
-            $('#mainSlider').show();
-            $('#thumbnailSlider').show();
-            var duration = 400;
-            var img_length = $('#len-ept-image').val();
-
-            if($('#len-ept-image').val() < 2) {
-                $('#mainSlider').addClass('mainslider-full');
-            }
-
-            if($('#len-ept-image').val() > 5) {
-                var slider_length = ($('#len-ept-image').val() - 2);
-                var thumb_length =  $('#len-ept-image').val() - ($('#len-ept-image').val() - 5);
-            } else {
-                var slider_length = 0;
-                var thumb_length = 0;
-            }
-            slider.owlCarousel({
-                nav:true,
-                navText : ['<i class="fa fa-angle-left"></i>','<i class="fa fa-angle-right"></i>'],
-                items:1,
-                loop: $('#len-ept-image').val() > 1 ? true : false,
-                rewind: true,
-            }).on('changed.owl.carousel', function (event) {
-                // On change of main item to trigger thumbnail item
-                let currentIndex = event.item.index + slider_length;
-                thumbnailSlider.trigger('to.owl.carousel', [currentIndex, duration, true]);
-                if($('#len-ept-image').val() <= 5) {
-                    thumbnailSlider.find('.owl-item').removeClass('center');
-                    thumbnailSlider.find('.owl-item').eq(currentIndex - 2).addClass('center');
-                }
-            });
-
-                // carousel function for thumbnail slider
-            thumbnailSlider.owlCarousel({
-                loop: $('#len-ept-image').val() > 5 ? true : false,
-                center: $('#len-ept-image').val() > 5 ? true : false,
-                margin: 4,
-                nav:true,
-                navText : ['<i class="fa fa-angle-left"></i>','<i class="fa fa-angle-right"></i>'],
-                responsive:{
-                    0:{
-                        items:5,
-                    },
-                    600:{
-                        items:5
-                    },
-                    1000:{
-                        items:5
-                    }
-                }
-            }).on('click', '.owl-item', function () {
-                // On click of thumbnail items to trigger same main item
-                let currentIndex = $(this).find('li').attr('data-slide-to');
-                slider.trigger('to.owl.carousel', [currentIndex, duration, true]);
-            });
-            var thumb_width = $('#thumbnailSlider').find('.owl-item').width();
-            $('#thumbnailSlider').find('.owl-item').height(thumb_width);
-            if ($(window).width() > 767) {
-                if($('.o_rtl').length == 1){
-                    $('#thumbnailSlider').find('.owl-carousel').css('right', (0-(thumb_width*2)));
-                }
-                $('#thumbnailSlider').find('.owl-carousel').css('left', (0-(thumb_width*2)));
-                $('#thumbnailSlider').find('.owl-carousel').css('top', (thumb_width*2)+26);
-            }
-        },
-        productStickyGallery: function(){
-            if($( window ).width() > 991) {
-                var $sticky = $('#product_detail .row > .col-lg-6:first-child');
-                if (!!$sticky.offset()) {
-                    var sidebar_height = $sticky.innerHeight();
-                    var stickyTop = $sticky.offset().top;
-                    $(window).scroll(function(){
-                        if($('#oe_main_menu_navbar').length) {
-                            var header_height = $('#oe_main_menu_navbar').height() + $('.te_header_navbar').height() + 20;
-                        } else {
-                            var header_height = $('.te_header_navbar').height() + 20;
-                        }
-                        var stickOffset = header_height;
-                        var windowTop = $(window).scrollTop();
-                        if (stickyTop < windowTop+stickOffset+stickOffset) {
-                            $sticky.css({ position: 'sticky', top: stickOffset });
-                            $sticky.addClass('sticky-media');
-                        } else {
-                            $sticky.css({ position: 'relative', top: 'initial'});
-                            $sticky.removeClass('sticky-media');
-                        }
-                    });
-                }
-            }
-        },
-    });
     $(".o_portal_my_doc_table tr").click(function(){
       window.location = $(this).find('td > a').attr("href");
       return false;
@@ -957,6 +995,26 @@ odoo.define('theme_clarico_vega.theme_script', function(require) {
         $("#loginRegisterPopup .oe_login_form").show();
     });
 
+    publicWidget.registry.productsRecentlyViewedSnippet.include({
+        /*
+         Adds the stock checking to the regular _render method
+        @override
+        */
+        _render: function (){
+            this._super.apply(this, arguments);
+            var r_name = $("#te_rect_cnt").text();
+            $('.te_recently_viewed').find('h6').each(function(){
+                $(this).addClass("te_rect_name")
+                if(r_name == 2) {
+                    $('h6.card-title').addClass('te_2_line');
+                }
+                if(r_name == 3) {
+                    $('h6.card-title').addClass('te_3_line');
+                }
+            });
+        },
+    });
+
 
 
     sAnimations.registry.reset_password_popup = sAnimations.Class.extend({
@@ -966,6 +1024,7 @@ odoo.define('theme_clarico_vega.theme_script', function(require) {
             self.resetPassword();
             self.customerLogin();
             self.customerRegistration();
+            self.selectProductTab();
         },
         resetPassword: function(){
             $("#loginRegisterPopup .oe_reset_password_form").submit(function(e) {
@@ -1031,7 +1090,14 @@ odoo.define('theme_clarico_vega.theme_script', function(require) {
                     }
                 });
             });
-        }
+        },
+
+        selectProductTab: function(){
+            $('#te_product_tabs').find('li:first-child').find('.nav-link').addClass('active');
+            var firstAttr = $('#te_product_tabs').find('li:first-child').find('.nav-link').attr('aria-controls');
+            $('.tabs_container_main .product-body .tab-pane').removeClass('active show');
+            $('#'+ firstAttr).addClass('active show');
+        },
     });
 
     $('.te_banner_slider_content').owlCarousel({
@@ -1053,4 +1119,6 @@ odoo.define('theme_clarico_vega.theme_script', function(require) {
             },
         },
     });
+
+
 });

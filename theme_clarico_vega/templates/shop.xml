@@ -13,14 +13,16 @@
                     </span>
                 </t>
                 <t t-else="">
-                    <span t-field="product.image_256"
-                          t-options="{'widget': 'image', 'class': 'lazy', 'preview_image': 'image_1024' if product_image_big else 'image_256', 'data-original': 'image_1024' if product_image_big else 'image_256'}"
+                    <span t-field="product.image_1920"
+                          t-options="{'widget': 'image', 'class': 'lazy', 'preview_image': 'image_1024' if product_image_big else 'image_512', 'data-original': 'image_1024' if product_image_big else 'image_512'}"
                           class="new_span d-flex h-100 justify-content-center align-items-center"/>
                 </t>
             </a>
         </xpath>
         <xpath expr="//h6[hasclass('o_wsale_products_item_title')]/a" position="attributes">
-            <attribute name="class">product_name</attribute>
+            <attribute name="t-attf-class">
+                product_name #{'te_2_line' if (website.number_of_product_line == '2') else 'te_3_line' if (website.number_of_product_line == '3') else ''}
+            </attribute>
         </xpath>
         <xpath expr="//div[hasclass('o_wsale_product_information')]" position="attributes">
             <attribute name="class">card-body p-0 te_product_info o_wsale_product_information</attribute>
@@ -162,7 +164,7 @@
         <!--======= Load more previous button =======-->
         <xpath expr="//div[@id='products_grid']//div[hasclass('o_wsale_products_grid_table_wrapper')]"
                position="before">
-            <t t-if="website.is_load_more">
+            <t t-if="website.is_load_more and bins">
                 <div class="d-none cus_theme_loader_layout_prev">
                     <div class="cus_theme_loader_div_layout">
                         <img t-attf-src="/web/image/website/#{website.id}/load_more_image"
@@ -170,7 +172,7 @@
                     </div>
                 </div>
             </t>
-            <t t-if="website.is_load_more and website.button_or_scroll == 'button'">
+            <t t-if="website.is_load_more and website.button_or_scroll == 'button' and bins">
                 <div class="load_more_button_top_main">
                     <button t-attf-class="load_more_button_top btn te_theme_button #{'active' if pager['page']['num'] > 1 else ''} ">
                         <span t-field="website.prev_button_label"/>
@@ -180,14 +182,14 @@
         </xpath>
         <!--======= Load more next button =======-->
         <xpath expr="//div[@id='products_grid']//div[hasclass('o_wsale_products_grid_table_wrapper')]" position="after">
-            <t t-if="website.is_load_more and website.button_or_scroll == 'button'">
+            <t t-if="website.is_load_more and website.button_or_scroll == 'button' and bins">
                 <div class="load_more_button_top_main">
                     <button t-attf-class="load_more_button btn te_theme_button #{'active' if pager['page']['num'] &gt;= 1 and pager['page']['num'] &lt; pager['page_count'] else 'test'}">
                         <span t-field="website.next_button_label"/>
                     </button>
                 </div>
             </t>
-            <t t-if="website.is_load_more">
+            <t t-if="website.is_load_more and bins">
                 <div class="d-none cus_theme_loader_layout_next">
                     <div class="cus_theme_loader_div_layout">
                         <img t-attf-src="/web/image/website/#{website.id}/load_more_image"

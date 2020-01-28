@@ -15,6 +15,9 @@ div#wrapwrap.header_top_overlay .te_header_navbar {
         background-color:nth($f_color,5);
     }
 }
+div#wrapwrap:not(.homepage) .te_header_navbar{
+    background-color:nth($f_color,5) !important;
+}
 .te_header_navbar_10 .container {
     max-width: 100%;
     width: 100%;
@@ -61,6 +64,7 @@ nav.navbar.navbar-expand-md.te_header_navbar.te_header_navbar_10 {
     right: 0 !important;
     left: 0 !important;
     padding: 0px !important;
+    /*background-color: #ffffff;*/
     @include media-breakpoint-down(md){
         position: relative !important;
         box-shadow: 0 0 3px #757575;
@@ -116,6 +120,7 @@ header .navbar-brand, header .te_header_navbar_10 .navbar-brand.logo {
     .img{
         @include media-breakpoint-down(md){
             width: 100%;
+            max-height:65px;
         }
     }
 }
@@ -132,6 +137,11 @@ header .navbar-brand, header .te_header_navbar_10 .navbar-brand.logo {
 }
 
 /*-------- Header Search Icon, User Icon, Cart Icon, Wishlist Icon, Price List, language List -----------*/
+
+a.dropdown-item.js_change_lang,
+.h10_pricelist .dropdown-menu a.dropdown-item{
+    font-size: nth($f_sizes, 3);
+}
 .te_header_10_search.te_header_search input.search-query.form-control.oe_search_box {
     background-color:nth($f_color,5);
     height: 40px;
@@ -216,6 +226,33 @@ header .navbar-brand, header .te_header_navbar_10 .navbar-brand.logo {
 .h10_pricelist .te_currency_symbol {
     display: block;
 }
+.h10_pricelist .dropdown-menu{
+    &:before{
+        right:15px;
+        left:unset;
+    }
+    &:after{
+        right:14px;
+        left:unset;
+    }
+    @include media-breakpoint-down(md)
+    {
+        margin-bottom: 8px;
+        margin-top: 0 !important;
+        &:before{
+            right: 40px;
+            top: unset;
+            bottom: -12px;
+            border-color:#fff transparent transparent transparent;
+        }
+        &:after{
+            right: 39px;
+            top: unset;
+            bottom: -15px;
+            border-color:#ededed transparent transparent transparent;
+        }
+    }
+}
 .te_header_icon_right{
     .js_language_selector {
         li.list-inline-item .d-sm-block {
@@ -270,7 +307,7 @@ header .navbar-brand, header .te_header_navbar_10 .navbar-brand.logo {
 @include media-breakpoint-down(md){
     .te_header_right_icon .te_header_icon_right {
         position: fixed;
-        z-index: 9999;
+        z-index: 999;
         bottom: 0;
         left: 0;
         right: 0;
@@ -440,7 +477,7 @@ header .js_language_selector .dropdown-menu.show {
     }
 
 }
-.fixed-header-10-bar .o_product_feature_panel {
+.o_product_feature_panel {
     @include media-breakpoint-down(md){
         z-index: 10 !important;
         bottom:50px;
@@ -463,6 +500,38 @@ header .js_language_selector .dropdown-menu.show {
     @include media-breakpoint-down(sm){
         padding:10px 8px 0px 0px;
     }
+    .dropdown-menu{
+        &:before{
+            right: 15px;
+        }
+        &:after{
+            right: 15px;
+        }
+        @include media-breakpoint-down(md)
+        {
+            margin-bottom: 8px;
+            margin-top: 0 !important;
+            &:before{
+                right: 80px;
+                top: unset;
+                bottom: -12px;border-color:#fff transparent transparent transparent;
+            }
+            &:after{
+                right: 80px;
+                top: unset;
+                bottom: -14px;
+                border-color:#ededed transparent transparent transparent;
+            }
+        }
+        @include media-breakpoint-down(xs){
+            &:before{
+                right: 30px;
+            }
+            &:after{
+                right: 30px;
+            }
+        }
+    }
 }
 
 .h10_pricelist .dropdown a.dropdown-toggle.btn.btn-link {
@@ -479,6 +548,34 @@ header .js_language_selector .dropdown-menu.show {
     }
     @include media-breakpoint-down(sm){
         padding: 10px 0px;
+    }
+    .dropdown-menu{
+        &:before{
+            right: 25px;
+            left:unset;
+        }
+        &:after{
+            right: 24px;
+            left:unset;
+        }
+        @include media-breakpoint-down(md){
+            margin-top:0 !important;
+            margin-bottom:8px;
+            &:before{
+                border-color: #fff transparent transparent transparent;
+                right: 25px;
+                left:unset;
+                top:unset;
+                bottom:-12px;
+            }
+            &:after{
+                border-color: #ededed transparent transparent transparent;
+                right: 24px;
+                left:unset;
+                top:unset;
+                bottom:-14px;
+            }
+        }
     }
 }
 
@@ -684,13 +781,13 @@ button.navbar-toggler:not(.te_navbar-toggler) {
         position: absolute !important;
         top: 50px;
         height: auto;
-        max-height: initial;
         width: 90%;
         left: 00px;
         background-color: #FFF !important;
         @include media-breakpoint-down(md){
             width:98%;
             max-width:100%;
+            z-index:9999;
         }
     }
     .o_affix_enabled, .o_header_affix{
@@ -733,6 +830,13 @@ button.navbar-toggler:not(.te_navbar-toggler) {
 @include media-breakpoint-down(md){
     .navbar-expand-md .navbar-nav .dropdown-menu{
         position:relative;
+    }
+    .navbar-expand-md .navbar-nav div#custom_menu{
+        width: 100% !important;
+        left: 0px !important;
+        & #te_main_ul{
+            max-width: 100%;
+        }
     }
 }
 .navbar-expand-md .navbar-nav{

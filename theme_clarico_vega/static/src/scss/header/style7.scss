@@ -144,7 +144,7 @@
                     padding: 4px 6px;
                     vertical-align: top;
                     font-size: nth($f_sizes,9);
-                    @include position(absolute, -10px, -13px);
+                    @include position(absolute, -8px, -15px);
                     display: inline-block !important;
                     @include media-breakpoint-down(md)
                     {
@@ -186,6 +186,17 @@
                 {
                     font-size: nth($f_sizes,1);
                 }
+            }
+        }
+    }
+    .te_header_account
+    {
+        .dropdown-menu{
+            &:before{
+                right: 13px;
+            }
+            &:after{
+                right: 13px;
             }
         }
     }
@@ -290,6 +301,16 @@
 }
 .te_header_lang ul.js_language_selector {
     padding: 13px 5px;
+    @include media-breakpoint-down(sm){
+        .dropdown-menu{
+            &:before{
+                left:11px;
+            }
+            &:after{
+                left:10px;
+            }
+        }
+    }
 }
 .te_header_style_7_main{
     .te_header_before_right.col-lg-8 {
@@ -504,6 +525,15 @@
 				{
 					left:auto !important;
 					right:auto;
+					@include media-breakpoint-down(md)
+					{
+					    &:before{
+                            left:11px;
+                        }
+                        &:after{
+                            left:10px;
+                        }
+					}
 					@include media-breakpoint-down(sm)
 					{
 						transform: translate3d(0, 32px, 0px) !important;

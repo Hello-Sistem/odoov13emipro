@@ -109,20 +109,27 @@
                                 <div class="dropdown-menu dropdown-menu-right js_usermenu" role="menu">
                                     <a href="/my/home" role="menuitem" class="dropdown-item">
                                         <span class="fa fa-user"/>
-                                        My Account
+                                        <span class="te_user_drop_item">My Account</span>
                                     </a>
-                                    <a href="/shop/cart" role="menuitem" class="dropdown-item"><span
-                                            class="fa fa-check-circle"/>Checkout
+                                    <a href="/shop/cart" role="menuitem" class="dropdown-item">
+                                        <span
+                                                class="fa fa-check-circle"/>
+                                        <span class="te_user_drop_item">Checkout</span>
                                     </a>
-                                    <a href="/my/orders" role="menuitem" class="dropdown-item"><span
-                                            class="fa fa-pie-chart"/>My orders
+                                    <a href="/my/orders" role="menuitem" class="dropdown-item">
+                                        <span
+                                                class="fa fa-pie-chart"/>
+                                        <span class="te_user_drop_item">My orders</span>
                                     </a>
                                     <a href="/shop/wishlist" role="menuitem" class="dropdown-item"
                                        t-if="request.website.viewref('website_sale_wishlist.add_to_wishlist').active">
-                                        <span class="fa fa-heart"/>My Wishlist
+                                        <span class="fa fa-heart"/>
+                                        <span class="te_user_drop_item">My Wishlist</span>
                                     </a>
                                     <a id="o_logout" class="dropdown-item" t-attf-href="/web/session/logout?redirect=/"
-                                       role="menuitem"><span class="fa fa-sign-out"/>Logout
+                                       role="menuitem">
+                                        <span class="fa fa-sign-out"/>
+                                        <span class="te_user_drop_item">Logout</span>
                                     </a>
                                 </div>
                             </div>
@@ -233,22 +240,31 @@
                                                     </span>
                                                 </a>
                                                 <div class="dropdown-menu dropdown-menu-right js_usermenu" role="menu">
-                                                    <a href="/my/home" role="menuitem" class="dropdown-item"><span
-                                                            class="fa fa-user"/>My Account
+                                                    <a href="/my/home" role="menuitem" class="dropdown-item">
+                                                        <span
+                                                                class="fa fa-user"/>
+                                                        <span class="te_user_drop_item">My Account</span>
                                                     </a>
-                                                    <a href="/shop/cart" role="menuitem" class="dropdown-item"><span
-                                                            class="fa fa-check-circle"/>Checkout
+                                                    <a href="/shop/cart" role="menuitem" class="dropdown-item">
+                                                        <span
+                                                                class="fa fa-check-circle"/>
+                                                        <span class="te_user_drop_item">Checkout</span>
                                                     </a>
-                                                    <a href="/my/orders" role="menuitem" class="dropdown-item"><span
-                                                            class="fa fa-pie-chart"/>My orders
+                                                    <a href="/my/orders" role="menuitem" class="dropdown-item">
+                                                        <span
+                                                                class="fa fa-pie-chart"/>
+                                                        <span class="te_user_drop_item">My orders</span>
                                                     </a>
                                                     <a href="/shop/wishlist" role="menuitem" class="dropdown-item"
                                                        t-if="request.website.viewref('website_sale_wishlist.add_to_wishlist').active">
-                                                        <span class="fa fa-heart"/>My Wishlist
+                                                        <span class="fa fa-heart"/>
+                                                        <span class="te_user_drop_item">My Wishlist</span>
                                                     </a>
                                                     <a id="o_logout" class="dropdown-item"
                                                        t-attf-href="/web/session/logout?redirect=/"
-                                                       role="menuitem"><span class="fa fa-sign-out"/>Logout
+                                                       role="menuitem">
+                                                        <span class="fa fa-sign-out"/>
+                                                        <span class="te_user_drop_item">Logout</span>
                                                     </a>
                                                 </div>
                                             </div>
@@ -446,22 +462,31 @@
                                         </span>
                                     </a>
                                     <div class="dropdown-menu dropdown-menu-right js_usermenu" role="menu">
-                                        <a href="/my/home" role="menuitem" class="dropdown-item"><span
-                                                class="fa fa-user"/>My Account
+                                        <a href="/my/home" role="menuitem" class="dropdown-item">
+                                            <span
+                                                    class="fa fa-user"/>
+                                            <span class="te_user_drop_item">My Account</span>
                                         </a>
-                                        <a href="/shop/cart" role="menuitem" class="dropdown-item"><span
-                                                class="fa fa-check-circle"/>Checkout
+                                        <a href="/shop/cart" role="menuitem" class="dropdown-item">
+                                            <span
+                                                    class="fa fa-check-circle"/>
+                                            <span class="te_user_drop_item">Checkout</span>
                                         </a>
-                                        <a href="/my/orders" role="menuitem" class="dropdown-item"><span
-                                                class="fa fa-pie-chart"/>My orders
+                                        <a href="/my/orders" role="menuitem" class="dropdown-item">
+                                            <span
+                                                    class="fa fa-pie-chart"/>
+                                            <span class="te_user_drop_item">My orders</span>
                                         </a>
                                         <a href="/shop/wishlist" role="menuitem" class="dropdown-item"
                                            t-if="request.website.viewref('website_sale_wishlist.add_to_wishlist').active">
-                                            <span class="fa fa-heart"/>My Wishlist
+                                            <span class="fa fa-heart"/>
+                                            <span class="te_user_drop_item">My Wishlist</span>
                                         </a>
                                         <a id="o_logout" class="dropdown-item"
                                            t-attf-href="/web/session/logout?redirect=/"
-                                           role="menuitem"><span class="fa fa-sign-out"/>Logout
+                                           role="menuitem">
+                                            <span class="fa fa-sign-out"/>
+                                            <span class="te_user_drop_item">Logout</span>
                                         </a>
                                     </div>
                                 </div>
@@ -630,22 +655,31 @@
                                         </span>
                                     </a>
                                     <div class="dropdown-menu dropdown-menu-right js_usermenu" role="menu">
-                                        <a href="/my/home" role="menuitem" class="dropdown-item"><span
-                                                class="fa fa-user"/>My Account
+                                        <a href="/my/home" role="menuitem" class="dropdown-item">
+                                            <span
+                                                    class="fa fa-user"/>
+                                            <span class="te_user_drop_item">My Account</span>
                                         </a>
-                                        <a href="/shop/cart" role="menuitem" class="dropdown-item"><span
-                                                class="fa fa-check-circle"/>Checkout
+                                        <a href="/shop/cart" role="menuitem" class="dropdown-item">
+                                            <span
+                                                    class="fa fa-check-circle"/>
+                                            <span class="te_user_drop_item">Checkout</span>
                                         </a>
-                                        <a href="/my/orders" role="menuitem" class="dropdown-item"><span
-                                                class="fa fa-pie-chart"/>My orders
+                                        <a href="/my/orders" role="menuitem" class="dropdown-item">
+                                            <span
+                                                    class="fa fa-pie-chart"/>
+                                            <span class="te_user_drop_item">My orders</span>
                                         </a>
                                         <a href="/shop/wishlist" role="menuitem" class="dropdown-item"
                                            t-if="request.website.viewref('website_sale_wishlist.add_to_wishlist').active">
-                                            <span class="fa fa-heart"/>My Wishlist
+                                            <span class="fa fa-heart"/>
+                                            <span class="te_user_drop_item">My Wishlist</span>
                                         </a>
                                         <a id="o_logout" class="dropdown-item"
                                            t-attf-href="/web/session/logout?redirect=/"
-                                           role="menuitem"><span class="fa fa-sign-out"/>Logout
+                                           role="menuitem">
+                                            <span class="fa fa-sign-out"/>
+                                            <span class="te_user_drop_item">Logout</span>
                                         </a>
                                     </div>
                                 </div>
@@ -795,22 +829,31 @@
                                         <i class="fa fa-user-circle-o"></i>
                                     </a>
                                     <div class="dropdown-menu dropdown-menu-right js_usermenu" role="menu">
-                                        <a href="/my/home" role="menuitem" class="dropdown-item"><span
-                                                class="fa fa-user"/>My Account
+                                        <a href="/my/home" role="menuitem" class="dropdown-item">
+                                            <span
+                                                    class="fa fa-user"/>
+                                            <span class="te_user_drop_item">My Account</span>
                                         </a>
-                                        <a href="/shop/cart" role="menuitem" class="dropdown-item"><span
-                                                class="fa fa-check-circle"/>Checkout
+                                        <a href="/shop/cart" role="menuitem" class="dropdown-item">
+                                            <span
+                                                    class="fa fa-check-circle"/>
+                                            <span class="te_user_drop_item">Checkout</span>
                                         </a>
-                                        <a href="/my/orders" role="menuitem" class="dropdown-item"><span
-                                                class="fa fa-pie-chart"/>My orders
+                                        <a href="/my/orders" role="menuitem" class="dropdown-item">
+                                            <span
+                                                    class="fa fa-pie-chart"/>
+                                            <span class="te_user_drop_item">My orders</span>
                                         </a>
                                         <a href="/shop/wishlist" role="menuitem" class="dropdown-item"
                                            t-if="request.website.viewref('website_sale_wishlist.add_to_wishlist').active">
-                                            <span class="fa fa-heart"/>My Wishlist
+                                            <span class="fa fa-heart"/>
+                                            <span class="te_user_drop_item">My Wishlist</span>
                                         </a>
                                         <a id="o_logout" class="dropdown-item"
                                            t-attf-href="/web/session/logout?redirect=/"
-                                           role="menuitem"><span class="fa fa-sign-out"/>Logout
+                                           role="menuitem">
+                                            <span class="fa fa-sign-out"/>
+                                            <span class="te_user_drop_item">Logout</span>
                                         </a>
                                     </div>
                                 </div>
@@ -967,22 +1010,31 @@
                                             </span>
                                         </a>
                                         <div class="dropdown-menu dropdown-menu-right js_usermenu" role="menu">
-                                            <a href="/my/home" role="menuitem" class="dropdown-item"><span
-                                                    class="fa fa-user"/>My Account
+                                            <a href="/my/home" role="menuitem" class="dropdown-item">
+                                                <span
+                                                        class="fa fa-user"/>
+                                                <span class="te_user_drop_item">My Account</span>
                                             </a>
-                                            <a href="/shop/cart" role="menuitem" class="dropdown-item"><span
-                                                    class="fa fa-check-circle"/>Checkout
+                                            <a href="/shop/cart" role="menuitem" class="dropdown-item">
+                                                <span
+                                                        class="fa fa-check-circle"/>
+                                                <span class="te_user_drop_item">Checkout</span>
                                             </a>
-                                            <a href="/my/orders" role="menuitem" class="dropdown-item"><span
-                                                    class="fa fa-pie-chart"/>My orders
+                                            <a href="/my/orders" role="menuitem" class="dropdown-item">
+                                                <span
+                                                        class="fa fa-pie-chart"/>
+                                                <span class="te_user_drop_item">My orders</span>
                                             </a>
                                             <a href="/shop/wishlist" role="menuitem" class="dropdown-item"
                                                t-if="request.website.viewref('website_sale_wishlist.add_to_wishlist').active">
-                                                <span class="fa fa-heart"/>My Wishlist
+                                                <span class="fa fa-heart"/>
+                                                <span class="te_user_drop_item">My Wishlist</span>
                                             </a>
                                             <a id="o_logout" class="dropdown-item"
                                                t-attf-href="/web/session/logout?redirect=/"
-                                               role="menuitem"><span class="fa fa-sign-out"/>Logout
+                                               role="menuitem">
+                                                <span class="fa fa-sign-out"/>
+                                                <span class="te_user_drop_item">Logout</span>
                                             </a>
                                         </div>
                                     </div>
@@ -1121,22 +1173,31 @@
                                             <i class="fa fa-user-circle-o"></i>
                                         </a>
                                         <div class="dropdown-menu dropdown-menu-right js_usermenu" role="menu">
-                                            <a href="/my/home" role="menuitem" class="dropdown-item"><span
-                                                    class="fa fa-user"/>My Account
+                                            <a href="/my/home" role="menuitem" class="dropdown-item">
+                                                <span
+                                                        class="fa fa-user"/>
+                                                <span class="te_user_drop_item">My Account</span>
                                             </a>
-                                            <a href="/shop/cart" role="menuitem" class="dropdown-item"><span
-                                                    class="fa fa-check-circle"/>Checkout
+                                            <a href="/shop/cart" role="menuitem" class="dropdown-item">
+                                                <span
+                                                        class="fa fa-check-circle"/>
+                                                <span class="te_user_drop_item">Checkout</span>
                                             </a>
-                                            <a href="/my/orders" role="menuitem" class="dropdown-item"><span
-                                                    class="fa fa-pie-chart"/>My orders
+                                            <a href="/my/orders" role="menuitem" class="dropdown-item">
+                                                <span
+                                                        class="fa fa-pie-chart"/>
+                                                <span class="te_user_drop_item">My orders</span>
                                             </a>
                                             <a href="/shop/wishlist" role="menuitem" class="dropdown-item"
                                                t-if="request.website.viewref('website_sale_wishlist.add_to_wishlist').active">
-                                                <span class="fa fa-heart"/>My Wishlist
+                                                <span class="fa fa-heart"/>
+                                                <span class="te_user_drop_item">My Wishlist</span>
                                             </a>
                                             <a id="o_logout" class="dropdown-item"
                                                t-attf-href="/web/session/logout?redirect=/"
-                                               role="menuitem"><span class="fa fa-sign-out"/>Logout
+                                               role="menuitem">
+                                                <span class="fa fa-sign-out"/>
+                                                <span class="te_user_drop_item">Logout</span>
                                             </a>
                                         </div>
                                     </div>
@@ -1290,21 +1351,33 @@
                             <i class="fa fa-user-circle-o"></i>
                         </a>
                         <div class="dropdown-menu dropdown-menu-right js_usermenu" role="menu">
-                            <a href="/my/home" role="menuitem" class="dropdown-item"><span class="fa fa-user"/>My
-                                Account
+                            <a href="/my/home" role="menuitem" class="dropdown-item">
+                                <span class="fa fa-user"/>
+                                <span class="te_user_drop_item">My
+                                    Account
+                                </span>
                             </a>
-                            <a href="/shop/cart" role="menuitem" class="dropdown-item"><span
-                                    class="fa fa-check-circle"/>Checkout
+                            <a href="/shop/cart" role="menuitem" class="dropdown-item">
+                                <span
+                                        class="fa fa-check-circle"/>
+                                <span class="te_user_drop_item">Checkout</span>
                             </a>
-                            <a href="/my/orders" role="menuitem" class="dropdown-item"><span class="fa fa-pie-chart"/>My
-                                orders
+                            <a href="/my/orders" role="menuitem" class="dropdown-item">
+                                <span class="fa fa-pie-chart"/>
+                                <span class="te_user_drop_item">My
+                                    orders
+                                </span>
                             </a>
                             <a href="/shop/wishlist" role="menuitem" class="dropdown-item"
-                               t-if="request.website.viewref('website_sale_wishlist.add_to_wishlist').active"><span
-                                    class="fa fa-heart"/>My Wishlist
+                               t-if="request.website.viewref('website_sale_wishlist.add_to_wishlist').active">
+                                <span
+                                        class="fa fa-heart"/>
+                                <span class="te_user_drop_item">My Wishlist</span>
                             </a>
                             <a id="o_logout" class="dropdown-item" t-attf-href="/web/session/logout?redirect=/"
-                               role="menuitem"><span class="fa fa-sign-out"/>Logout
+                               role="menuitem">
+                                <span class="fa fa-sign-out"/>
+                                <span class="te_user_drop_item">Logout</span>
                             </a>
                         </div>
                     </div>
@@ -1435,21 +1508,33 @@
                             <i class="fa fa-user-circle-o"></i>
                         </a>
                         <div class="dropdown-menu dropdown-menu-right js_usermenu" role="menu">
-                            <a href="/my/home" role="menuitem" class="dropdown-item"><span class="fa fa-user"/>My
-                                Account
+                            <a href="/my/home" role="menuitem" class="dropdown-item">
+                                <span class="fa fa-user"/>
+                                <span class="te_user_drop_item">My
+                                    Account
+                                </span>
                             </a>
-                            <a href="/shop/cart" role="menuitem" class="dropdown-item"><span
-                                    class="fa fa-check-circle"/>Checkout
+                            <a href="/shop/cart" role="menuitem" class="dropdown-item">
+                                <span
+                                        class="fa fa-check-circle"/>
+                                <span class="te_user_drop_item">Checkout</span>
                             </a>
-                            <a href="/my/orders" role="menuitem" class="dropdown-item"><span class="fa fa-pie-chart"/>My
-                                orders
+                            <a href="/my/orders" role="menuitem" class="dropdown-item">
+                                <span class="fa fa-pie-chart"/>
+                                <span class="te_user_drop_item">My
+                                    orders
+                                </span>
                             </a>
                             <a href="/shop/wishlist" role="menuitem" class="dropdown-item"
-                               t-if="request.website.viewref('website_sale_wishlist.add_to_wishlist').active"><span
-                                    class="fa fa-heart"/>My Wishlist
+                               t-if="request.website.viewref('website_sale_wishlist.add_to_wishlist').active">
+                                <span
+                                        class="fa fa-heart"/>
+                                <span class="te_user_drop_item">My Wishlist</span>
                             </a>
                             <a id="o_logout" class="dropdown-item" t-attf-href="/web/session/logout?redirect=/"
-                               role="menuitem"><span class="fa fa-sign-out"/>Logout
+                               role="menuitem">
+                                <span class="fa fa-sign-out"/>
+                                <span class="te_user_drop_item">Logout</span>
                             </a>
                         </div>
                     </div>
@@ -1568,21 +1653,32 @@
                                 <i class="fa fa-user-circle-o"></i>
                             </a>
                             <div class="dropdown-menu dropdown-menu-right js_usermenu" role="menu">
-                                <a href="/my/home" role="menuitem" class="dropdown-item"><span class="fa fa-user"/>My
-                                    Account
+                                <a href="/my/home" role="menuitem" class="dropdown-item">
+                                    <span class="fa fa-user"/>
+                                    <span class="te_user_drop_item">My
+                                        Account
+                                    </span>
                                 </a>
-                                <a href="/shop/cart" role="menuitem" class="dropdown-item"><span
-                                        class="fa fa-check-circle"/>Checkout
+                                <a href="/shop/cart" role="menuitem" class="dropdown-item">
+                                    <span
+                                            class="fa fa-check-circle"/>
+                                    <span class="te_user_drop_item">Checkout</span>
                                 </a>
-                                <a href="/my/orders" role="menuitem" class="dropdown-item"><span
-                                        class="fa fa-pie-chart"/>My orders
+                                <a href="/my/orders" role="menuitem" class="dropdown-item">
+                                    <span
+                                            class="fa fa-pie-chart"/>
+                                    <span class="te_user_drop_item">My orders</span>
                                 </a>
                                 <a href="/shop/wishlist" role="menuitem" class="dropdown-item"
-                                   t-if="request.website.viewref('website_sale_wishlist.add_to_wishlist').active"><span
-                                        class="fa fa-heart"/>My Wishlist
+                                   t-if="request.website.viewref('website_sale_wishlist.add_to_wishlist').active">
+                                    <span
+                                            class="fa fa-heart"/>
+                                    <span class="te_user_drop_item">My Wishlist</span>
                                 </a>
                                 <a id="o_logout" class="dropdown-item" t-attf-href="/web/session/logout?redirect=/"
-                                   role="menuitem"><span class="fa fa-sign-out"/>Logout
+                                   role="menuitem">
+                                    <span class="fa fa-sign-out"/>
+                                    <span class="te_user_drop_item">Logout</span>
                                 </a>
                             </div>
                         </div>
@@ -1707,22 +1803,33 @@
                                 <i class="fa fa-user-circle-o"></i>
                             </a>
                             <div class="dropdown-menu dropdown-menu-right js_usermenu" role="menu">
-                                <a href="/my/home" role="menuitem" class="dropdown-item"><span class="fa fa-user"/>My
-                                    Account
+                                <a href="/my/home" role="menuitem" class="dropdown-item">
+                                    <span class="fa fa-user"/>
+                                    <span class="te_user_drop_item">My
+                                        Account
+                                    </span>
                                 </a>
-                                <a href="/shop/cart" role="menuitem" class="dropdown-item"><span
-                                        class="fa fa-check-circle"/>Checkout
+                                <a href="/shop/cart" role="menuitem" class="dropdown-item">
+                                    <span
+                                            class="fa fa-check-circle"/>
+                                    <span class="te_user_drop_item">Checkout</span>
                                 </a>
-                                <a href="/my/orders" role="menuitem" class="dropdown-item"><span
-                                        class="fa fa-pie-chart"/>My
-                                    orders
+                                <a href="/my/orders" role="menuitem" class="dropdown-item">
+                                    <span class="fa fa-pie-chart"/>
+                                    <span class="te_user_drop_item">My
+                                        orders
+                                    </span>
                                 </a>
                                 <a href="/shop/wishlist" role="menuitem" class="dropdown-item"
-                                   t-if="request.website.viewref('website_sale_wishlist.add_to_wishlist').active"><span
-                                        class="fa fa-heart"/>My Wishlist
+                                   t-if="request.website.viewref('website_sale_wishlist.add_to_wishlist').active">
+                                    <span
+                                            class="fa fa-heart"/>
+                                    <span class="te_user_drop_item">My Wishlist</span>
                                 </a>
                                 <a id="o_logout" class="dropdown-item" t-attf-href="/web/session/logout?redirect=/"
-                                   role="menuitem"><span class="fa fa-sign-out"/>Logout
+                                   role="menuitem">
+                                    <span class="fa fa-sign-out"/>
+                                    <span class="te_user_drop_item">Logout</span>
                                 </a>
                             </div>
                         </div>

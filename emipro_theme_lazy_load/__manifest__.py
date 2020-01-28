@@ -14,6 +14,7 @@
 
     #Odoo Store Specific
     'images': [
+	'static/description/emipro_theme_lazy_load.jpg',
     ],
 
     # Author

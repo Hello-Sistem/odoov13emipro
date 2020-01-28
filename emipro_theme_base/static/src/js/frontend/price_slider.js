@@ -99,6 +99,12 @@ odoo.define('emipro_theme_base.price_slider', function(require) {
             /* This method is called for hide or show the slider element */
             $(".te_pricerange_content").toggle('slow');
             $(".price_filter_head").toggleClass("te_fa-plus te_fa-minus");
+            if($(".price_filter_head").hasClass("te_fa-plus")){
+                $(".price_filter_head").find('i.te_price_icon').css({"transform":"rotate(90deg)","text-align":"center"});
+            }
+            else{
+                $(".price_filter_head").find('i.te_price_icon').css({"transform":"rotate(0deg)","transition":"transform 0.5s ease-out","text-align":"center"});
+            }
         }
     });
 });

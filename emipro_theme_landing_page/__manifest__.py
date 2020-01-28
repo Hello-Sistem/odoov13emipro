@@ -2,7 +2,7 @@
     #Module information
     'name': 'Emipro Theme Landing Page',
     'category': 'eCommerce',
-    'summary': 'This app contains provide the separate page for category and brand.',
+    'summary': 'This app contains provide the separate Landing Page.',
     'version': '1.0.0',
     'license': 'OPL-1',
     'depends':['emipro_theme_brand'],
@@ -13,7 +13,7 @@
 
     #Odoo Store Specific
     'images': [
-	'static/description/emipro_theme_brand.jpg',
+	'static/description/emipro_theme_landing_page.jpg',
     ],
 
     # Author

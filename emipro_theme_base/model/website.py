@@ -34,6 +34,11 @@ class Website(models.Model):
     lazy_load_image = fields.Binary('Lazyload Image', help="Display this image while lazy load applies.",
                                     readonly=False)
     banner_video_url = fields.Char(string='Video URL', help='URL of a video for banner.', readonly=False)
+    number_of_product_line = fields.Selection([
+        ('1', 1),
+        ('2', 2),
+        ('3', 3)
+    ], string="Number of lines for product name", required=True, default='1', readonly=False, help="Number of lines to show in product name for shop.")
 
 
     # @api.depends('banner_video_url')
@@ -60,6 +65,44 @@ class Website(models.Model):
         """
         return self.env['product.public.category'].sudo().search(
             [('parent_id', '=', False), ('website_id', 'in', (False, self.id))])
+
+    def get_default_company_address(self):
+        """
+        To get company default address
+        :return:
+        """
+        street = ''
+        street2 = ''
+        city = ''
+        zip = ''
+        state = ''
+        country = ''
+
+        getCurrentCompany = request.env['website'].get_current_website().company_id
+
+        values = {
+            'street': getCurrentCompany.street,
+            'street2': getCurrentCompany.street2,
+            'city': getCurrentCompany.city,
+            'zip': getCurrentCompany.zip,
+            'state_id': getCurrentCompany.state_id.name,
+            'country_id': getCurrentCompany.country_id.name
+        }
+
+        if getCurrentCompany.street:
+            street = str(values['street'])
+        if getCurrentCompany.street2:
+            street2 = str(values['street2'])
+        if getCurrentCompany.city:
+            city = str(values['city'])
+        if getCurrentCompany.zip:
+            zip = values['zip']
+        if getCurrentCompany.state_id.name:
+            state = str(values['state_id'])
+        if getCurrentCompany.country_id.name:
+            country = str(values['country_id'])
+
+        return street +' '+ street2 +' '+ city + ' '+ zip + ' '+ state + ' '+ country
 
     def get_product_categs_path(self, id):
         """
@@ -121,7 +164,6 @@ class Website(models.Model):
 
         range_list.append(round(min(prices_list), 2))
         range_list.append(round(max(prices_list), 2))
-
         return range_list
 
     def get_brand(self, products=False):

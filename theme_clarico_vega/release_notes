@@ -1,3 +1,32 @@
+Version 13.0.1.0.2 - 22 January 20
+===================================
+Bug Fixes
+ - Improve filter option styles.
+ - Fixed dropdown jump issue.
+ - Made some css changes in the quick view popup.
+ - Improvement in product gallery.
+ - Mobile view style improvements in all the pages.
+
+Features
+
+ - Added setting of how many lines you wanted to show in product name.
+ - User can add/remove CSS transition effect using snippet settings for all the image.
+
+Version 13.0.1.0.1 - 18 January 20
+===================================
+Bug Fixes
+
+ - Product page design changes.
+ - Add color on active variants in cart popup.
+ - Design cart popup in shop list view.
+ - Fixed dynamic category dropdown animation in RTL.
+ - Fixed header style 10 overlay issue.
+ - Added autofocus on search box in mobile & Ipad view for header style 10.
+
+Features
+
+ - Added new 3 Home snippets.
+
 Version 13.0.1.0.0 - 09 January 20
 ===================================
 

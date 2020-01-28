@@ -40,6 +40,21 @@
 		{
 			display: inline-block !important
 		}
+        .dropdown-menu{
+             &:before{
+                right: 12px;
+                left:unset
+            }
+            &:after{
+                right: 11px;
+                left:unset
+            }
+            &:hover{
+                .dropdown-item{
+                    left:unset;
+                }
+            }
+        }
 	}
 	> .px-1
 	{
@@ -62,8 +77,24 @@
 				left:auto !important;
 				right:0;
 				transform: translate3d(0, 32px, 0px) !important;
-				@include media-breakpoint-down(sm){
+				&:before{
+                    left:unset;
+                    right:11px;
+                }
+                &:after{
+                    left:unset;
+                    right:10px;
+                }
+                @include media-breakpoint-down(sm){
                     left: 0px !important;
+                    &:before{
+                        left:6px;
+                        right:unset;
+                    }
+                    &:after{
+                        left:5px;
+                        right:unset;
+                    }
 				}
 			}
 		}
@@ -109,6 +140,16 @@
                 .dropdown-menu,
                 .dropdown-menu.show {
                     top: 10px !important;
+                }
+                .dropdown-menu{
+                    &:before{
+                        left:11px;
+                        right:unset;
+                    }
+                    &:after{
+                        left:10px;
+                        right:unset;
+                    }
                 }
             }
             li.list-inline-item{

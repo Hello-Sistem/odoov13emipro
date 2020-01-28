@@ -240,6 +240,32 @@
 		{
 			left:0px !important;
 			right:0;
+			&:before{
+                left:8px;
+            }
+            &:after{
+                left:7px;
+            }
+		}
+	}
+	@include media-breakpoint-down(sm){
+	    .h5_pricelist .dropdown-menu
+		{
+			&:before{
+                left:8px;
+            }
+            &:after{
+                left:7px;
+            }
+		}
+		.js_language_selector .dropdown-menu
+		{
+			&:before{
+                left:11px;
+            }
+            &:after{
+                left:10px;
+            }
 		}
 	}
 	.te_header_language
@@ -428,9 +454,30 @@
 				}
 			}
 		}
+		.te_user_account .dropdown-menu{
+             &:before, &:after{
+                left:unset
+            }
+            &:hover{
+                .dropdown-item{
+                    left:unset;
+                }
+            }
+        }
 		.te_signin{
 		    > a.btn-link {
                 padding: 0px 7px 0px 4px;
+            }
+		}
+		@include media-breakpoint-down(md)
+		{
+		    .dropdown-menu{
+                &:before{
+                    right: 18px;
+                }
+                &:after{
+                    right: 17px;
+                }
             }
 		}
 	}

@@ -77,93 +77,90 @@ odoo.define('theme_clarico_vega.dropdown_animate', function (require) {
 
                 // Sticky add to cart bar
 
-                if($('.product_details_sticky').length){
+                if($('.product_details_sticky').length && $('div#product_details a#add_to_cart').length){
                     var stickHeight = $('.product_details_sticky .prod_details_sticky_div').height();
                     var fixIconHeight10 = $('.te_header_icon_right').height();
                     var fixIconHeight11 = $('.head_11_rest_icons').height();
-                    if ($('div#product_details a#add_to_cart').length){
-                            if ($(this).scrollTop() > $('div#product_details a#add_to_cart').offset().top) {
+                    if ($(this).scrollTop() > $('div#product_details a#add_to_cart').offset().top) {
 
-                            if ($(window).width() < 992){
-                                if($('.fixed-header-10-bar').length){
-                                    $('div#wrapwrap .product_details_sticky').css('bottom',fixIconHeight10+'px').fadeIn();
-                                }
-                                else{
-                                    $('.o_product_feature_panel').css('bottom',stickHeight+'px').fadeIn();
-                                }
-
-                                if($('.fixed-header-top-bar').length){
-                                    $('div#wrapwrap .product_details_sticky').css('bottom',fixIconHeight11+'px').fadeIn();
-                                }
-                                else{
-                                    $('.o_product_feature_panel').css('bottom',stickHeight+'px').fadeIn();
-                                }
+                        if ($(window).width() < 992){
+                            if($('.fixed-header-10-bar').length){
+                                $('div#wrapwrap .product_details_sticky').css('bottom',fixIconHeight10+'px').fadeIn();
                             }
                             else{
-                                $('div#wrapwrap .product_details_sticky').fadeIn();
-                            }
-
-                            if ($(window).width() >= 992){
                                 $('.o_product_feature_panel').css('bottom',stickHeight+'px').fadeIn();
                             }
-                            else
-                            {
-                                $('div#wrapwrap .product_details_sticky').fadeIn();
-                                if($('.fixed-header-10-bar').length){
-                                    $('.o_product_feature_panel').css('bottom',(stickHeight + fixIconHeight10)+'px').fadeIn();
-                                }
-                                else{
-                                    $('.o_product_feature_panel').css('bottom', fixIconHeight10+'px').fadeIn();
-                                }
-                                if($('.fixed-header-top-bar').length){
-                                    $('.o_product_feature_panel').css('bottom',(stickHeight + fixIconHeight11)+'px').fadeIn();
-                                }
-                                else{
-                                    $('.o_product_feature_panel').css('bottom', fixIconHeight11+'px').fadeIn();
-                                }
-                            }
 
-                            /* Display prices on add to cart sticky*/
-                            if( $( ".js_product.js_main_product" ).hasClass( "css_not_available" )){
-                               $('div#wrapwrap .prod_price').html('');
-                               $(".product_details_sticky .prod_add_cart #add_to_cart, .product_details_sticky .prod_add_cart #buy_now").addClass('disabled');
+                            if($('.fixed-header-top-bar').length){
+                                $('div#wrapwrap .product_details_sticky').css('bottom',fixIconHeight11+'px').fadeIn();
                             }
                             else{
-                                $('div#wrapwrap .prod_price').html(getPriceHtml);
-                                $(".product_details_sticky .prod_add_cart #add_to_cart, .product_details_sticky .prod_add_cart #buy_now").removeClass('disabled');
+                                $('.o_product_feature_panel').css('bottom',stickHeight+'px').fadeIn();
                             }
+                        }
+                        else{
+                            $('div#wrapwrap .product_details_sticky').fadeIn();
+                        }
 
-                            $(".product_details_sticky .prod_add_cart #add_to_cart").click(function(){
-                                $("div#product_details .js_product.js_main_product #add_to_cart").trigger( "click" );
-                                return false;
-                            });
-                            $(".product_details_sticky .prod_add_cart #buy_now").click(function(){
-                                $("div#product_details .js_product.js_main_product #buy_now").trigger( "click" );
-                                return false;
-                            });
-                        } else {
-                            if ($(window).width() < 992){
-                                if($('.fixed-header-10-bar').length){
-                                    $('.o_product_feature_panel').css('bottom', fixIconHeight10+'px');
-                                }
-                                else{
-                                    $('.o_product_feature_panel').css('bottom', '0px');
-                                }
+                        if ($(window).width() >= 992){
+                            $('.o_product_feature_panel').css('bottom',stickHeight+'px').fadeIn();
+                        }
+                        else
+                        {
+                            $('div#wrapwrap .product_details_sticky').fadeIn();
+                            if($('.fixed-header-10-bar').length){
+                                $('.o_product_feature_panel').css('bottom',(stickHeight + fixIconHeight10)+'px').fadeIn();
+                            }
+                            else{
+                                $('.o_product_feature_panel').css('bottom', fixIconHeight10+'px').fadeIn();
+                            }
+                            if($('.fixed-header-top-bar').length){
+                                $('.o_product_feature_panel').css('bottom',(stickHeight + fixIconHeight11)+'px').fadeIn();
+                            }
+                            else{
+                                $('.o_product_feature_panel').css('bottom', fixIconHeight11+'px').fadeIn();
+                            }
+                        }
 
-                                if($('.fixed-header-top-bar').length){
-                                    $('.o_product_feature_panel').css('bottom', fixIconHeight11+'px');
-                                }
-                                else{
-                                    $('.o_product_feature_panel').css('bottom', '0px');
-                                }
+                        /* Display prices on add to cart sticky*/
+                        if( $( ".js_product.js_main_product" ).hasClass( "css_not_available" )){
+                           $('div#wrapwrap .prod_price').html('');
+                           $(".product_details_sticky .prod_add_cart #add_to_cart, .product_details_sticky .prod_add_cart #buy_now").addClass('disabled');
+                        }
+                        else{
+                            $('div#wrapwrap .prod_price').html(getPriceHtml);
+                            $(".product_details_sticky .prod_add_cart #add_to_cart, .product_details_sticky .prod_add_cart #buy_now").removeClass('disabled');
+                        }
+
+                        $(".product_details_sticky .prod_add_cart #add_to_cart").click(function(){
+                            $("div#product_details .js_product.js_main_product #add_to_cart").trigger( "click" );
+                            return false;
+                        });
+                        $(".product_details_sticky .prod_add_cart #buy_now").click(function(){
+                            $("div#product_details .js_product.js_main_product #buy_now").trigger( "click" );
+                            return false;
+                        });
+                    } else {
+                        if ($(window).width() < 992){
+                            if($('.fixed-header-10-bar').length){
+                                $('.o_product_feature_panel').css('bottom', fixIconHeight10+'px');
                             }
                             else{
                                 $('.o_product_feature_panel').css('bottom', '0px');
                             }
-                            $('div#wrapwrap .product_details_sticky').fadeOut();
-                        }
-                    }
 
+                            if($('.fixed-header-top-bar').length){
+                                $('.o_product_feature_panel').css('bottom', fixIconHeight11+'px');
+                            }
+                            else{
+                                $('.o_product_feature_panel').css('bottom', '0px');
+                            }
+                        }
+                        else{
+                            $('.o_product_feature_panel').css('bottom', '0px');
+                        }
+                        $('div#wrapwrap .product_details_sticky').fadeOut();
+                    }
                 }
              });
             if ($(window).width() > 991){
@@ -178,7 +175,7 @@ odoo.define('theme_clarico_vega.dropdown_animate', function (require) {
             }
         },
         showFooter:function(){
-            if ($(window).width() < 767){
+            if ($(window).width() < 768){
                 $('#footer .row > .footer-column-2').click(function() {
                   $(this).find('.te_footer_info_ept').toggleClass('active');
                   $(this).find('.footer_top_title_div').toggleClass('active');

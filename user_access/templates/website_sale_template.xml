@@ -50,10 +50,15 @@
         <xpath expr="//a[@role='button']" position="after">
             <t t-if="user_id.user_role in ['l1','l2']">
                 <a role="button" t-if="website_sale_order and website_sale_order.website_order_line"
-                   class="btn btn-secondary float-right d-none d-xl-inline-block" href="/create_order_quote">
+                   class="btn btn-primary float-right d-none d-xl-inline-block te_theme_button mb-2"
+                   href="/create_order_quote">
                     <span>Request to quote</span>
                 </a>
             </t>
+        </xpath>
+        <xpath expr="//a[hasclass('btn-secondary')]" position="attributes">
+            <attribute name="class">btn btn-secondary float-right d-none d-xl-inline-block te_theme_button ml-2 mb-2
+            </attribute>
         </xpath>
     </template>
 
@@ -79,7 +84,26 @@
         </xpath>
     </template>
     <template id="cart_ept" inherit_id="website_sale.cart">
-        <xpath expr="//a[@href='/shop/checkout?express=1']" position="attributes">
+        <xpath expr="//div[@id='o_cart_summary']//a[@href='/shop/checkout?express=1']" position="attributes">
+            <attribute name="t-if">
+                user_id.user_role == 'l2' and website_sale_order and website_sale_order.website_order_line
+            </attribute>
+        </xpath>
+        <xpath expr="//div[@id='o_cart_summary']//a[@href='/shop/checkout?express=1']" position="attributes">
+            <attribute name="class">
+                btn btn-secondary float-right te_theme_button ml-2 mb-2
+            </attribute>
+        </xpath>
+        <xpath expr="//div[@id='o_cart_summary']//a[@href='/shop/checkout?express=1']" position="after">
+            <t t-if="user_id.user_role in ['l1','l2']">
+                <a role="button" t-if="website_sale_order and website_sale_order.website_order_line"
+                   class="btn btn-primary float-right te_theme_button mb-2"
+                   href="/create_order_quote">
+                    <span>Request to quote</span>
+                </a>
+            </t>
+        </xpath>
+        <xpath expr="//div[hasclass('oe_cart')]//a[@href='/shop/checkout?express=1']" position="attributes">
             <attribute name="t-if">
                 user_id.user_role == 'l2' and website_sale_order and website_sale_order.website_order_line
             </attribute>
@@ -87,7 +111,8 @@
     </template>
     <template id="website_sale_products_search_box_ept" inherit_id="website_sale.website_sale_products_search_box">
         <xpath expr="//input[@name='search']" position="attributes">
-            <attribute name="t-attf-data-display-price" add="#{'false' if user_id.partner_id.name == 'Public user' else 'true'}" separator=" "/>
+            <attribute name="t-attf-data-display-price"
+                       add="#{'false' if user_id.partner_id.name == 'Public user' else 'true'}" separator=" "/>
             <attribute name="data-limit">5</attribute>
             <attribute name="data-display-description">true</attribute>
             <attribute name="data-display-image">true</attribute>
