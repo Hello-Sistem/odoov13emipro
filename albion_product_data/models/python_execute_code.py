@@ -15,6 +15,7 @@ color_code = {
 
 class emipro_execute_python(models.Model):
     _inherit = "emipro.execute.python"
+    _description= "It contains the scripts logic for creating the data"
 
     def assign_sequence_attribute_value(self):
         print("Process Start")
@@ -101,9 +102,11 @@ class emipro_execute_python(models.Model):
                     else:
                         prod_type = False
 
+
                     vals = {
                         'default_code' : row.get('Base Model'),
                         'name' : row.get('Name'),
+                        'category_name' : row.get('Category Name', False) if row.get('Category Name', False) else row.get('Name'),
                         # 'type' : row.get('product_type'),
                         'purchase_ok' : row.get('Storable Product'),
                         'active' : row.get('active'),
@@ -150,7 +153,7 @@ class emipro_execute_python(models.Model):
                 data = csv.reader(file)
                 for row in data:
                     # Ignore First Column
-                    if row[1] == 'Model':
+                    if row[0] == 'name':
                         result = row
 
                     # Check if category already created or not

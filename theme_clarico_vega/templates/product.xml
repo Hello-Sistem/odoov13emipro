@@ -140,6 +140,14 @@
                                             <a class="product_name"
                                                t-attf-href="/shop/product/#{ slug(alt_product) }">
                                                 <h6>
+                                                    <t t-if="alt_product.category_name">
+                                                        <span t-att-title="alt_product.category_name" t-field="alt_product.category_name"
+                                                          t-attf-class="alt_prod_name #{'te_2_line' if (website.number_of_product_line == '2') else 'te_3_line' if (website.number_of_product_line == '3') else ''}"/>
+                                                    </t>
+                                                    <t t-else="">
+                                                        <span t-att-title="alt_product.name" t-field="alt_product.name"
+                                                          t-attf-class="alt_prod_name #{'te_2_line' if (website.number_of_product_line == '2') else 'te_3_line' if (website.number_of_product_line == '3') else ''}"/>
+                                                    </t>
                                                     <span t-att-title="alt_product.name" t-field="alt_product.name"
                                                           t-attf-class="alt_prod_name #{'te_2_line' if (website.number_of_product_line == '2') else 'te_3_line' if (website.number_of_product_line == '3') else ''}"/>
                                                 </h6>
@@ -189,8 +197,14 @@
                                         <a class="product_name"
                                            t-attf-href="/shop/product/#{ slug(alt_product.product_tmpl_id) }">
                                             <h6>
-                                                <span t-att-title="alt_product.name" t-field="alt_product.name"
+                                                <t t-if="alt_product.product_tmpl_id.category_name">
+                                                    <span t-att-title="alt_product.product_tmpl_id.category_name" t-field="alt_product.product_tmpl_id.category_name"
                                                       t-attf-class="alt_prod_name #{'te_2_line' if (website.number_of_product_line == '2') else 'te_3_line' if (website.number_of_product_line == '3') else ''}"/>
+                                                </t>
+                                                <t t-else="">
+                                                    <span t-att-title="alt_product.name" t-field="alt_product.name"
+                                                      t-attf-class="alt_prod_name #{'te_2_line' if (website.number_of_product_line == '2') else 'te_3_line' if (website.number_of_product_line == '3') else ''}"/>
+                                                </t>
                                             </h6>
                                         </a>
                                         <del t-attf-class="te_shop_del mr-2 {{'' if combination_info['has_discounted_price'] else 'd-none'}}"
