@@ -15,6 +15,7 @@ class ProductTemplate(models.Model):
         help='Select a brand for this product'
     )
     tab_line_ids = fields.One2many('product.tab.line', 'product_id', 'Product Tabs',help="Set the product tabs")
+    category_name = fields.Char("Category Name")
 
     @api.constrains('tab_line_ids')
     def check_tab_lines(self):
