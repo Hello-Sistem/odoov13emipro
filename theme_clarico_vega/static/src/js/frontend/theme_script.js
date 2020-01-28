@@ -1093,10 +1093,12 @@ odoo.define('theme_clarico_vega.theme_script', function(require) {
         },
 
         selectProductTab: function(){
-            $('#te_product_tabs').find('li:first-child').find('.nav-link').addClass('active');
-            var firstAttr = $('#te_product_tabs').find('li:first-child').find('.nav-link').attr('aria-controls');
-            $('.tabs_container_main .product-body .tab-pane').removeClass('active show');
-            $('#'+ firstAttr).addClass('active show');
+            if ($('.specification_products_tab').length < 1) {
+                $('#te_product_tabs').find('li:first-child').find('.nav-link').addClass('active');
+                var firstAttr = $('#te_product_tabs').find('li:first-child').find('.nav-link').attr('aria-controls');
+                $('.tabs_container_main .product-body .tab-pane').removeClass('active show');
+                $('#'+ firstAttr).addClass('active show');
+            }
         },
     });
 

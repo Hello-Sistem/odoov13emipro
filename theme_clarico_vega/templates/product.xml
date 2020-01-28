@@ -392,7 +392,7 @@
                             <div class="product-header">
                                 <ul id="te_product_tabs" class="nav nav-tabs product-header-tabs" role="tablist">
                                     <li class="nav-item" t-if="product.website_description or request.env.user._is_admin()">
-                                        <a class="nav-link active show"
+                                        <a class="nav-link"
                                            id="nav_tabs_link_1"
                                            data-toggle="tab"
                                            itemprop="description"
@@ -405,8 +405,8 @@
                                     <t t-set="categories"
                                        t-value="product.valid_product_template_attribute_line_ids._prepare_categories_for_display()"/>
                                     <t t-if="categories">
-                                        <li class="nav-item">
-                                            <a class="nav-link"
+                                        <li class="nav-item specification_products_tab">
+                                            <a class="nav-link active show"
                                                id="nav_tabs_link_2"
                                                data-toggle="tab"
                                                href="#nav_tabs_content_2"
@@ -447,7 +447,7 @@
                                 </ul>
                             </div>
                             <div class="product-body tab-content">
-                                <div class="tab-pane fade show active py-3"
+                                <div class="tab-pane fade py-3"
                                      id="nav_tabs_content_1"
                                      role="tabpanel"
                                      aria-labelledby="nav_tabs_link_1">
@@ -455,7 +455,7 @@
                                          class="oe_structure"
                                          id="product_full_description"/>
                                 </div>
-                                <div class="tab-pane fade o_not_editable py-3"
+                                <div class="tab-pane fade show active o_not_editable py-3"
                                      id="nav_tabs_content_2"
                                      role="tabpanel"
                                      aria-labelledby="nav_tabs_link_2">
