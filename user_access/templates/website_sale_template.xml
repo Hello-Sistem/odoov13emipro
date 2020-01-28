@@ -122,10 +122,10 @@
     <template id="products_item_extended" inherit_id="website_sale.products_item">
         <xpath expr="//h6[hasclass('o_wsale_products_item_title')]/a" position="replace">
             <t t-if="product.category_name">
-                <a class="product_name" itemprop="name" t-att-href="product_href" t-att-content="product.name" t-field="product.category_name" />
+                <a t-attf-class="product_name #{'te_2_line' if (website.number_of_product_line == '2') else 'te_3_line' if (website.number_of_product_line == '3') else ''}" itemprop="name" t-att-href="product_href" t-att-content="product.name" t-field="product.category_name" />
             </t>
             <t t-else="">
-                <a class="product_name" itemprop="name" t-att-href="product_href" t-att-content="product.name" t-field="product.name" />
+                <a t-attf-class="product_name #{'te_2_line' if (website.number_of_product_line == '2') else 'te_3_line' if (website.number_of_product_line == '3') else ''}" itemprop="name" t-att-href="product_href" t-att-content="product.name" t-field="product.name" />
             </t>
         </xpath>
     </template>
