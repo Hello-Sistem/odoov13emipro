@@ -6,7 +6,7 @@
             <div class="container">
                 <div class="signup-common-div">
                     <div class="block te_user_template_common">
-                        <h4 class="text-center">Verification email was sent sucessfully!</h4>
+                        <h4 class="text-center">Verification email sent sucessfully!</h4>
                     </div>
                 </div>
             </div>
@@ -19,7 +19,7 @@
             <div class="container">
                 <div class="signup-common-div">
                     <div class="block te_user_template_common">
-                        <h4 class="text-center">Order Quotation email was sent sucessfully!</h4>
+                        <h4 class="text-center">Quotation has been submitted sucessfully!</h4>
                     </div>
                 </div>
             </div>
