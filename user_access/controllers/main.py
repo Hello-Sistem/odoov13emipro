@@ -21,14 +21,14 @@ class EptUserAccess(http.Controller):
     @http.route(['/create_order_quote'], type='http', auth="public", website=True, csrf=False)
     def create_quote(self):
         so = request.website.sale_get_order()
+        print(request.website.sale_get_order())
         email_act = so.action_quotation_send()
         email_ctx = email_act.get('context', {})
         so.with_context(**email_ctx).message_post_with_template(email_ctx.get('default_template_id'))
         template = request.env['mail.template'].browse(email_ctx.get('default_template_id'))
         template.sudo().send_mail(so.id, force_send=True)
-        if so:
-            for line in so.website_order_line:
-                line.unlink()
+        if request.session.get('sale_order_id'):
+            request.session['sale_order_id'] = None
         return request.render("user_access.quote_confirmation")
 
     @http.route(['/send/confirmation/mail'], type='http', auth="public", website=True, csrf=False)

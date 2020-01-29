@@ -141,23 +141,26 @@
                                                t-attf-href="/shop/product/#{ slug(alt_product) }">
                                                 <h6>
                                                     <t t-if="alt_product.category_name">
-                                                        <span t-att-title="alt_product.category_name" t-field="alt_product.category_name"
-                                                          t-attf-class="alt_prod_name #{'te_2_line' if (website.number_of_product_line == '2') else 'te_3_line' if (website.number_of_product_line == '3') else ''}"/>
+                                                        <span t-att-title="alt_product.category_name"
+                                                              t-field="alt_product.category_name"
+                                                              t-attf-class="alt_prod_name #{'te_2_line' if (website.number_of_product_line == '2') else 'te_3_line' if (website.number_of_product_line == '3') else ''}"/>
                                                     </t>
                                                     <t t-else="">
                                                         <span t-att-title="alt_product.name" t-field="alt_product.name"
-                                                          t-attf-class="alt_prod_name #{'te_2_line' if (website.number_of_product_line == '2') else 'te_3_line' if (website.number_of_product_line == '3') else ''}"/>
+                                                              t-attf-class="alt_prod_name #{'te_2_line' if (website.number_of_product_line == '2') else 'te_3_line' if (website.number_of_product_line == '3') else ''}"/>
                                                     </t>
                                                 </h6>
                                             </a>
-                                            <del t-attf-class="te_shop_del mr-2 {{'' if combination_info['has_discounted_price'] else 'd-none'}}"
-                                                 style="white-space: nowrap;" t-esc="alt_product.list_price"
-                                                 t-options="{'widget': 'monetary', 'display_currency': website.currency_id}"/>
-                                            <span t-if="combination_info['price']" t-esc="alt_product.price"
-                                                  t-options="{'widget': 'monetary', 'display_currency': website.currency_id}"/>
-                                            <span itemprop="price" style="display:none;" t-esc="alt_product.price"/>
-                                            <span itemprop="priceCurrency" style="display:none;"
-                                                  t-esc="website.currency_id.name"/>
+                                            <t t-if="not user_id.partner_id.name == 'Public user'">
+                                                <del t-attf-class="te_shop_del mr-2 {{'' if combination_info['has_discounted_price'] else 'd-none'}}"
+                                                     style="white-space: nowrap;" t-esc="alt_product.list_price"
+                                                     t-options="{'widget': 'monetary', 'display_currency': website.currency_id}"/>
+                                                <span t-if="combination_info['price']" t-esc="alt_product.price"
+                                                      t-options="{'widget': 'monetary', 'display_currency': website.currency_id}"/>
+                                                <span itemprop="price" style="display:none;" t-esc="alt_product.price"/>
+                                                <span itemprop="priceCurrency" style="display:none;"
+                                                      t-esc="website.currency_id.name"/>
+                                            </t>
                                         </section>
                                     </div>
                                 </t>
@@ -196,23 +199,26 @@
                                            t-attf-href="/shop/product/#{ slug(alt_product.product_tmpl_id) }">
                                             <h6>
                                                 <t t-if="alt_product.product_tmpl_id.category_name">
-                                                    <span t-att-title="alt_product.product_tmpl_id.category_name" t-field="alt_product.product_tmpl_id.category_name"
-                                                      t-attf-class="alt_prod_name #{'te_2_line' if (website.number_of_product_line == '2') else 'te_3_line' if (website.number_of_product_line == '3') else ''}"/>
+                                                    <span t-att-title="alt_product.product_tmpl_id.category_name"
+                                                          t-field="alt_product.product_tmpl_id.category_name"
+                                                          t-attf-class="alt_prod_name #{'te_2_line' if (website.number_of_product_line == '2') else 'te_3_line' if (website.number_of_product_line == '3') else ''}"/>
                                                 </t>
                                                 <t t-else="">
                                                     <span t-att-title="alt_product.name" t-field="alt_product.name"
-                                                      t-attf-class="alt_prod_name #{'te_2_line' if (website.number_of_product_line == '2') else 'te_3_line' if (website.number_of_product_line == '3') else ''}"/>
+                                                          t-attf-class="alt_prod_name #{'te_2_line' if (website.number_of_product_line == '2') else 'te_3_line' if (website.number_of_product_line == '3') else ''}"/>
                                                 </t>
                                             </h6>
                                         </a>
-                                        <del t-attf-class="te_shop_del mr-2 {{'' if combination_info['has_discounted_price'] else 'd-none'}}"
-                                             style="white-space: nowrap;" t-esc="alt_product.list_price"
-                                             t-options="{'widget': 'monetary', 'display_currency': website.currency_id}"/>
-                                        <span t-if="combination_info['price']" t-esc="alt_product.price"
-                                              t-options="{'widget': 'monetary', 'display_currency': website.currency_id}"/>
-                                        <span itemprop="price" style="display:none;" t-esc="alt_product.price"/>
-                                        <span itemprop="priceCurrency" style="display:none;"
-                                              t-esc="website.currency_id.name"/>
+                                        <t t-if="not user_id.partner_id.name == 'Public user'">
+                                            <del t-attf-class="te_shop_del mr-2 {{'' if combination_info['has_discounted_price'] else 'd-none'}}"
+                                                 style="white-space: nowrap;" t-esc="alt_product.list_price"
+                                                 t-options="{'widget': 'monetary', 'display_currency': website.currency_id}"/>
+                                            <span t-if="combination_info['price']" t-esc="alt_product.price"
+                                                  t-options="{'widget': 'monetary', 'display_currency': website.currency_id}"/>
+                                            <span itemprop="price" style="display:none;" t-esc="alt_product.price"/>
+                                            <span itemprop="priceCurrency" style="display:none;"
+                                                  t-esc="website.currency_id.name"/>
+                                        </t>
                                     </section>
                                 </div>
                             </t>
@@ -229,7 +235,8 @@
                 <div class="prod_details_sticky_div">
                     <div class="prod_details_sticky_left">
                         <div class="prod_img">
-                            <img t-att-src="'/web/image/product.template/%s/image_256' % product.id" class="img img-fluid rounded" alt="Product Image"/>
+                            <img t-att-src="'/web/image/product.template/%s/image_256' % product.id"
+                                 class="img img-fluid rounded" alt="Product Image"/>
                         </div>
                         <div class="prod_name">
                             <h1 itemprop="name" t-field="product.name" class="te_product_name">Product Name</h1>
@@ -240,7 +247,8 @@
 
                         <div class="prod_details_sticky_right">
                             <div class="prod_add_cart oe_website_sale">
-                                <form t-if="product._is_add_to_cart_possible()" action="/shop/cart/update" method="POST">
+                                <form t-if="product._is_add_to_cart_possible()" action="/shop/cart/update"
+                                      method="POST">
                                     <input type="hidden" name="csrf_token" t-att-value="request.csrf_token()"/>
                                     <div class="js_product js_main_product">
                                         <t t-placeholder="select">
@@ -389,7 +397,8 @@
                         <div class="bg-white">
                             <div class="product-header">
                                 <ul id="te_product_tabs" class="nav nav-tabs product-header-tabs" role="tablist">
-                                    <li class="nav-item" t-if="product.website_description or request.env.user._is_admin()">
+                                    <li class="nav-item"
+                                        t-if="product.website_description or request.env.user._is_admin()">
                                         <a class="nav-link"
                                            id="nav_tabs_link_1"
                                            data-toggle="tab"
@@ -564,7 +573,7 @@
                     <t t-esc="difference"
                        t-options='{"widget": "monetary",
                         "display_currency": product.currency_id, }'/>
-                     <span class="te_percentage" t-esc="'(%s'%(discount)+'&#x25;)'"/>
+                    <span class="te_percentage" t-esc="'(%s'%(discount)+'&#x25;)'"/>
                 </div>
 
             </t>
