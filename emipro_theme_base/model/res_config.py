@@ -5,7 +5,6 @@
 import base64
 from odoo import fields, models, tools, api, _
 from odoo.modules.module import get_resource_path
-from odoo.addons.website.tools import get_video_embed_code
 
 class res_config(models.TransientModel):
     _inherit = "res.config.settings"
@@ -51,3 +50,16 @@ class res_config(models.TransientModel):
             with tools.file_open(img_path, 'rb') as f:
                 self.lazy_load_image = base64.b64encode(f.read())
 
+    @api.onchange('module_sale_product_configurator')
+    def install_child_modules(self):
+        if self.module_sale_product_configurator:
+            irModuleObject = self.env['ir.module.module']
+            irModuleObject.update_list()
+            emiproInheritModuleId = irModuleObject.search(
+                [
+                    ('state', '!=', 'installed'),
+                    ('name', '=', 'emipro_theme_sale_product_configurator')
+                ]
+            )
+            if emiproInheritModuleId:
+                emiproInheritModuleId[0].button_immediate_install()

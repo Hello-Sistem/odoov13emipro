@@ -118,6 +118,20 @@
             <attribute name="data-display-image">true</attribute>
         </xpath>
     </template>
+    <template id="sale_order_portal_template_ept" inherit_id="sale.sale_order_portal_template">
+        <xpath expr="//a[@t-if='sale_order.has_to_be_signed(True)']" position="attributes">
+             <attribute name="t-if">
+                 sale_order.has_to_be_signed(True) and user_id.user_role == 'l2' or not user_id.share
+             </attribute>
+        </xpath>
+        <xpath expr="//a[@t-elif='sale_order.has_to_be_paid(True)']" position="attributes">
+             <attribute name="t-if">
+                 sale_order.has_to_be_paid(True) and user_id.user_role == 'l2' or not user_id.share
+             </attribute>
+        </xpath>
+
+    </template>
+
         <!--==================== Display Category name related templates ============================-->
     <template id="products_item_extended" inherit_id="website_sale.products_item">
         <xpath expr="//h6[hasclass('o_wsale_products_item_title')]/a" position="replace">
