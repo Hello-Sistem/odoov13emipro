@@ -10,7 +10,8 @@
     'data': [
         'views/res_config_settings_views.xml',
         'views/res_users_view.xml',
-	'views/product_template_view.xml',
+        'views/res_partner_views.xml',
+	    'views/product_template_view.xml',
         'templates/signup_confirmation_template.xml',
         'templates/website_sale_template.xml',
         'data/signup_confirmation_data.xml',

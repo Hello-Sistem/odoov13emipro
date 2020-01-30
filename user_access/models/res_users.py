@@ -15,3 +15,6 @@ class ResUsers(models.Model):
     redirect_url = fields.Char('redirect_url')
     access_token = fields.Char('Security Token', copy=False, default=_get_default_access_token)
     user_role = fields.Selection([('l1', "L1 User"), ('l2', "L2 User")])
+
+
+    

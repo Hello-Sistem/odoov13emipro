@@ -44,11 +44,11 @@
     <template id="short_cart_summary_ept" inherit_id="website_sale.short_cart_summary">
         <xpath expr="//a[@role='button']" position="attributes">
             <attribute name="t-if">
-                user_id.user_role == 'l2' and website_sale_order and website_sale_order.website_order_line
+                user_id.user_role == 'l2' and website_sale_order and website_sale_order.website_order_line or not user_id.share
             </attribute>
         </xpath>
         <xpath expr="//a[@role='button']" position="after">
-            <t t-if="user_id.user_role in ['l1','l2']">
+            <t t-if="user_id.user_role in ['l1','l2'] or not user_id.share">
                 <a role="button" t-if="website_sale_order and website_sale_order.website_order_line"
                    class="btn btn-primary float-right d-none d-xl-inline-block te_theme_button mb-2"
                    href="/create_order_quote">
@@ -86,7 +86,7 @@
     <template id="cart_ept" inherit_id="website_sale.cart">
         <xpath expr="//div[@id='o_cart_summary']//a[@href='/shop/checkout?express=1']" position="attributes">
             <attribute name="t-if">
-                user_id.user_role == 'l2' and website_sale_order and website_sale_order.website_order_line
+                user_id.user_role == 'l2' and website_sale_order and website_sale_order.website_order_line or not user_id.share
             </attribute>
         </xpath>
         <xpath expr="//div[@id='o_cart_summary']//a[@href='/shop/checkout?express=1']" position="attributes">
@@ -95,7 +95,7 @@
             </attribute>
         </xpath>
         <xpath expr="//div[@id='o_cart_summary']//a[@href='/shop/checkout?express=1']" position="after">
-            <t t-if="user_id.user_role in ['l1','l2']">
+            <t t-if="user_id.user_role in ['l1','l2'] or not user_id.share">
                 <a role="button" t-if="website_sale_order and website_sale_order.website_order_line"
                    class="btn btn-primary float-right te_theme_button mb-2"
                    href="/create_order_quote">
@@ -105,7 +105,7 @@
         </xpath>
         <xpath expr="//div[hasclass('oe_cart')]//a[@href='/shop/checkout?express=1']" position="attributes">
             <attribute name="t-if">
-                user_id.user_role == 'l2' and website_sale_order and website_sale_order.website_order_line
+                user_id.user_role == 'l2' and website_sale_order and website_sale_order.website_order_line or not user_id.share
             </attribute>
         </xpath>
     </template>
