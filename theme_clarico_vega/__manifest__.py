@@ -9,7 +9,6 @@
     'depends': [
         'website_theme_install',
         'website_sale_wishlist',
-        'sale_product_configurator',
         'emipro_theme_product_carousel',
         'emipro_theme_category_carousel',
         'emipro_theme_quick_filter',
