@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <odoo>
 <!--=============================== Product Configurator Configure Optional Products ========================-->
-    <template id="product_configurator_ept" inherit_id="sale_product_configurator.configure_optional_products">
+    <template id="product_configurator_ext" inherit_id="sale_product_configurator.configure_optional_products">
         <xpath expr="//tr[hasclass('js_product')]//div[hasclass('css_quantity')]" position="attributes">
             <attribute name="class">css_quantity input-group te_product_quantity</attribute>
         </xpath>
@@ -34,7 +34,7 @@
             <attribute name="class">text-right te_total_colspan</attribute>
         </xpath>
     </template>
-    <template id="optional_product_items_ept" inherit_id="sale_product_configurator.optional_product_items">
+    <template id="optional_product_items_ext" inherit_id="sale_product_configurator.optional_product_items">
         <xpath expr="//div[hasclass('text-muted')]" position="attributes">
             <attribute name="class">text-muted small small_text_add</attribute>
         </xpath>
