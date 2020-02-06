@@ -37,6 +37,36 @@ body.editor_enable
 .oe_website_sale .row
 {
 	@include position(relative);
+	&.o_wsale_products_main_row.enabled {
+        @include media-breakpoint-up(lg) {
+            display: inline-block;
+            width: 100%;
+        }
+        #products_grid_before
+	    {
+            @include media-breakpoint-up(lg)
+            {
+                flex: 0 0 23%;
+                max-width: 23%;
+                float: left;
+            }
+	    }
+	    .sticky-media {
+            position: -webkit-sticky !important;
+            position: -moz-sticky !important;
+            position: -ms-sticky !important;
+            position: -o-sticky !important;
+            position: sticky !important;
+            overflow:auto;
+        }
+	    #products_grid {
+            @include media-breakpoint-up(lg) {
+                width: 75%;
+                float: right;
+            }
+        }
+    }
+	
 	#products_grid_before
 	{
 		@include position(initial);
@@ -878,7 +908,7 @@ body.editor_enable
 			opacity: unset;
 			background-color: unset;
 			display: inline-block;
-			margin-top: 4px;
+			margin-top: 3px;
 			.btn
 			{
 				margin: 2px;
@@ -898,20 +928,27 @@ body.editor_enable
 			    padding-top: 0 !important;
 			}
 		}
-		.product_price
-		{
-			padding-bottom: 6px;
-		}
 		.oe_subdescription
 		{
 			margin-bottom: 0;
 			@include style(3,1)
 			min-height: unset;
+			@include media-breakpoint-down(xs){
+                max-height: 58px;
+            }
+		}
+		@include media-breakpoint-down(sm){
+		    .product_price del{
+		        display:inline-block;
+		    }
 		}
 	}
 	.oe_product_image
 	{
 		margin-right: 20px;
+		@include media-breakpoint-down(xs){
+		    margin-right: 0px;
+		}
 	}
 	@include media-breakpoint-down(sm)
 		{
@@ -923,7 +960,7 @@ body.editor_enable
 	.card.oe_product_cart
 	{
 		border:0;
-		padding-bottom: 16px;
+		margin:5px 0;
 		border-bottom: 0px solid $border-color;
 		position: relative;
 	}
@@ -941,7 +978,8 @@ body.editor_enable
 	}
 	h6.o_wsale_products_item_title .product_name
 	{
-		//max-width: 80%;
+		height:22px;
+		-webkit-line-clamp: 1;
 	}
 }
 .o_wsale_layout_list tr:last-child

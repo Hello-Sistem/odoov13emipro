@@ -25,16 +25,12 @@
                 </ol>
             </div>
         </xpath>
-        <xpath expr="//div[hasclass('row')][2]"
-               position="attributes">
-            <attribute name="class">row te_row_main</attribute>
-        </xpath>
         <xpath expr="//div[hasclass('row')]/div[hasclass('col-md-6')]"
                position="attributes">
-            <attribute name="class">col-lg-6 te_product_media</attribute>
+            <attribute name="class">col-lg-6</attribute>
         </xpath>
         <xpath expr="//div[@id='product_details']" position="attributes">
-            <attribute name="class">col-lg-6 offset-xl-0 te_product_media</attribute>
+            <attribute name="class">col-lg-6 offset-xl-0</attribute>
         </xpath>
         <xpath expr="//div[@id='product_details']/h1" position="attributes">
             <attribute name="class">te_product_name</attribute>
@@ -226,6 +222,18 @@
                     </div>
                 </div>
             </div>
+        </xpath>
+    </template>
+    <!--============= Sticky Product Gallary ==================-->
+    <template id="product_sticky_gallary" inherit_id="website_sale.product" name="sticky product gallary" priority="16">
+        <xpath expr="//div[hasclass('row')][2]" position="attributes">
+            <attribute name="class">row te_row_main</attribute>
+        </xpath>
+        <xpath expr="//div[hasclass('row')]/div[hasclass('col-lg-6')]" position="attributes">
+            <attribute name="class">col-lg-6 te_product_media</attribute>
+        </xpath>
+        <xpath expr="//div[@id='product_details']" position="attributes">
+            <attribute name="class">col-lg-6 offset-xl-0 te_product_media</attribute>
         </xpath>
     </template>
     <!--=================== Product add to cart sticky block =====================-->

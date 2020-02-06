@@ -2035,6 +2035,16 @@ div#loginRegisterPopup {
     height: 100vh;
     background-color: rgba(0,0,0,0.8);
 }
+/* User name related style */
+.te_user_account {
+    .dropdown-item.te_user_name {
+       cursor: default;
+       pointer-events: none;
+       .te_user_drop_item {
+            display: block;
+        }
+    }
+}
 /*
 ***********************************************
 */

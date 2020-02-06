@@ -107,24 +107,17 @@
                                     </span>
                                 </a>
                                 <div class="dropdown-menu dropdown-menu-right js_usermenu" role="menu">
+                                    <a role="menuitem" class="dropdown-item te_user_name">
+                                        <span class="te_user_drop_item">Hello, <span class="te_user_drop_item" t-esc="user_id.name[:15] + '...' if user_id.name and len(user_id.name) &gt; 16 else user_id.name"/></span>
+                                    </a>
                                     <a href="/my/home" role="menuitem" class="dropdown-item">
                                         <span class="fa fa-user"/>
                                         <span class="te_user_drop_item">My Account</span>
-                                    </a>
-                                    <a href="/shop/cart" role="menuitem" class="dropdown-item">
-                                        <span
-                                                class="fa fa-check-circle"/>
-                                        <span class="te_user_drop_item">Checkout</span>
                                     </a>
                                     <a href="/my/orders" role="menuitem" class="dropdown-item">
                                         <span
                                                 class="fa fa-pie-chart"/>
                                         <span class="te_user_drop_item">My orders</span>
-                                    </a>
-                                    <a href="/shop/wishlist" role="menuitem" class="dropdown-item"
-                                       t-if="request.website.viewref('website_sale_wishlist.add_to_wishlist').active">
-                                        <span class="fa fa-heart"/>
-                                        <span class="te_user_drop_item">My Wishlist</span>
                                     </a>
                                     <a id="o_logout" class="dropdown-item" t-attf-href="/web/session/logout?redirect=/"
                                        role="menuitem">
@@ -240,25 +233,18 @@
                                                     </span>
                                                 </a>
                                                 <div class="dropdown-menu dropdown-menu-right js_usermenu" role="menu">
+                                                    <a role="menuitem" class="dropdown-item te_user_name">
+                                                        <span class="te_user_drop_item">Hello, <span class="te_user_drop_item" t-esc="user_id.name[:15] + '...' if user_id.name and len(user_id.name) &gt; 16 else user_id.name"/></span>
+                                                    </a>
                                                     <a href="/my/home" role="menuitem" class="dropdown-item">
                                                         <span
                                                                 class="fa fa-user"/>
                                                         <span class="te_user_drop_item">My Account</span>
                                                     </a>
-                                                    <a href="/shop/cart" role="menuitem" class="dropdown-item">
-                                                        <span
-                                                                class="fa fa-check-circle"/>
-                                                        <span class="te_user_drop_item">Checkout</span>
-                                                    </a>
                                                     <a href="/my/orders" role="menuitem" class="dropdown-item">
                                                         <span
                                                                 class="fa fa-pie-chart"/>
                                                         <span class="te_user_drop_item">My orders</span>
-                                                    </a>
-                                                    <a href="/shop/wishlist" role="menuitem" class="dropdown-item"
-                                                       t-if="request.website.viewref('website_sale_wishlist.add_to_wishlist').active">
-                                                        <span class="fa fa-heart"/>
-                                                        <span class="te_user_drop_item">My Wishlist</span>
                                                     </a>
                                                     <a id="o_logout" class="dropdown-item"
                                                        t-attf-href="/web/session/logout?redirect=/"
@@ -462,25 +448,18 @@
                                         </span>
                                     </a>
                                     <div class="dropdown-menu dropdown-menu-right js_usermenu" role="menu">
+                                        <a role="menuitem" class="dropdown-item te_user_name">
+                                            <span class="te_user_drop_item">Hello, <span class="te_user_drop_item" t-esc="user_id.name[:15] + '...' if user_id.name and len(user_id.name) &gt; 16 else user_id.name"/></span>
+                                        </a>
                                         <a href="/my/home" role="menuitem" class="dropdown-item">
                                             <span
                                                     class="fa fa-user"/>
                                             <span class="te_user_drop_item">My Account</span>
                                         </a>
-                                        <a href="/shop/cart" role="menuitem" class="dropdown-item">
-                                            <span
-                                                    class="fa fa-check-circle"/>
-                                            <span class="te_user_drop_item">Checkout</span>
-                                        </a>
                                         <a href="/my/orders" role="menuitem" class="dropdown-item">
                                             <span
                                                     class="fa fa-pie-chart"/>
                                             <span class="te_user_drop_item">My orders</span>
-                                        </a>
-                                        <a href="/shop/wishlist" role="menuitem" class="dropdown-item"
-                                           t-if="request.website.viewref('website_sale_wishlist.add_to_wishlist').active">
-                                            <span class="fa fa-heart"/>
-                                            <span class="te_user_drop_item">My Wishlist</span>
                                         </a>
                                         <a id="o_logout" class="dropdown-item"
                                            t-attf-href="/web/session/logout?redirect=/"
@@ -655,25 +634,18 @@
                                         </span>
                                     </a>
                                     <div class="dropdown-menu dropdown-menu-right js_usermenu" role="menu">
+                                        <a role="menuitem" class="dropdown-item te_user_name">
+                                            <span class="te_user_drop_item">Hello, <span class="te_user_drop_item" t-esc="user_id.name[:15] + '...' if user_id.name and len(user_id.name) &gt; 16 else user_id.name"/></span>
+                                        </a>
                                         <a href="/my/home" role="menuitem" class="dropdown-item">
                                             <span
                                                     class="fa fa-user"/>
                                             <span class="te_user_drop_item">My Account</span>
                                         </a>
-                                        <a href="/shop/cart" role="menuitem" class="dropdown-item">
-                                            <span
-                                                    class="fa fa-check-circle"/>
-                                            <span class="te_user_drop_item">Checkout</span>
-                                        </a>
                                         <a href="/my/orders" role="menuitem" class="dropdown-item">
                                             <span
                                                     class="fa fa-pie-chart"/>
                                             <span class="te_user_drop_item">My orders</span>
-                                        </a>
-                                        <a href="/shop/wishlist" role="menuitem" class="dropdown-item"
-                                           t-if="request.website.viewref('website_sale_wishlist.add_to_wishlist').active">
-                                            <span class="fa fa-heart"/>
-                                            <span class="te_user_drop_item">My Wishlist</span>
                                         </a>
                                         <a id="o_logout" class="dropdown-item"
                                            t-attf-href="/web/session/logout?redirect=/"
@@ -829,25 +801,18 @@
                                         <i class="fa fa-user-circle-o"></i>
                                     </a>
                                     <div class="dropdown-menu dropdown-menu-right js_usermenu" role="menu">
+                                        <a role="menuitem" class="dropdown-item te_user_name">
+                                            <span class="te_user_drop_item">Hello, <span class="te_user_drop_item" t-esc="user_id.name[:15] + '...' if user_id.name and len(user_id.name) &gt; 16 else user_id.name"/></span>
+                                        </a>
                                         <a href="/my/home" role="menuitem" class="dropdown-item">
                                             <span
                                                     class="fa fa-user"/>
                                             <span class="te_user_drop_item">My Account</span>
                                         </a>
-                                        <a href="/shop/cart" role="menuitem" class="dropdown-item">
-                                            <span
-                                                    class="fa fa-check-circle"/>
-                                            <span class="te_user_drop_item">Checkout</span>
-                                        </a>
                                         <a href="/my/orders" role="menuitem" class="dropdown-item">
                                             <span
                                                     class="fa fa-pie-chart"/>
                                             <span class="te_user_drop_item">My orders</span>
-                                        </a>
-                                        <a href="/shop/wishlist" role="menuitem" class="dropdown-item"
-                                           t-if="request.website.viewref('website_sale_wishlist.add_to_wishlist').active">
-                                            <span class="fa fa-heart"/>
-                                            <span class="te_user_drop_item">My Wishlist</span>
                                         </a>
                                         <a id="o_logout" class="dropdown-item"
                                            t-attf-href="/web/session/logout?redirect=/"
@@ -1010,25 +975,18 @@
                                             </span>
                                         </a>
                                         <div class="dropdown-menu dropdown-menu-right js_usermenu" role="menu">
+                                            <a role="menuitem" class="dropdown-item te_user_name">
+                                                <span class="te_user_drop_item">Hello, <span class="te_user_drop_item" t-esc="user_id.name[:15] + '...' if user_id.name and len(user_id.name) &gt; 16 else user_id.name"/></span>
+                                            </a>
                                             <a href="/my/home" role="menuitem" class="dropdown-item">
                                                 <span
                                                         class="fa fa-user"/>
                                                 <span class="te_user_drop_item">My Account</span>
                                             </a>
-                                            <a href="/shop/cart" role="menuitem" class="dropdown-item">
-                                                <span
-                                                        class="fa fa-check-circle"/>
-                                                <span class="te_user_drop_item">Checkout</span>
-                                            </a>
                                             <a href="/my/orders" role="menuitem" class="dropdown-item">
                                                 <span
                                                         class="fa fa-pie-chart"/>
                                                 <span class="te_user_drop_item">My orders</span>
-                                            </a>
-                                            <a href="/shop/wishlist" role="menuitem" class="dropdown-item"
-                                               t-if="request.website.viewref('website_sale_wishlist.add_to_wishlist').active">
-                                                <span class="fa fa-heart"/>
-                                                <span class="te_user_drop_item">My Wishlist</span>
                                             </a>
                                             <a id="o_logout" class="dropdown-item"
                                                t-attf-href="/web/session/logout?redirect=/"
@@ -1173,25 +1131,18 @@
                                             <i class="fa fa-user-circle-o"></i>
                                         </a>
                                         <div class="dropdown-menu dropdown-menu-right js_usermenu" role="menu">
+                                            <a role="menuitem" class="dropdown-item te_user_name">
+                                                <span class="te_user_drop_item">Hello, <span class="te_user_drop_item" t-esc="user_id.name[:15] + '...' if user_id.name and len(user_id.name) &gt; 16 else user_id.name"/></span>
+                                            </a>
                                             <a href="/my/home" role="menuitem" class="dropdown-item">
                                                 <span
                                                         class="fa fa-user"/>
                                                 <span class="te_user_drop_item">My Account</span>
                                             </a>
-                                            <a href="/shop/cart" role="menuitem" class="dropdown-item">
-                                                <span
-                                                        class="fa fa-check-circle"/>
-                                                <span class="te_user_drop_item">Checkout</span>
-                                            </a>
                                             <a href="/my/orders" role="menuitem" class="dropdown-item">
                                                 <span
                                                         class="fa fa-pie-chart"/>
                                                 <span class="te_user_drop_item">My orders</span>
-                                            </a>
-                                            <a href="/shop/wishlist" role="menuitem" class="dropdown-item"
-                                               t-if="request.website.viewref('website_sale_wishlist.add_to_wishlist').active">
-                                                <span class="fa fa-heart"/>
-                                                <span class="te_user_drop_item">My Wishlist</span>
                                             </a>
                                             <a id="o_logout" class="dropdown-item"
                                                t-attf-href="/web/session/logout?redirect=/"
@@ -1351,28 +1302,20 @@
                             <i class="fa fa-user-circle-o"></i>
                         </a>
                         <div class="dropdown-menu dropdown-menu-right js_usermenu" role="menu">
+                            <a role="menuitem" class="dropdown-item te_user_name">
+                                <span class="te_user_drop_item">Hello, <span class="te_user_drop_item" t-esc="user_id.name[:15] + '...' if user_id.name and len(user_id.name) &gt; 16 else user_id.name"/></span>
+                            </a>
                             <a href="/my/home" role="menuitem" class="dropdown-item">
                                 <span class="fa fa-user"/>
                                 <span class="te_user_drop_item">My
                                     Account
                                 </span>
                             </a>
-                            <a href="/shop/cart" role="menuitem" class="dropdown-item">
-                                <span
-                                        class="fa fa-check-circle"/>
-                                <span class="te_user_drop_item">Checkout</span>
-                            </a>
                             <a href="/my/orders" role="menuitem" class="dropdown-item">
                                 <span class="fa fa-pie-chart"/>
                                 <span class="te_user_drop_item">My
                                     orders
                                 </span>
-                            </a>
-                            <a href="/shop/wishlist" role="menuitem" class="dropdown-item"
-                               t-if="request.website.viewref('website_sale_wishlist.add_to_wishlist').active">
-                                <span
-                                        class="fa fa-heart"/>
-                                <span class="te_user_drop_item">My Wishlist</span>
                             </a>
                             <a id="o_logout" class="dropdown-item" t-attf-href="/web/session/logout?redirect=/"
                                role="menuitem">
@@ -1508,28 +1451,20 @@
                             <i class="fa fa-user-circle-o"></i>
                         </a>
                         <div class="dropdown-menu dropdown-menu-right js_usermenu" role="menu">
+                            <a role="menuitem" class="dropdown-item te_user_name">
+                                <span class="te_user_drop_item">Hello, <span class="te_user_drop_item" t-esc="user_id.name[:15] + '...' if user_id.name and len(user_id.name) &gt; 16 else user_id.name"/></span>
+                            </a>
                             <a href="/my/home" role="menuitem" class="dropdown-item">
                                 <span class="fa fa-user"/>
                                 <span class="te_user_drop_item">My
                                     Account
                                 </span>
                             </a>
-                            <a href="/shop/cart" role="menuitem" class="dropdown-item">
-                                <span
-                                        class="fa fa-check-circle"/>
-                                <span class="te_user_drop_item">Checkout</span>
-                            </a>
                             <a href="/my/orders" role="menuitem" class="dropdown-item">
                                 <span class="fa fa-pie-chart"/>
                                 <span class="te_user_drop_item">My
                                     orders
                                 </span>
-                            </a>
-                            <a href="/shop/wishlist" role="menuitem" class="dropdown-item"
-                               t-if="request.website.viewref('website_sale_wishlist.add_to_wishlist').active">
-                                <span
-                                        class="fa fa-heart"/>
-                                <span class="te_user_drop_item">My Wishlist</span>
                             </a>
                             <a id="o_logout" class="dropdown-item" t-attf-href="/web/session/logout?redirect=/"
                                role="menuitem">
@@ -1653,27 +1588,19 @@
                                 <i class="fa fa-user-circle-o"></i>
                             </a>
                             <div class="dropdown-menu dropdown-menu-right js_usermenu" role="menu">
+                                <a role="menuitem" class="dropdown-item te_user_name">
+                                    <span class="te_user_drop_item">Hello, <span class="te_user_drop_item" t-esc="user_id.name[:15] + '...' if user_id.name and len(user_id.name) &gt; 16 else user_id.name"/></span>
+                                </a>
                                 <a href="/my/home" role="menuitem" class="dropdown-item">
                                     <span class="fa fa-user"/>
                                     <span class="te_user_drop_item">My
                                         Account
                                     </span>
                                 </a>
-                                <a href="/shop/cart" role="menuitem" class="dropdown-item">
-                                    <span
-                                            class="fa fa-check-circle"/>
-                                    <span class="te_user_drop_item">Checkout</span>
-                                </a>
                                 <a href="/my/orders" role="menuitem" class="dropdown-item">
                                     <span
                                             class="fa fa-pie-chart"/>
                                     <span class="te_user_drop_item">My orders</span>
-                                </a>
-                                <a href="/shop/wishlist" role="menuitem" class="dropdown-item"
-                                   t-if="request.website.viewref('website_sale_wishlist.add_to_wishlist').active">
-                                    <span
-                                            class="fa fa-heart"/>
-                                    <span class="te_user_drop_item">My Wishlist</span>
                                 </a>
                                 <a id="o_logout" class="dropdown-item" t-attf-href="/web/session/logout?redirect=/"
                                    role="menuitem">
@@ -1803,28 +1730,20 @@
                                 <i class="fa fa-user-circle-o"></i>
                             </a>
                             <div class="dropdown-menu dropdown-menu-right js_usermenu" role="menu">
+                                <a role="menuitem" class="dropdown-item te_user_name">
+                                    <span class="te_user_drop_item">Hello, <span class="te_user_drop_item" t-esc="user_id.name[:15] + '...' if user_id.name and len(user_id.name) &gt; 16 else user_id.name"/></span>
+                                </a>
                                 <a href="/my/home" role="menuitem" class="dropdown-item">
                                     <span class="fa fa-user"/>
                                     <span class="te_user_drop_item">My
                                         Account
                                     </span>
                                 </a>
-                                <a href="/shop/cart" role="menuitem" class="dropdown-item">
-                                    <span
-                                            class="fa fa-check-circle"/>
-                                    <span class="te_user_drop_item">Checkout</span>
-                                </a>
                                 <a href="/my/orders" role="menuitem" class="dropdown-item">
                                     <span class="fa fa-pie-chart"/>
                                     <span class="te_user_drop_item">My
                                         orders
                                     </span>
-                                </a>
-                                <a href="/shop/wishlist" role="menuitem" class="dropdown-item"
-                                   t-if="request.website.viewref('website_sale_wishlist.add_to_wishlist').active">
-                                    <span
-                                            class="fa fa-heart"/>
-                                    <span class="te_user_drop_item">My Wishlist</span>
                                 </a>
                                 <a id="o_logout" class="dropdown-item" t-attf-href="/web/session/logout?redirect=/"
                                    role="menuitem">

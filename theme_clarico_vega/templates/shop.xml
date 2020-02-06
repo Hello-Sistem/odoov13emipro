@@ -34,6 +34,12 @@
             <input type="hidden" class="load_products_through_ajax" value="True"/>
         </xpath>
     </template>
+    <!--================= Sticky Sidebar =====================-->
+    <template id="sticky_product_categories" inherit_id="website_sale.products" name="Sticky Sidebar">
+        <xpath expr="//div[@id='products_grid_before']" position="attributes">
+            <attribute name="class">col-lg-3 te_product_sticky_sidebar</attribute>
+        </xpath>
+    </template>
     <!--====================== shop product listing ==========================-->
     <template id="products_ept" inherit_id="website_sale.products" priority="15">
         <!-- Category Wise Landing Page -->
@@ -144,6 +150,12 @@
         <xpath expr="//div[hasclass('products_pager')][1]/t[@t-call='website.pager']/t[@t-set='_classes']"
                position="replace">
             <t t-set="_classes">mt-3 ml-md-2</t>
+        </xpath>
+        <xpath expr="//div[hasclass('oe_website_sale')]//div[hasclass('o_wsale_products_main_row')]"
+               position="attributes">
+            <attribute name="t-attf-class">row o_wsale_products_main_row
+                #{'enabled' if (request.website.viewref('website_sale.products_categories').active or request.website.viewref('website_sale.products_attributes').active) else ''}
+            </attribute>
         </xpath>
         <!--============= Load more feature =================-->
         <xpath expr="//div[hasclass('oe_website_sale')]" position="before">

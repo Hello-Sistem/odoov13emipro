@@ -136,6 +136,10 @@
                         <opt data-xmlid="theme_clarico_vega.product_sticky_details_container" data-reload="/"
                              string="Sticky Product Details"/>
                     </checkbox>
+                    <checkbox>
+                        <opt data-xmlid="theme_clarico_vega.product_sticky_gallary" data-reload="/"
+                             string="Sticky Product Gallary"/>
+                    </checkbox>
                 </list>
                 <list>
                     <checkbox>
@@ -153,6 +157,10 @@
                     <checkbox>
                         <opt data-xmlid="theme_clarico_vega.website_submenu_label_ept" data-reload="/"
                              string="Menu Label"/>
+                    </checkbox>
+                    <checkbox>
+                        <opt data-xmlid="theme_clarico_vega.sticky_product_categories" data-reload="/"
+                             string="Sticky Attribute &amp; Category Filter"/>
                     </checkbox>
                 </list>
                 <!-- Product Label Styles -->

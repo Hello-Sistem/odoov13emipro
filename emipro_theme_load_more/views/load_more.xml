@@ -40,6 +40,11 @@
                                 </div>
                             </div>
                         </div>
+                        <span class="col-12 text-muted">Note: We suggest you to maintain the product column and count
+                            ratio in a normalized manner in the shop page. If the product column is 3 then product count
+                            should to be in the multiplier of 3. For example [ (3 x 5 = 15), (3 x 6 = 18), (3 x 8 =
+                            24),(4 x 4 = 16), (4 x 6 = 24) ]
+                        </span>
                     </div>
                     <div class="col-12 col-lg-6 o_setting_box" title="Load Prev-Next Button">
                         <div class="content-group"
@@ -67,16 +72,17 @@
                                 </div>
                             </div>
                         </div>
+
+
                     </div>
-                    <span class="col-12 text-muted">Note: We suggest you to maintain the product column and count
-                        ratio in a normalized manner in the shop page. If the product column is 3 then product count
-                        should to be in the multiplier of 3. For example [ (3 x 5 = 15), (3 x 6 = 18), (3 x 8 =
-                        24),(4 x 4 = 16), (4 x 6 = 24) ]
-                    </span>
                 </div>
                 <style type="text/css">
                     .o_form_view #clarico_vega_load_more .o_field_translate.btn.btn-link {
                     display: none;
+                    }
+                    .col-12.text-muted
+                    {
+                        display:block;
                     }
                 </style>
             </div>

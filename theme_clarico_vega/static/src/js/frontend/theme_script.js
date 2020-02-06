@@ -301,6 +301,7 @@ odoo.define('theme_clarico_vega.theme_script', function(require) {
             $("img.lazyload").lazyload();
             this.onShowClearVariant();
             this.onSelectAttribute();
+            this.stickySidebar();
         },
         onShowClearVariant: function() {
             $("form.js_attributes .te_shop_attr_ul input:checked, form.js_attributes .te_shop_attr_ul select").each(function() {
@@ -523,6 +524,40 @@ odoo.define('theme_clarico_vega.theme_script', function(require) {
         _onShowOptionBtnResp: function(ev){
             $(".te_show_option").find("i").toggleClass('fa-chevron-down fa-chevron-right');
         },
+        stickySidebar: function(ev){
+            if($( window ).width() > 991) {
+                if($('.o_wsale_products_main_row').hasClass('enabled')){
+                    var $stickySidebar = $('.te_product_sticky_sidebar');
+                    if (!!$stickySidebar.offset()) {
+                        var sidebar_height = $stickySidebar.innerHeight();
+                        var stickyTop = $stickySidebar.offset().top;
+                        $(window).scroll(function(){
+                            var quickView = $('.te_quick_filter_dropdown_menu').is(":visible");
+                            if(!quickView) {
+                                var windowHeight = $( window ).height() - 150;
+                                if($('#oe_main_menu_navbar').length) {
+                                    var header_height = $('#oe_main_menu_navbar').height() + $('.te_header_navbar').height() + 20;
+                                } else {
+                                    var header_height = $('.te_header_navbar').height() + 20;
+                                }
+                                var stickOffset = header_height;
+                                var windowTop = $(window).scrollTop();
+                                if (stickyTop < windowTop+header_height) {
+                                    $stickySidebar.css({ position: 'sticky', top: stickOffset, height: windowHeight});
+                                    $stickySidebar.addClass('sticky-media');
+                                } else {
+                                    $stickySidebar.css({ position: 'unset', top: 'initial', height: 'auto'});
+                                    $stickySidebar.removeClass('sticky-media');
+                                }
+                            } else {
+                                $stickySidebar.css({ position: 'unset', top: 'initial', height: 'auto'});
+                                $stickySidebar.removeClass('sticky-media');
+                            }
+                        });
+                    }
+                }
+            }
+        },
     });
     /*---- Shop Functions ------*/
     //function for ajax form load
@@ -629,7 +664,7 @@ odoo.define('theme_clarico_vega.theme_script', function(require) {
         },
         productStickyGallery: function(){
             if($( window ).width() > 991) {
-                var $sticky = $('#product_detail .row > .col-lg-6:first-child');
+                var $sticky = $('#product_detail .row.te_row_main > .col-lg-6:first-child');
                 if (!!$sticky.offset()) {
                     var sidebar_height = $sticky.innerHeight();
                     var stickyTop = $sticky.offset().top;
