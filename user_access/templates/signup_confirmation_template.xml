@@ -7,7 +7,7 @@
                 <div class="signup-common-div">
                     <div class="block te_user_template_common text-center">
                         <img class="te_user_access_img" src="/user_access/static/src/img/Email-Verification.png" />
-                        <h4 class="text-center">Verification email sent sucessfully!</h4>
+                        <h4 class="text-center">To login please check your email to complete account verification.</h4>
                     </div>
                 </div>
             </div>
@@ -21,7 +21,8 @@
                 <div class="signup-common-div">
                     <div class="block te_user_template_common text-center">
                         <img class="te_user_access_img" src="/user_access/static/src/img/Email-Verification.png" />
-                        <h4 class="text-center">Quotation has been submitted sucessfully!</h4>
+                        <h4 class="text-center">Your Quotation has been saved successfully. <a href="/my/quotes">View your saved quotes.</a></h4>
+                        <h4 class="text-center">We have also sent a copy of your email.</h4>
                     </div>
                 </div>
             </div>
@@ -52,9 +53,8 @@
                 <div class="signup-common-div">
                     <div class="block te_user_template_common text-center">
                         <img class="te_user_access_img" src="/user_access/static/src/img/Account-Validated.png" />
-                        <h4 class="text-center">Your account validate successfully, Now you can login With
-                            your credential using below link
-                        </h4>
+                        <h4 class="text-center">Your account has been validated.</h4>
+                        <h4 class="text-center">You can now login with your email and password using the link below.</h4>
                         <p class="text-center">
                             <a class="btn btn-primary te_theme_button" href="/web/login">Login</a>
                         </p>

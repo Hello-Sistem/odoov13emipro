@@ -108,12 +108,16 @@
                                 </a>
                                 <div class="dropdown-menu dropdown-menu-right js_usermenu" role="menu">
                                     <a role="menuitem" class="dropdown-item te_user_name">
-                                        <span class="te_user_drop_item">Hello, <span class="te_user_drop_item" t-esc="user_id.name[:15] + '...' if user_id.name and len(user_id.name) &gt; 16 else user_id.name"/></span>
+                                        <span class="te_user_drop_item">Hello,
+                                            <span class="te_user_drop_item"
+                                                  t-esc="user_id.name[:15] + '...' if user_id.name and len(user_id.name) &gt; 16 else user_id.name"/>
+                                        </span>
                                     </a>
                                     <a href="/my/home" role="menuitem" class="dropdown-item">
                                         <span class="fa fa-user"/>
                                         <span class="te_user_drop_item">My Account</span>
                                     </a>
+                                    <t t-call="theme_clarico_vega.header_my_quote"/>
                                     <a href="/my/orders" role="menuitem" class="dropdown-item">
                                         <span
                                                 class="fa fa-pie-chart"/>
@@ -234,13 +238,17 @@
                                                 </a>
                                                 <div class="dropdown-menu dropdown-menu-right js_usermenu" role="menu">
                                                     <a role="menuitem" class="dropdown-item te_user_name">
-                                                        <span class="te_user_drop_item">Hello, <span class="te_user_drop_item" t-esc="user_id.name[:15] + '...' if user_id.name and len(user_id.name) &gt; 16 else user_id.name"/></span>
+                                                        <span class="te_user_drop_item">Hello,
+                                                            <span class="te_user_drop_item"
+                                                                  t-esc="user_id.name[:15] + '...' if user_id.name and len(user_id.name) &gt; 16 else user_id.name"/>
+                                                        </span>
                                                     </a>
                                                     <a href="/my/home" role="menuitem" class="dropdown-item">
                                                         <span
                                                                 class="fa fa-user"/>
                                                         <span class="te_user_drop_item">My Account</span>
                                                     </a>
+                                                    <t t-call="theme_clarico_vega.header_my_quote"/>
                                                     <a href="/my/orders" role="menuitem" class="dropdown-item">
                                                         <span
                                                                 class="fa fa-pie-chart"/>
@@ -449,13 +457,17 @@
                                     </a>
                                     <div class="dropdown-menu dropdown-menu-right js_usermenu" role="menu">
                                         <a role="menuitem" class="dropdown-item te_user_name">
-                                            <span class="te_user_drop_item">Hello, <span class="te_user_drop_item" t-esc="user_id.name[:15] + '...' if user_id.name and len(user_id.name) &gt; 16 else user_id.name"/></span>
+                                            <span class="te_user_drop_item">Hello,
+                                                <span class="te_user_drop_item"
+                                                      t-esc="user_id.name[:15] + '...' if user_id.name and len(user_id.name) &gt; 16 else user_id.name"/>
+                                            </span>
                                         </a>
                                         <a href="/my/home" role="menuitem" class="dropdown-item">
                                             <span
                                                     class="fa fa-user"/>
                                             <span class="te_user_drop_item">My Account</span>
                                         </a>
+                                        <t t-call="theme_clarico_vega.header_my_quote"/>
                                         <a href="/my/orders" role="menuitem" class="dropdown-item">
                                             <span
                                                     class="fa fa-pie-chart"/>
@@ -635,13 +647,17 @@
                                     </a>
                                     <div class="dropdown-menu dropdown-menu-right js_usermenu" role="menu">
                                         <a role="menuitem" class="dropdown-item te_user_name">
-                                            <span class="te_user_drop_item">Hello, <span class="te_user_drop_item" t-esc="user_id.name[:15] + '...' if user_id.name and len(user_id.name) &gt; 16 else user_id.name"/></span>
+                                            <span class="te_user_drop_item">Hello,
+                                                <span class="te_user_drop_item"
+                                                      t-esc="user_id.name[:15] + '...' if user_id.name and len(user_id.name) &gt; 16 else user_id.name"/>
+                                            </span>
                                         </a>
                                         <a href="/my/home" role="menuitem" class="dropdown-item">
                                             <span
                                                     class="fa fa-user"/>
                                             <span class="te_user_drop_item">My Account</span>
                                         </a>
+                                        <t t-call="theme_clarico_vega.header_my_quote"/>
                                         <a href="/my/orders" role="menuitem" class="dropdown-item">
                                             <span
                                                     class="fa fa-pie-chart"/>
@@ -802,13 +818,17 @@
                                     </a>
                                     <div class="dropdown-menu dropdown-menu-right js_usermenu" role="menu">
                                         <a role="menuitem" class="dropdown-item te_user_name">
-                                            <span class="te_user_drop_item">Hello, <span class="te_user_drop_item" t-esc="user_id.name[:15] + '...' if user_id.name and len(user_id.name) &gt; 16 else user_id.name"/></span>
+                                            <span class="te_user_drop_item">Hello,
+                                                <span class="te_user_drop_item"
+                                                      t-esc="user_id.name[:15] + '...' if user_id.name and len(user_id.name) &gt; 16 else user_id.name"/>
+                                            </span>
                                         </a>
                                         <a href="/my/home" role="menuitem" class="dropdown-item">
                                             <span
                                                     class="fa fa-user"/>
                                             <span class="te_user_drop_item">My Account</span>
                                         </a>
+                                        <t t-call="theme_clarico_vega.header_my_quote"/>
                                         <a href="/my/orders" role="menuitem" class="dropdown-item">
                                             <span
                                                     class="fa fa-pie-chart"/>
@@ -976,13 +996,17 @@
                                         </a>
                                         <div class="dropdown-menu dropdown-menu-right js_usermenu" role="menu">
                                             <a role="menuitem" class="dropdown-item te_user_name">
-                                                <span class="te_user_drop_item">Hello, <span class="te_user_drop_item" t-esc="user_id.name[:15] + '...' if user_id.name and len(user_id.name) &gt; 16 else user_id.name"/></span>
+                                                <span class="te_user_drop_item">Hello,
+                                                    <span class="te_user_drop_item"
+                                                          t-esc="user_id.name[:15] + '...' if user_id.name and len(user_id.name) &gt; 16 else user_id.name"/>
+                                                </span>
                                             </a>
                                             <a href="/my/home" role="menuitem" class="dropdown-item">
                                                 <span
                                                         class="fa fa-user"/>
                                                 <span class="te_user_drop_item">My Account</span>
                                             </a>
+                                            <t t-call="theme_clarico_vega.header_my_quote"/>
                                             <a href="/my/orders" role="menuitem" class="dropdown-item">
                                                 <span
                                                         class="fa fa-pie-chart"/>
@@ -1132,13 +1156,17 @@
                                         </a>
                                         <div class="dropdown-menu dropdown-menu-right js_usermenu" role="menu">
                                             <a role="menuitem" class="dropdown-item te_user_name">
-                                                <span class="te_user_drop_item">Hello, <span class="te_user_drop_item" t-esc="user_id.name[:15] + '...' if user_id.name and len(user_id.name) &gt; 16 else user_id.name"/></span>
+                                                <span class="te_user_drop_item">Hello,
+                                                    <span class="te_user_drop_item"
+                                                          t-esc="user_id.name[:15] + '...' if user_id.name and len(user_id.name) &gt; 16 else user_id.name"/>
+                                                </span>
                                             </a>
                                             <a href="/my/home" role="menuitem" class="dropdown-item">
                                                 <span
                                                         class="fa fa-user"/>
                                                 <span class="te_user_drop_item">My Account</span>
                                             </a>
+                                            <t t-call="theme_clarico_vega.header_my_quote"/>
                                             <a href="/my/orders" role="menuitem" class="dropdown-item">
                                                 <span
                                                         class="fa fa-pie-chart"/>
@@ -1303,7 +1331,10 @@
                         </a>
                         <div class="dropdown-menu dropdown-menu-right js_usermenu" role="menu">
                             <a role="menuitem" class="dropdown-item te_user_name">
-                                <span class="te_user_drop_item">Hello, <span class="te_user_drop_item" t-esc="user_id.name[:15] + '...' if user_id.name and len(user_id.name) &gt; 16 else user_id.name"/></span>
+                                <span class="te_user_drop_item">Hello,
+                                    <span class="te_user_drop_item"
+                                          t-esc="user_id.name[:15] + '...' if user_id.name and len(user_id.name) &gt; 16 else user_id.name"/>
+                                </span>
                             </a>
                             <a href="/my/home" role="menuitem" class="dropdown-item">
                                 <span class="fa fa-user"/>
@@ -1311,6 +1342,7 @@
                                     Account
                                 </span>
                             </a>
+                            <t t-call="theme_clarico_vega.header_my_quote"/>
                             <a href="/my/orders" role="menuitem" class="dropdown-item">
                                 <span class="fa fa-pie-chart"/>
                                 <span class="te_user_drop_item">My
@@ -1452,7 +1484,10 @@
                         </a>
                         <div class="dropdown-menu dropdown-menu-right js_usermenu" role="menu">
                             <a role="menuitem" class="dropdown-item te_user_name">
-                                <span class="te_user_drop_item">Hello, <span class="te_user_drop_item" t-esc="user_id.name[:15] + '...' if user_id.name and len(user_id.name) &gt; 16 else user_id.name"/></span>
+                                <span class="te_user_drop_item">Hello,
+                                    <span class="te_user_drop_item"
+                                          t-esc="user_id.name[:15] + '...' if user_id.name and len(user_id.name) &gt; 16 else user_id.name"/>
+                                </span>
                             </a>
                             <a href="/my/home" role="menuitem" class="dropdown-item">
                                 <span class="fa fa-user"/>
@@ -1460,6 +1495,7 @@
                                     Account
                                 </span>
                             </a>
+                            <t t-call="theme_clarico_vega.header_my_quote"/>
                             <a href="/my/orders" role="menuitem" class="dropdown-item">
                                 <span class="fa fa-pie-chart"/>
                                 <span class="te_user_drop_item">My
@@ -1589,7 +1625,10 @@
                             </a>
                             <div class="dropdown-menu dropdown-menu-right js_usermenu" role="menu">
                                 <a role="menuitem" class="dropdown-item te_user_name">
-                                    <span class="te_user_drop_item">Hello, <span class="te_user_drop_item" t-esc="user_id.name[:15] + '...' if user_id.name and len(user_id.name) &gt; 16 else user_id.name"/></span>
+                                    <span class="te_user_drop_item">Hello,
+                                        <span class="te_user_drop_item"
+                                              t-esc="user_id.name[:15] + '...' if user_id.name and len(user_id.name) &gt; 16 else user_id.name"/>
+                                    </span>
                                 </a>
                                 <a href="/my/home" role="menuitem" class="dropdown-item">
                                     <span class="fa fa-user"/>
@@ -1597,6 +1636,7 @@
                                         Account
                                     </span>
                                 </a>
+                                <t t-call="theme_clarico_vega.header_my_quote"/>
                                 <a href="/my/orders" role="menuitem" class="dropdown-item">
                                     <span
                                             class="fa fa-pie-chart"/>
@@ -1731,7 +1771,10 @@
                             </a>
                             <div class="dropdown-menu dropdown-menu-right js_usermenu" role="menu">
                                 <a role="menuitem" class="dropdown-item te_user_name">
-                                    <span class="te_user_drop_item">Hello, <span class="te_user_drop_item" t-esc="user_id.name[:15] + '...' if user_id.name and len(user_id.name) &gt; 16 else user_id.name"/></span>
+                                    <span class="te_user_drop_item">Hello,
+                                        <span class="te_user_drop_item"
+                                              t-esc="user_id.name[:15] + '...' if user_id.name and len(user_id.name) &gt; 16 else user_id.name"/>
+                                    </span>
                                 </a>
                                 <a href="/my/home" role="menuitem" class="dropdown-item">
                                     <span class="fa fa-user"/>
@@ -1739,6 +1782,7 @@
                                         Account
                                     </span>
                                 </a>
+                                 <t t-call="theme_clarico_vega.header_my_quote"/>
                                 <a href="/my/orders" role="menuitem" class="dropdown-item">
                                     <span class="fa fa-pie-chart"/>
                                     <span class="te_user_drop_item">My
@@ -1861,6 +1905,13 @@
                 </a>
             </t>
         </t>
+    </template>
+
+    <template id="header_my_quote">
+        <a href="/my/quotes" role="menuitem" class="dropdown-item">
+            <span class="fa fa-bookmark"/>
+            <span class="te_user_drop_item">My Quotes</span>
+        </a>
     </template>
 
     <!-- To Replace Default Cart In Navbar -->
