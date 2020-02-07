@@ -366,6 +366,11 @@ class EmiproThemeBaseExtended(WebsiteSaleWishlist):
         :param attrib_values:
         :return: search domain
         """
+
+        if category:
+            domain = [('public_categ_ids','in',category.id)]
+            return domain
+
         filter_id = request.httprequest.values.get('filter_id', False)
         if filter_id:
             curr_filter = request.env['ir.filters'].sudo().search([('id', '=', int(filter_id))])

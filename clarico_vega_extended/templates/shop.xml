@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <!--====================== shop product listing ==========================-->
+    <template id="products_extended" inherit_id="website_sale.products" priority="16">
+        <xpath expr="//div[hasclass('o_wsale_products_grid_table_wrapper')]" position="before">
+            <t t-set="c" t-value="request.env['product.public.category'].sudo().search([('id', '=', category.id)])"/>
+            <t t-call="clarico_vega_extended.shop_child_category"/>
+        </xpath>
+    </template>
+    <template id="shop_child_category">
+        <li class="nav-item">
+            <t t-if="category.id != c.id">
+                <a t-att-href="keep('/shop/category/' + slug(c), category=0)"
+                   t-attf-class="nav-link #{'active' if c.id == category.id else ''}">
+                    <div class="te_category_img">
+                        <span t-field="c.image_512"
+                              t-options="{'widget': 'image', 'qweb_img_responsive': False, 'class': 'rounded o_image_64_max'}"/>
+                    </div>
+                    <span class="te_category_name" t-esc="c.name"/>
+                </a>
+            </t>
+            <ul t-if="c.child_id" class="nav nav-pills flex-column nav-hierarchy">
+                <t t-foreach="c.child_id" t-as="c">
+                    <t t-if="not search or c.id in search_categories_ids">
+                        <t t-call="clarico_vega_extended.shop_child_category"/>
+                    </t>
+                </t>
+            </ul>
+        </li>
+    </template>
+    <template id="products_attributes_extend" inherit_id="website_sale.products_attributes">
+         <xpath expr="//div[@id='wsale_products_attributes_collapse']" position="attributes">
+              <attribute name="t-if">category</attribute>
+         </xpath>
+    </template>
+</odoo>

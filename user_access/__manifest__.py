@@ -28,6 +28,7 @@
     'maintainer': 'Emipro Technologies Pvt. Ltd.',
 
     # Technical
+    'pre_init_hook': 'pre_init_hook',
     'installable': True,
     'auto_install': False,
 }

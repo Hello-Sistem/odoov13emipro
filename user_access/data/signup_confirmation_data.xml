@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <odoo>
     <data>
-    	
+
         <!-- Email template for new users that used a signup Conrirmation -->
         <record id="mail_template_user_signup_confirmation" model="mail.template">
             <field name="name">Signup: Confirmation</field>
@@ -10,33 +10,92 @@
             <field name="email_to">${object.email|safe}</field>
             <field name="subject">User Confirmation</field>
             <field name="body_html" type="html">
-				<!-- <div style="padding:0px;width:600px;margin:auto;background: #FFFFFF repeat top /100%;color:#777777">
-				    <table cellspacing="0" cellpadding="0" style="width:600px;border-collapse:collapse;background:inherit;color:inherit">
-				        <tbody><tr>
-				            <td valign="center" width="200" style="padding:10px 10px 10px 5px;font-size: 12px">
-				                <img src="/logo.png" style="padding: 0px; margin: 0px; height: auto; width: 80px;" alt="${user.company_id.name}" />
-				            </td>
-				        </tr></tbody>
-				    </table>
-				</div> -->
-				<div style="padding:0px;width:600px;margin:auto;background: #FFFFFF repeat top /100%;color:#777777">
-				    <p style="color:#006A65">Hi ${object.name},</p>
-				    <p style="color:#006A65">
-				    	You successfully created your account
-				    </p>
-				    <p style="color:#006A65">
-				        From now on you can log in with: ${object.email}
-				    </p>
-				    <p style="color:#006A65">
-				        Please click on below link to activate your account.
-				    </p>
-				    <a href="/web/signup/confirmation?access_token=${object.access_token}" style="color:#ffffff!important;display:inline-block;font-weight:500;font-size:16px;line-height:42px;font-family:'Helvetica',Arial,sans-serif;width:auto;white-space:nowrap;height:42px;margin:12px 5px 12px 0;padding:0 22px;text-align:center;border:0;border-radius:3px;vertical-align:top;background-color:#006A65!important" target="_blank"><span style="display:inline;font-family:'Helvetica',Arial,sans-serif;text-decoration:none;font-weight:500;font-style:normal;font-size:16px;line-height:42px;border:none;color:#ffffff!important">Activate account</span></a>
-				    
-				    <p style="color:#006A65">Kind regards</p>
-				    <p style="color:#006A65">Team Emipro</p>
-				</div>
-			
-			</field>
+                <!-- <div style="padding:0px;width:600px;margin:auto;background: #FFFFFF repeat top /100%;color:#777777">
+                    <table cellspacing="0" cellpadding="0" style="width:600px;border-collapse:collapse;background:inherit;color:inherit">
+                        <tbody><tr>
+                            <td valign="center" width="200" style="padding:10px 10px 10px 5px;font-size: 12px">
+                                <img src="/logo.png" style="padding: 0px; margin: 0px; height: auto; width: 80px;" alt="${user.company_id.name}" />
+                            </td>
+                        </tr></tbody>
+                    </table>
+                </div> -->
+                <div style="padding:0px;width:600px;margin:auto;background: #FFFFFF repeat top /100%;color:#777777">
+                    <p style="color:#006A65">Hi ${object.name},</p>
+                    <p style="color:#006A65">
+                        You successfully created your account
+                    </p>
+                    <p style="color:#006A65">
+                        From now on you can log in with: ${object.email}
+                    </p>
+                    <p style="color:#006A65">
+                        Please click on below link to activate your account.
+                    </p>
+                    <a href="/web/signup/confirmation?access_token=${object.access_token}"
+                       style="color:#ffffff!important;display:inline-block;font-weight:500;font-size:16px;line-height:42px;font-family:'Helvetica',Arial,sans-serif;width:auto;white-space:nowrap;height:42px;margin:12px 5px 12px 0;padding:0 22px;text-align:center;border:0;border-radius:3px;vertical-align:top;background-color:#006A65!important"
+                       target="_blank">
+                        <span style="display:inline;font-family:'Helvetica',Arial,sans-serif;text-decoration:none;font-weight:500;font-style:normal;font-size:16px;line-height:42px;border:none;color:#ffffff!important">
+                            Activate account
+                        </span>
+                    </a>
+
+                    <p style="color:#006A65">Kind regards</p>
+                    <p style="color:#006A65">Team Emipro</p>
+                </div>
+
+            </field>
+        </record>
+        <record id="sale.email_template_edi_sale" model="mail.template">
+            <field name="name">Sales Order: Send by email</field>
+            <field name="model_id" ref="sale.model_sale_order"/>
+            <field name="subject">My Albion
+                ${object.state in ('draft', 'sent') and 'Quotation' or 'Order'} (Ref ${object.name or 'n/a' })
+            </field>
+            <field name="email_from">${(object.user_id.email_formatted or user.email_formatted) | safe}</field>
+            <field name="partner_to">${object.partner_id.id}</field>
+            <field name="body_html" type="html">
+                <div style="margin: 0px; padding: 0px;">
+                    <p style="margin: 0px; padding: 0px; font-size: 13px;">
+                        % set doc_name = 'quotation' if object.state in ('draft', 'sent') else 'order'
+                        Hello,
+                        <br/>
+                        <br/>
+                        Your
+                        % if ctx.get('proforma'):
+                        Pro forma invoice for ${doc_name}
+                        <strong>${object.name}</strong>
+                        % if object.origin:
+                        (with reference: ${object.origin} )
+                        % endif
+                        amounting in <strong>${format_amount(object.amount_total, object.pricelist_id.currency_id)}
+                    </strong> is available.
+                        % else:
+                        ${doc_name}
+                        <strong>${object.name}</strong>
+                        % if object.origin:
+                        (with reference: ${object.origin} )
+                        % endif
+                        for the cost of <strong>${format_amount(object.amount_total, object.pricelist_id.currency_id)}
+                    </strong> has been saved and is attached for your reference.
+                        % endif
+                        <br/>
+                        <br/>
+                        To share this order with your purchaser please view the quotation in your account and select the
+                        "Send quote" option.
+                        <br/>
+                        <br/>
+                        Do not hesitate to contact us if you have any questions.
+                        <br/>
+                        <br/>
+                        Albion Computers<br/>
+                        0333 006 6025
+                    </p>
+                </div>
+            </field>
+            <field name="report_template" ref="sale.action_report_saleorder"/>
+            <field name="report_name">${(object.name or '').replace('/','_')}</field>
+            <field name="lang">${object.partner_id.lang}</field>
+            <field name="user_signature" eval="False"/>
+            <field name="auto_delete" eval="True"/>
         </record>
     </data>
 </odoo>
