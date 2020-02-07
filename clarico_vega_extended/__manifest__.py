@@ -13,6 +13,7 @@
 
     # Views
     'data': [
+        'templates/assets.xml',
         'templates/shop.xml',
     ],
 

@@ -34,12 +34,12 @@
                    t-attf-class="nav-link #{'active' if c.id == category.id else ''}">
                     <div class="te_category_img">
                         <span t-field="c.image_512"
-                              t-options="{'widget': 'image', 'qweb_img_responsive': False, 'class': 'rounded o_image_64_max'}"/>
+                              t-options="{'widget': 'image', 'qweb_img_responsive': False, 'class': 'img img-fluid rounded'}"/>
                     </div>
                     <span class="te_category_name" t-esc="c.name"/>
                 </a>
             </t>
-            <ul t-if="c.child_id" class="nav nav-pills flex-column nav-hierarchy">
+            <ul t-if="c.child_id" class="nav nav-pills flex-row nav-hierarchy">
                 <t t-foreach="c.child_id" t-as="c">
                     <t t-if="not search or c.id in search_categories_ids">
                         <t t-call="clarico_vega_extended.shop_child_category"/>
