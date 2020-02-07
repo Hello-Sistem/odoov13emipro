@@ -15,9 +15,9 @@
                            t-attf-class="nav-link #{'active' if c.id == category.id else ''}">
                             <div class="te_category_img">
                                 <span t-field="c.image_512"
-                                      t-options="{'widget': 'image', 'qweb_img_responsive': False, 'class': 'rounded o_image_64_max'}"/>
+                                      t-options="{'widget': 'image', 'qweb_img_responsive': False, 'class': 'img img-fluid rounded'}"/>
                             </div>
-                            <span t-field="c.name"/>
+                             <span class="te_category_name" t-esc="c.name"/>
                         </a>
                     </li>
                 </t>
