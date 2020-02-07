@@ -28,7 +28,7 @@
             </ul>
         </li>
     </template>
-    <template id="products_attributes_extend" inherit_id="website_sale.products_attributes">
+    <template id="products_attributes_extend" inherit_id="website_sale.products_attributes" priority="10">
          <xpath expr="//div[@id='wsale_products_attributes_collapse']" position="attributes">
               <attribute name="t-if">category</attribute>
          </xpath>

@@ -8,22 +8,50 @@
         <xpath expr="//hr[@t-if='product.description_sale']" position="replace"/>
         <xpath expr="//p[@t-field='product.description_sale']" position="replace"/>
         <xpath expr="//section[@id='product_detail']" position="before">
-            <div class="te_product_breadcrumb">
+            <div t-if="category" class="te_product_breadcrumb">
+                <t t-set="categ_value" t-value="website.get_product_categs_path(category.id)"/>
+                <t t-set="categ" t-value="categ_value.get('categ_set',False)"/>
+                <t t-set="web_url" t-value="categ_value.get('web_url',False)"/>
                 <ol class="breadcrumb">
-                    <section class="container">
+                    <div class="container">
                         <li class="breadcrumb-item">
-                            <a t-att-href="keep(category=0)">Products</a>
+                            <a href="/shop">
+                                <i class="fa fa-home"></i>
+                            </a>
                         </li>
-                        <li t-if="category" class="breadcrumb-item">
-                            <a t-att-href="keep('/shop/category/%s' % slug(category), category=0)"
-                               t-field="category.name"/>
-                        </li>
-                        <li class="breadcrumb-item active">
-                            <span t-field="product.name"/>
-                        </li>
-                    </section>
+                        <t t-if="categ">
+                            <t t-foreach="categ" t-as="c">
+                                <t t-set="rec"
+                                   t-value="request.env['product.public.category'].sudo().search([('id', '=', c)])"/>
+                                <li class="breadcrumb-item">
+                                    <a t-att-href="'/shop/category/%s' %slug(rec)">
+                                        <span class="product_catg_breadcrumb" t-esc="rec.name"></span>
+                                    </a>
+                                </li>
+                            </t>
+                            <li class="breadcrumb-item active">
+                                <span t-field="product.name"/>
+                            </li>
+                        </t>
+                    </div>
                 </ol>
             </div>
+            <!--            <div class="te_product_breadcrumb">-->
+            <!--                <ol class="breadcrumb">-->
+            <!--                    <section class="container">-->
+            <!--                        <li class="breadcrumb-item">-->
+            <!--                            <a t-att-href="keep(category=0)">Products</a>-->
+            <!--                        </li>-->
+            <!--                        <li t-if="category" class="breadcrumb-item">-->
+            <!--                            <a t-att-href="keep('/shop/category/%s' % slug(category), category=0)"-->
+            <!--                               t-field="category.name"/>-->
+            <!--                        </li>-->
+            <!--                        <li class="breadcrumb-item active">-->
+            <!--                            <span t-field="product.name"/>-->
+            <!--                        </li>-->
+            <!--                    </section>-->
+            <!--                </ol>-->
+            <!--            </div>-->
         </xpath>
         <xpath expr="//div[hasclass('row')]/div[hasclass('col-md-6')]"
                position="attributes">
