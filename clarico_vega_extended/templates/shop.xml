@@ -28,7 +28,7 @@
         </xpath>
     </template>
     <template id="shop_child_category">
-        <li class="nav-item">
+        <li class="nav-item w-100">
             <t t-if="category.id != c.id">
                 <a t-att-href="keep('/shop/category/' + slug(c), category=0)"
                    t-attf-class="nav-link #{'active' if c.id == category.id else ''}">
