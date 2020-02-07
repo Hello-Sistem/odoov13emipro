@@ -73,7 +73,7 @@
         <xpath expr="//div[hasclass('products_pager')][1]/t[@t-call='website_sale.pricelist_list']"
                position="replace"/>
         <xpath expr="//div[hasclass('text-muted')]" position="replace">
-            <t t-if="not bins">
+            <t t-if="not bins and not category.child_id">
                 <div class="text-center">
                     <t t-if="not search">
                         <div class="text-muted te_no_products">
