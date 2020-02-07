@@ -36,22 +36,6 @@
                     </div>
                 </ol>
             </div>
-            <!--            <div class="te_product_breadcrumb">-->
-            <!--                <ol class="breadcrumb">-->
-            <!--                    <section class="container">-->
-            <!--                        <li class="breadcrumb-item">-->
-            <!--                            <a t-att-href="keep(category=0)">Products</a>-->
-            <!--                        </li>-->
-            <!--                        <li t-if="category" class="breadcrumb-item">-->
-            <!--                            <a t-att-href="keep('/shop/category/%s' % slug(category), category=0)"-->
-            <!--                               t-field="category.name"/>-->
-            <!--                        </li>-->
-            <!--                        <li class="breadcrumb-item active">-->
-            <!--                            <span t-field="product.name"/>-->
-            <!--                        </li>-->
-            <!--                    </section>-->
-            <!--                </ol>-->
-            <!--            </div>-->
         </xpath>
         <xpath expr="//div[hasclass('row')]/div[hasclass('col-md-6')]"
                position="attributes">

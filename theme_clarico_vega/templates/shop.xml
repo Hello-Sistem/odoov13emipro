@@ -112,6 +112,8 @@
             <attribute name="class">products_pager form-inline te_shop_pager
                 te_shop_pager_top
             </attribute>
+            <attribute name="t-if">category
+            </attribute>
         </xpath>
         <xpath expr="//div[hasclass('products_pager')][2]" position="attributes">
             <attribute name="class">products_pager form-inline justify-content-end mt-3 mb-3

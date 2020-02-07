@@ -3,8 +3,28 @@
     <!--====================== shop product listing ==========================-->
     <template id="products_extended" inherit_id="website_sale.products" priority="16">
         <xpath expr="//div[hasclass('o_wsale_products_grid_table_wrapper')]" position="before">
-            <t t-set="c" t-value="request.env['product.public.category'].sudo().search([('id', '=', category.id)])"/>
-            <t t-call="clarico_vega_extended.shop_child_category"/>
+            <t t-if="category">
+                <t t-set="c"
+                   t-value="request.env['product.public.category'].sudo().search([('id', '=', category.id)])"/>
+                <t t-call="clarico_vega_extended.shop_child_category"/>
+            </t>
+            <t t-else="">
+                <t t-foreach="categories" t-as="c">
+                    <li class="nav-item">
+                        <a t-att-href="keep('/shop/category/' + slug(c), category=0)"
+                           t-attf-class="nav-link #{'active' if c.id == category.id else ''}">
+                            <div class="te_category_img">
+                                <span t-field="c.image_512"
+                                      t-options="{'widget': 'image', 'qweb_img_responsive': False, 'class': 'rounded o_image_64_max'}"/>
+                            </div>
+                            <span t-field="c.name"/>
+                        </a>
+                    </li>
+                </t>
+            </t>
+        </xpath>
+        <xpath expr="//div[hasclass('o_wsale_products_grid_table_wrapper')]" position="attributes">
+            <attribute name="t-if">category and bins</attribute>
         </xpath>
     </template>
     <template id="shop_child_category">
@@ -29,8 +49,8 @@
         </li>
     </template>
     <template id="products_attributes_extend" inherit_id="website_sale.products_attributes" priority="10">
-         <xpath expr="//div[@id='wsale_products_attributes_collapse']" position="attributes">
-              <attribute name="t-if">category</attribute>
-         </xpath>
+        <xpath expr="//div[@id='wsale_products_attributes_collapse']" position="attributes">
+            <attribute name="t-if">category</attribute>
+        </xpath>
     </template>
 </odoo>
