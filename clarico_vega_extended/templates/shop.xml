@@ -48,4 +48,11 @@
             </ul>
         </li>
     </template>
+
+    <template id="products_add_to_cart_clarico_vega_extended" inherit_id="website_sale.products_add_to_cart" priority="10">
+        <xpath expr="//a[hasclass('a-submit')]" position="attributes">
+            <attribute name="aria-label">Add to Cart</attribute>
+            <attribute name="title">Add to Cart</attribute>
+        </xpath>
+    </template>
 </odoo>
