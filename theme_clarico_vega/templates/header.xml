@@ -1874,7 +1874,7 @@
     <!-- Header Cart Option-->
     <template id="header_cart">
         <t t-set="website_sale_order" t-value="website.sale_get_order()"/>
-        <t t-if="not user_id.partner_id.name == 'Public user'">
+        <t t-if="not user_id.get_external_id().get(int(user_id.id)) == 'base.public_user'">
             <a id="my_cart" href="/shop/cart" class="nav-link o_wsale_my_cart">
                 <i class="fa fa-shopping-cart"/>
                 <sup t-attf-class="my_cart_quantity badge badge-primary"
@@ -1894,7 +1894,7 @@
 
     <!-- Header Wishlist Option-->
     <template id="header_wishlist">
-        <t t-if="not user_id.partner_id.name == 'Public user'">
+        <t t-if="not user_id.get_external_id().get(int(user_id.id)) == 'base.public_user'">
             <t t-if="request.website.viewref('website_sale_wishlist.add_to_wishlist').active">
                 <t t-set='wishcount' t-value="len(request.env['product.wishlist'].current())"/>
                 <a href="/shop/wishlist" class="nav-link te_wish_icon_head">

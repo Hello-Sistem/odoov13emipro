@@ -54,7 +54,7 @@
             <div class="o_not_editable">
                 <p t-field="product.description_sale" class="te_prod_desc"/>
             </div>
-            <span class="te_prod_login_redirection" t-if="user_id.partner_id.name == 'Public user'">
+            <span class="te_prod_login_redirection" t-if="user_id.get_external_id().get(int(user_id.id)) == 'base.public_user'">
                 <t t-if="request.website.viewref('theme_clarico_vega.login_popup_ept').active">
                     <span><a class="te_signin public_user_login_redirection" href="#loginPopup">Login</a>​ or <a class="te_signin public_user_register_redirection" href="#loginPopup"> Register</a>​ to view pricing</span>
                 </t>
@@ -167,7 +167,7 @@
                                                     </t>
                                                 </h6>
                                             </a>
-                                            <t t-if="not user_id.partner_id.name == 'Public user'">
+                                            <t t-if="not user_id.get_external_id().get(int(user_id.id)) == 'base.public_user'">
                                                 <del t-attf-class="te_shop_del mr-2 {{'' if combination_info['has_discounted_price'] else 'd-none'}}"
                                                      style="white-space: nowrap;" t-esc="alt_product.list_price"
                                                      t-options="{'widget': 'monetary', 'display_currency': website.currency_id}"/>
@@ -225,7 +225,7 @@
                                                 </t>
                                             </h6>
                                         </a>
-                                        <t t-if="not user_id.partner_id.name == 'Public user'">
+                                        <t t-if="not user_id.get_external_id().get(int(user_id.id)) == 'base.public_user'">
                                             <del t-attf-class="te_shop_del mr-2 {{'' if combination_info['has_discounted_price'] else 'd-none'}}"
                                                  style="white-space: nowrap;" t-esc="alt_product.list_price"
                                                  t-options="{'widget': 'monetary', 'display_currency': website.currency_id}"/>

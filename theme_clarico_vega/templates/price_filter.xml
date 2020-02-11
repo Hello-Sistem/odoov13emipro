@@ -8,7 +8,7 @@
             <t t-if="range_values">
                 <input type="hidden" id="price_slider_min" t-att-value="range_values[0]"/>
                 <input type="hidden" id="price_slider_max" t-att-value="range_values[1]"/>
-                <t t-if="not user_id.partner_id.name == 'Public user'">
+                <t t-if="not user_id.get_external_id().get(int(user_id.id)) == 'base.public_user'">
                     <div class="ept_price_slider_block">
                         <div class="price_filter_head te_fa-plus">
                             <span class="m-0 te_pricerange_title">Price range</span>

@@ -86,7 +86,7 @@
                         <form t-if="product._is_add_to_cart_possible()" action="/shop/cart/update" method="POST">
                             <input type="hidden" name="csrf_token" t-att-value="request.csrf_token()"/>
                             <div class="js_product js_main_product">
-                                <t t-if="not user_id.partner_id.name == 'Public user'">
+                                <t t-if="not user_id.get_external_id().get(int(user_id.id)) == 'base.public_user'">
                                     <t t-call="website_sale.product_price"/>
                                 </t>
                                 <t t-if="not request.website.viewref('website_sale.product_variants').active">
@@ -155,7 +155,7 @@
                                    t-value="request.website.viewref('website_sale.product_quantity').active"/>
                                 <t t-set="buy_now_show"
                                    t-value="request.website.viewref('website_sale.product_buy_now').active"/>
-                                <t t-if="not user_id.partner_id.name == 'Public user'">
+                                <t t-if="not user_id.get_external_id().get(int(user_id.id)) == 'base.public_user'">
                                     <t t-if="qty_show">
                                         <div class="css_quantity input-group oe_website_spinner te_product_quantity"
                                              contenteditable="false">

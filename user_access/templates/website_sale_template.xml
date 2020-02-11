@@ -3,23 +3,29 @@
     <template id="product_price_ept" inherit_id="website_sale.product_price">
         <xpath expr="//div[@itemprop='offers']" position="attributes">
             <attribute name="t-if">
-                not user_id.partner_id.name == 'Public user'
+                not user_id.get_external_id().get(int(user_id.id)) == 'base.public_user'
             </attribute>
         </xpath>
     </template>
     <template id="products_item_ept" inherit_id="website_sale.products_item">
         <xpath expr="//div[@itemprop='offers']" position="attributes">
             <attribute name="t-if">
-                not user_id.partner_id.name == 'Public user'
+                not user_id.get_external_id().get(int(user_id.id)) == 'base.public_user'
             </attribute>
         </xpath>
         <xpath expr="//div[hasclass('o_wsale_product_btn')]" position="before">
-            <span class="te_shop_login_redirection" t-if="user_id.partner_id.name == 'Public user'">
+            <span class="te_shop_login_redirection" t-if="user_id.get_external_id().get(int(user_id.id)) == 'base.public_user'">
                 <t t-if="request.website.viewref('theme_clarico_vega.login_popup_ept').active">
-                    <span><a class="te_signin public_user_login_redirection" href="#loginPopup">Login</a>​ or <a class="te_signin public_user_register_redirection" href="#registerPopup"> Register</a>​ to view pricing</span>
+                    <span><a class="te_signin public_user_login_redirection" href="#loginPopup">Login</a>​ or <a
+                            class="te_signin public_user_register_redirection" href="#registerPopup">Register</a>​ to
+                        view pricing
+                    </span>
                 </t>
                 <t t-else="">
-                    <span><a t-attf-href="/web/login" class="public_user_login_redirection">Login</a>​ or <a t-attf-href="/web/signup" class="public_user_login_redirection"> Register</a> to view pricing</span>
+                    <span><a t-attf-href="/web/login" class="public_user_login_redirection">Login</a>​ or <a
+                            t-attf-href="/web/signup" class="public_user_login_redirection">Register
+                    </a> to view pricing
+                    </span>
                 </t>
             </span>
         </xpath>
@@ -28,26 +34,26 @@
     <template id="product_ept" inherit_id="website_sale.product">
         <xpath expr="//a[@id='add_to_cart']" position="attributes">
             <attribute name="t-if">
-                not user_id.partner_id.name == 'Public user'
+                not user_id.get_external_id().get(int(user_id.id)) == 'base.public_user'
             </attribute>
         </xpath>
         <xpath expr="//div[@id='product_option_block']" position="attributes">
             <attribute name="t-if">
-                not user_id.partner_id.name == 'Public user'
+                not user_id.get_external_id().get(int(user_id.id)) == 'base.public_user'
             </attribute>
         </xpath>
     </template>
     <template id="product_quantity_ept" inherit_id="website_sale.product_quantity">
         <xpath expr="//div[hasclass('css_quantity')]" position="attributes">
             <attribute name="t-if">
-                not user_id.partner_id.name == 'Public user'
+                not user_id.get_external_id().get(int(user_id.id)) == 'base.public_user'
             </attribute>
         </xpath>
     </template>
     <template id="product_buy_now_ept" inherit_id="website_sale.product_buy_now">
         <xpath expr="//a[@id='buy_now']" position="attributes">
             <attribute name="t-if">
-                not user_id.partner_id.name == 'Public user'
+                not user_id.get_external_id().get(int(user_id.id)) == 'base.public_user'
             </attribute>
         </xpath>
     </template>
@@ -61,11 +67,11 @@
         </xpath>
         <xpath expr="//a[@role='button']" position="after">
             <t t-if="user_id.user_role == 'l1'">
-                <a role="button" t-if="website_sale_order and website_sale_order.website_order_line"
-                   class="btn btn-primary float-left d-none d-xl-inline-block te_theme_button mb-2"
-                   href="/send_quote">
+                <t t-esc="user_id.partner_id"/>
+                <span t-if="website_sale_order and website_sale_order.website_order_line"
+                   class="btn btn-primary float-left d-none d-xl-inline-block te_theme_button mb-2">
                     <span>Send quote</span>
-                </a>
+                </span>
             </t>
             <t t-if="user_id.user_role in ['l1','l2'] or not user_id.share">
                 <a role="button" t-if="website_sale_order and website_sale_order.website_order_line"
@@ -73,6 +79,20 @@
                    href="/create_order_quote">
                     <span>Save quote</span>
                 </a>
+            </t>
+            <t t-if="user_id.user_role == 'l1'">
+                <div class="ept_custom_ajax_form">
+                    <input type="email" class="form-control o_website_form_input" name="email_from"
+                           required=""/>
+                    <span class="te_error_msg"/>
+                    <button type="submit"
+                            class="btn btn-primary float-left d-none d-xl-inline-block te_theme_button mb-2 te_send_quote_button">
+                        Send
+                    </button>
+                </div>
+            </t>
+            <t t-if="user_id.user_role == 'l1'">
+                <span class="send-quote-msg float-left">Choose "Send quote" option to pass onto your purchaser.</span>
             </t>
         </xpath>
         <xpath expr="//a[hasclass('btn-secondary')]" position="attributes">
@@ -84,28 +104,30 @@
     <template id="products_add_to_cart_ept" inherit_id="website_sale.products_add_to_cart">
         <xpath expr="//a[hasclass('a-submit')]" position="attributes">
             <attribute name="t-if">
-                not user_id.partner_id.name == 'Public user'
+                not user_id.get_external_id().get(int(user_id.id)) == 'base.public_user'
             </attribute>
         </xpath>
     </template>
     <template id="add_to_wishlist_ept" inherit_id="website_sale_wishlist.add_to_wishlist">
         <xpath expr="//button[hasclass('o_add_wishlist')]" position="attributes">
             <attribute name="t-if">
-                not user_id.partner_id.name == 'Public user' and product_variant_id
+                not user_id.get_external_id().get(int(user_id.id)) == 'base.public_user' and product_variant_id
             </attribute>
         </xpath>
     </template>
     <template id="add_to_compare_ept" inherit_id="website_sale_comparison.add_to_compare">
         <xpath expr="//button[hasclass('o_add_compare')]" position="attributes">
             <attribute name="t-if">
-                not user_id.partner_id.name == 'Public user' and product_variant_id
+                not user_id.get_external_id().get(int(user_id.id)) == 'base.public_user' and product_variant_id
             </attribute>
         </xpath>
     </template>
     <template id="cart_extended" inherit_id="website_sale.cart">
         <xpath expr="//div[hasclass('col-lg-12')]/a[hasclass('btn-primary')]" position="replace">
-            <a role="button" t-if="user_id.user_role == 'l2' and website_sale_order and website_sale_order.website_order_line or not user_id.share"
-               class="btn btn-primary float-right d-none d-xl-inline-block te_theme_button" href="/shop/checkout?express=1">
+            <a role="button"
+               t-if="user_id.user_role == 'l2' and website_sale_order and website_sale_order.website_order_line or not user_id.share"
+               class="btn btn-primary float-right d-none d-xl-inline-block te_theme_button"
+               href="/shop/checkout?express=1">
                 <span class="">Process Order</span>
                 <span class="fa fa-chevron-right"/>
             </a>

@@ -32,7 +32,6 @@ class EptUserAccess(http.Controller):
     @http.route(['/create_order_quote'], type='http', auth="public", website=True, csrf=False)
     def create_quote(self):
         so = request.website.sale_get_order()
-        print(request.website.sale_get_order())
         email_act = so.action_quotation_send()
         email_ctx = email_act.get('context', {})
         so.with_context(**email_ctx).message_post_with_template(email_ctx.get('default_template_id'))
@@ -45,6 +44,16 @@ class EptUserAccess(http.Controller):
     @http.route(['/send/confirmation/mail'], type='http', auth="public", website=True, csrf=False)
     def send_confirmation_mail(self):
         return request.render("user_access.signup_confirmation")
+
+    @http.route(['/send_quote'], type='json', auth="public", website=True,csrf=False)
+    def send_quote_with_mail(self, **kwargs):
+        email = kwargs.get('email', False)
+        userId = request.env['res.users'].sudo().search([('login', '=', email)])
+        if userId:
+            if userId.user_role in ['l2','l3']:
+                return True
+        return False
+
 
 
 class Home(Home):
