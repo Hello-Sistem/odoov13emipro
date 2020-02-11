@@ -18,6 +18,16 @@ from werkzeug.exceptions import NotFound
 
 class EmiproThemeBase(http.Controller):
 
+    @http.route(['/ajax_check_user_status'], type='json', auth="public", website=True)
+    def ajax_check_user_status(self):
+        user_id = request.session.get('uid', False)
+        if user_id:
+            current_user = request.env['res.users'].sudo().search([('id', '=', user_id)])
+            if current_user.has_group('base.group_user'):
+                return 'internal'
+            else:
+                return 'portal'
+
     @http.route(['/quick_view_item_data'], type='json', auth="public", website=True)
     def get_quick_view_item(self, product_id=None):
         """

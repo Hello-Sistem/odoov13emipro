@@ -1015,15 +1015,30 @@ odoo.define('theme_clarico_vega.theme_script', function(require) {
     });
 
     /** Login / Signup Popup **/
-    $(document).on('click', '.public_user_login_redirection', function(){
+//    $(document).on('click', '.public_user_login_redirection', function(){
+//        $("#loginRegisterPopup").modal();
+//        $('body').find('.modal-backdrop').css('position','relative');
+//    });
+//    $(document).on('click', '.public_user_register_redirection', function(){
+//        $("#loginRegisterPopup").modal();
+//        $(".login_register_tab").find("a[href$='#registerPopup']").trigger('click');
+//        $('body').find('.modal-backdrop').css('position','relative');
+//    });
+//    $("#loginRegisterPopup .oe_reset_password_form").hide();
+//    $("#loginRegisterPopup .open_reset_password").click(function(){
+//        $("#loginRegisterPopup .oe_login_form").hide();
+//        $("#loginRegisterPopup .oe_reset_password_form").show();
+//    });
+//    $("#loginRegisterPopup .back_login").click(function(){
+//        $("#loginRegisterPopup .oe_reset_password_form").hide();
+//        $("#loginRegisterPopup .oe_login_form").show();
+//    });
+
+    $(document).on('click', '.te_user_account_icon, .te_signin', function(){
         $("#loginRegisterPopup").modal();
         $('body').find('.modal-backdrop').css('position','relative');
     });
-    $(document).on('click', '.public_user_register_redirection', function(){
-        $("#loginRegisterPopup").modal();
-        $(".login_register_tab").find("a[href$='#registerPopup']").trigger('click');
-        $('body').find('.modal-backdrop').css('position','relative');
-    });
+
     $("#loginRegisterPopup .oe_reset_password_form").hide();
     $("#loginRegisterPopup .open_reset_password").click(function(){
         $("#loginRegisterPopup .oe_login_form").hide();
@@ -1091,7 +1106,7 @@ odoo.define('theme_clarico_vega.theme_script', function(require) {
             $("#loginRegisterPopup .oe_login_form").submit(function(e) {
                 var $form = $('#loginRegisterPopup .oe_login_form');
                 e.preventDefault();
-                var url = '/web/login?'+$form.serialize();
+                var url = location.origin + '/web/login?'+$form.serialize();
                     $.ajax({
                     url: url,
                     type: 'POST',
@@ -1106,30 +1121,43 @@ odoo.define('theme_clarico_vega.theme_script', function(require) {
                                 $(location).attr('href', '/my');
                             }
                         }
+                    },
+                    error: function(err) {
+                        ajax.jsonRpc('/ajax_check_user_status', 'call', {}).then(function(data) {
+                         window.location.href = data == 'internal' ? '/web': '/my';
+                        });
+
                     }
                 });
             });
         },
 
-        customerRegistration: function(){
+        customerRegistration: function() {
             $("#loginRegisterPopup .oe_signup_form_ept").submit(function(e) {
                 var $form = $('#loginRegisterPopup .oe_signup_form_ept');
                 e.preventDefault();
-                var url = '/web/signup?'+$form.serialize();
-                    $.ajax({
+                var url = '/web/signup?' + $form.serialize();
+                $.ajax({
                     url: url,
                     type: 'POST',
                     success: function(data) {
                         var oe_reset_password_form_error = $(data).find('.oe_signup_form').find('.alert.alert-danger').html();
-                        if($(data).find('.oe_signup_form').find('.alert.alert-danger').length) {
+                        if ($(data).find('.oe_signup_form').find('.alert.alert-danger').length) {
                             $("#loginRegisterPopup .oe_signup_form_ept .te_error-success").replaceWith("<div class='te_error-success alert alert-danger'>" + oe_reset_password_form_error + "</div>");
                         } else {
                             $(location).attr('href', '/send/confirmation/mail')
                         }
+                    },
+                    error: function(err) {
+                        ajax.jsonRpc('/ajax_check_user_status', 'call', {}).then(function(data) {
+                         window.location.href = data == 'internal' ? '/web': '/my';
+                        });
+
                     }
                 });
             });
         },
+
 
         selectProductTab: function(){
             if ($('.specification_products_tab').length < 1) {
