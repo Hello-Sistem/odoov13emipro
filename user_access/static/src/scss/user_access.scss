@@ -9,3 +9,16 @@
 div#product_details h1 {
     display: contents;
 }
+.te_signin, .public_user_login_redirection{
+    color:theme-color('primary');
+    font-weight:600;
+}
+.te_prod_login_redirection{
+    line-height: 3;
+    font-size: 1rem;
+}
+.te_shop_login_redirection{
+    display:block;
+    padding-left:9px;
+    margin: 5px 0;
+}

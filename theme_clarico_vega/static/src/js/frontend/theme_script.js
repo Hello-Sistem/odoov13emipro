@@ -1015,11 +1015,15 @@ odoo.define('theme_clarico_vega.theme_script', function(require) {
     });
 
     /** Login / Signup Popup **/
-    $(document).on('click', '.te_user_account_icon, .te_signin', function(){
+    $(document).on('click', '.public_user_login_redirection', function(){
         $("#loginRegisterPopup").modal();
         $('body').find('.modal-backdrop').css('position','relative');
     });
-
+    $(document).on('click', '.public_user_register_redirection', function(){
+        $("#loginRegisterPopup").modal();
+        $(".login_register_tab").find("a[href$='#registerPopup']").trigger('click');
+        $('body').find('.modal-backdrop').css('position','relative');
+    });
     $("#loginRegisterPopup .oe_reset_password_form").hide();
     $("#loginRegisterPopup .open_reset_password").click(function(){
         $("#loginRegisterPopup .oe_login_form").hide();

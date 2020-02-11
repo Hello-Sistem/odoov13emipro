@@ -5,6 +5,7 @@ import logging
 import werkzeug
 from odoo import http
 from odoo.addons.web.controllers.main import Home
+from odoo.addons.sale.controllers.portal import CustomerPortal
 from odoo.addons.auth_signup.controllers.main import AuthSignupHome
 from odoo.http import request
 from odoo.tools.translate import _
@@ -14,6 +15,16 @@ from odoo.exceptions import UserError
 from werkzeug.exceptions import NotFound
 
 _logger = logging.getLogger(__name__)
+
+
+class CustomerPortal(CustomerPortal):
+    @http.route()
+    def payment_transaction_token(self, acquirer_id, order_id, save_token=False, access_token=None, **kwargs):
+        result = super(CustomerPortal, self).payment_transaction_token(acquirer_id, order_id, save_token=False, access_token=None, **kwargs)
+        user_id = request.session.uid
+        partnerId = request.env['res.users'].browse(user_id).partner_id.id
+        request.env['sale.order'].browse(order_id).sudo().message_subscribe(partner_ids=[partnerId])
+        return result
 
 
 class EptUserAccess(http.Controller):

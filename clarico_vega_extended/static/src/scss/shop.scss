@@ -1,9 +1,11 @@
 div#products_grid ul li.nav-item {
     width: 33% !important;
+    @include media-breakpoint-down(xs){
+        width:50% !important;
+    }
 }
 #products_grid .nav-item{
-    /* width: calc(33.33% - 14px); */
-    width:33.33%;
+    width:33%;
     margin-bottom: 10px;
     display: inline-block;
     @include transition(all,0.3s,ease);

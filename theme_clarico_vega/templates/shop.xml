@@ -21,7 +21,8 @@
         </xpath>
         <xpath expr="//h6[hasclass('o_wsale_products_item_title')]/a" position="attributes">
             <attribute name="t-attf-class">
-                product_name #{'te_2_line' if (website.number_of_product_line == '2') else 'te_3_line' if (website.number_of_product_line == '3') else ''}
+                product_name
+                #{'te_2_line' if (website.number_of_product_line == '2') else 'te_3_line' if (website.number_of_product_line == '3') else ''}
             </attribute>
         </xpath>
         <xpath expr="//div[hasclass('o_wsale_product_information')]" position="attributes">
@@ -112,12 +113,14 @@
             <attribute name="class">products_pager form-inline te_shop_pager
                 te_shop_pager_top
             </attribute>
-            <attribute name="t-if">category
+            <attribute name="t-if">category and bins
             </attribute>
         </xpath>
         <xpath expr="//div[hasclass('products_pager')][2]" position="attributes">
             <attribute name="class">products_pager form-inline justify-content-end mt-3 mb-3
                 te_shop_pager
+            </attribute>
+            <attribute name="t-if">category and bins
             </attribute>
         </xpath>
         <xpath expr="//div[hasclass('products_pager')][1]" position="inside">
@@ -420,6 +423,9 @@
         </xpath>
         <xpath expr="//button[@data-target='#wsale_products_categories_collapse']" position="inside">
             <i class="fa fa-chevron-right"></i>
+        </xpath>
+        <xpath expr="//div[@id='wsale_products_categories_collapse']/ul[hasclass('flex-column')]/li[1]/a" position="replace">
+            <a t-att-href="keep('/shop', category=0)" t-attf-class="nav-link #{'' if category else 'active'} o_not_editable">Shop</a>
         </xpath>
     </template>
     <template id="option_collapse_categories_recursive_ept" name="Collapse Category Recursive"

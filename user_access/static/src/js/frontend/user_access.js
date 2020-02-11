@@ -5,10 +5,10 @@ odoo.define('user_access.user_access_js', function(require) {
     var publicWidget = require('web.public.widget');
     var session = require('web.session');
 
-    $(document).on('click', '.te_signup', function(){
-        $("#registerPopup").modal();
-        $('body').find('.modal-backdrop').css('position','relative');
-    });
+//    $(document).on('click', '.te_signup', function(){
+//        $("#registerPopup").modal();
+//        $('body').find('.modal-backdrop').css('position','relative');
+//    });
 
      publicWidget.registry.te_brand_slider = publicWidget.Widget.extend({
         selector: "#wrapwrap",

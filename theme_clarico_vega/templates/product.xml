@@ -54,6 +54,14 @@
             <div class="o_not_editable">
                 <p t-field="product.description_sale" class="te_prod_desc"/>
             </div>
+            <span class="te_prod_login_redirection" t-if="user_id.partner_id.name == 'Public user'">
+                <t t-if="request.website.viewref('theme_clarico_vega.login_popup_ept').active">
+                    <span><a class="te_signin public_user_login_redirection" href="#loginPopup">Login</a>​ or <a class="te_signin public_user_register_redirection" href="#loginPopup"> Register</a>​ to view pricing</span>
+                </t>
+                <t t-else="">
+                    <span><a t-attf-href="/web/login" class="public_user_login_redirection">Login</a>​ or <a t-attf-href="/web/signup" class="public_user_login_redirection"> Register</a> to view pricing</span>
+                </t>
+            </span>
             <div class="te_time_main_div">
                 <div class="timer_data"/>
                 <div class="te_display_end_date"/>

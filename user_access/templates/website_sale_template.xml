@@ -6,16 +6,6 @@
                 not user_id.partner_id.name == 'Public user'
             </attribute>
         </xpath>
-        <xpath expr="//div[@itemprop='offers']" position="before">
-            <t t-if="user_id.partner_id.name == 'Public user'">
-                <t t-if="request.website.viewref('theme_clarico_vega.login_popup_ept').active">
-                    <span><a class="te_signin public_user_ligin_redirection" href="#loginPopup">Login​ or Register</a>​ to view pricing</span>
-                </t>
-                <t t-else="">
-                    <span><a t-attf-href="/web/login" class="public_user_ligin_redirection">Login​ or Register</a> to view pricing</span>
-                </t>
-            </t>
-        </xpath>
     </template>
     <template id="products_item_ept" inherit_id="website_sale.products_item">
         <xpath expr="//div[@itemprop='offers']" position="attributes">
@@ -23,15 +13,15 @@
                 not user_id.partner_id.name == 'Public user'
             </attribute>
         </xpath>
-        <xpath expr="//div[@itemprop='offers']" position="before">
-            <t t-if="user_id.partner_id.name == 'Public user'">
+        <xpath expr="//div[hasclass('o_wsale_product_btn')]" position="before">
+            <span class="te_shop_login_redirection" t-if="user_id.partner_id.name == 'Public user'">
                 <t t-if="request.website.viewref('theme_clarico_vega.login_popup_ept').active">
-                    <span><a class="te_signin public_user_ligin_redirection" href="#loginPopup">Login​ or Register</a>​ to view pricing</span>
+                    <span><a class="te_signin public_user_login_redirection" href="#loginPopup">Login</a>​ or <a class="te_signin public_user_register_redirection" href="#registerPopup"> Register</a>​ to view pricing</span>
                 </t>
                 <t t-else="">
-                    <span><a t-attf-href="/web/login" class="public_user_ligin_redirection">Login​ or Register</a> to view pricing</span>
+                    <span><a t-attf-href="/web/login" class="public_user_login_redirection">Login</a>​ or <a t-attf-href="/web/signup" class="public_user_login_redirection"> Register</a> to view pricing</span>
                 </t>
-            </t>
+            </span>
         </xpath>
     </template>
     <!-- Hide Add To Cart Button and quantity selector if not website_show_price -->
@@ -62,17 +52,26 @@
         </xpath>
     </template>
     <template id="short_cart_summary_ept" inherit_id="website_sale.short_cart_summary">
-        <xpath expr="//a[@role='button']" position="attributes">
-            <attribute name="t-if">
-                user_id.user_role == 'l2' and website_sale_order and website_sale_order.website_order_line or not user_id.share
-            </attribute>
+        <xpath expr="//a[@role='button']" position="replace">
+            <a role="button"
+               t-if="user_id.user_role == 'l2' and website_sale_order and website_sale_order.website_order_line or not user_id.share"
+               class="btn btn-secondary float-right d-none d-xl-inline-block" href="/shop/checkout?express=1">
+                <span>Process Order</span>
+            </a>
         </xpath>
         <xpath expr="//a[@role='button']" position="after">
+            <t t-if="user_id.user_role == 'l1'">
+                <a role="button" t-if="website_sale_order and website_sale_order.website_order_line"
+                   class="btn btn-primary float-left d-none d-xl-inline-block te_theme_button mb-2"
+                   href="/send_quote">
+                    <span>Send quote</span>
+                </a>
+            </t>
             <t t-if="user_id.user_role in ['l1','l2'] or not user_id.share">
                 <a role="button" t-if="website_sale_order and website_sale_order.website_order_line"
                    class="btn btn-primary float-right d-none d-xl-inline-block te_theme_button mb-2"
                    href="/create_order_quote">
-                    <span>Request to quote</span>
+                    <span>Save quote</span>
                 </a>
             </t>
         </xpath>
@@ -103,30 +102,22 @@
             </attribute>
         </xpath>
     </template>
-    <template id="cart_ept" inherit_id="website_sale.cart">
-        <xpath expr="//div[@id='o_cart_summary']//a[@href='/shop/checkout?express=1']" position="attributes">
-            <attribute name="t-if">
-                user_id.user_role == 'l2' and website_sale_order and website_sale_order.website_order_line or not user_id.share
-            </attribute>
-        </xpath>
-        <xpath expr="//div[@id='o_cart_summary']//a[@href='/shop/checkout?express=1']" position="attributes">
-            <attribute name="class">
-                btn btn-secondary float-right te_theme_button ml-2 mb-2
-            </attribute>
+    <template id="cart_extended" inherit_id="website_sale.cart">
+        <xpath expr="//div[hasclass('col-lg-12')]/a[hasclass('btn-primary')]" position="replace">
+            <a role="button" t-if="user_id.user_role == 'l2' and website_sale_order and website_sale_order.website_order_line or not user_id.share"
+               class="btn btn-primary float-right d-none d-xl-inline-block te_theme_button" href="/shop/checkout?express=1">
+                <span class="">Process Order</span>
+                <span class="fa fa-chevron-right"/>
+            </a>
         </xpath>
         <xpath expr="//div[@id='o_cart_summary']//a[@href='/shop/checkout?express=1']" position="after">
             <t t-if="user_id.user_role in ['l1','l2'] or not user_id.share">
                 <a role="button" t-if="website_sale_order and website_sale_order.website_order_line"
                    class="btn btn-primary float-right te_theme_button mb-2"
                    href="/create_order_quote">
-                    <span>Request to quote</span>
+                    <span>Save quote</span>
                 </a>
             </t>
-        </xpath>
-        <xpath expr="//div[hasclass('oe_cart')]//a[@href='/shop/checkout?express=1']" position="attributes">
-            <attribute name="t-if">
-                user_id.user_role == 'l2' and website_sale_order and website_sale_order.website_order_line or not user_id.share
-            </attribute>
         </xpath>
     </template>
     <template id="website_sale_products_search_box_ept" inherit_id="website_sale.website_sale_products_search_box">
@@ -139,31 +130,35 @@
         </xpath>
     </template>
     <template id="sale_order_portal_template_ept" inherit_id="sale.sale_order_portal_template">
-        <xpath expr="//t[@t-if='sale_order.has_to_be_signed(True)']//a[@data-target='#modalaccept']" position="attributes">
+        <xpath expr="//t[@t-if='sale_order.has_to_be_signed(True)']//a[@data-target='#modalaccept']"
+               position="attributes">
             <attribute name="t-if">
-                 user_id.user_role == 'l2' or not user_id.share
-             </attribute>
+                user_id.user_role == 'l2' or not user_id.share
+            </attribute>
         </xpath>
         <xpath expr="//a[@t-if='sale_order.has_to_be_signed(True)']" position="attributes">
-             <attribute name="t-if">
-                 sale_order.has_to_be_signed(True) and user_id.user_role == 'l2' or not user_id.share
-             </attribute>
+            <attribute name="t-if">
+                sale_order.has_to_be_signed(True) and user_id.user_role == 'l2' or not user_id.share
+            </attribute>
         </xpath>
         <xpath expr="//a[@t-elif='sale_order.has_to_be_paid(True)']" position="attributes">
-             <attribute name="t-if">
-                 sale_order.has_to_be_paid(True) and user_id.user_role == 'l2' or not user_id.share
-             </attribute>
+            <attribute name="t-if">
+                sale_order.has_to_be_paid(True) and user_id.user_role == 'l2' or not user_id.share
+            </attribute>
         </xpath>
     </template>
 
-        <!--==================== Display Category name related templates ============================-->
+    <!--==================== Display Category name related templates ============================-->
     <template id="products_item_extended" inherit_id="website_sale.products_item">
         <xpath expr="//h6[hasclass('o_wsale_products_item_title')]/a" position="replace">
             <t t-if="product.category_name">
-                <a t-attf-class="product_name #{'te_2_line' if (website.number_of_product_line == '2') else 'te_3_line' if (website.number_of_product_line == '3') else ''}" itemprop="name" t-att-href="product_href" t-att-content="product.name" t-field="product.category_name" />
+                <a t-attf-class="product_name #{'te_2_line' if (website.number_of_product_line == '2') else 'te_3_line' if (website.number_of_product_line == '3') else ''}"
+                   itemprop="name" t-att-href="product_href" t-att-content="product.name"
+                   t-field="product.category_name"/>
             </t>
             <t t-else="">
-                <a t-attf-class="product_name #{'te_2_line' if (website.number_of_product_line == '2') else 'te_3_line' if (website.number_of_product_line == '3') else ''}" itemprop="name" t-att-href="product_href" t-att-content="product.name" t-field="product.name" />
+                <a t-attf-class="product_name #{'te_2_line' if (website.number_of_product_line == '2') else 'te_3_line' if (website.number_of_product_line == '3') else ''}"
+                   itemprop="name" t-att-href="product_href" t-att-content="product.name" t-field="product.name"/>
             </t>
         </xpath>
     </template>
@@ -171,13 +166,13 @@
 
     <template id="product_ept_extended_dthg" inherit_id="website_sale.product" priority="25">
         <xpath expr="//div[@id='product_details']/h1" position="before">
-            <h1 class="te_product_name ept">Customize your: </h1>
+            <h1 class="te_product_name ept">Customize your:</h1>
         </xpath>
     </template>
 
     <!--Theme Related Changes-->
     <!--Accessories and Optional Product in Product Page-->
     <!--Teheme Clarico Vega - product.xml - product_ept[template] -    -->
-<!--    <span t-att-title="alt_product.category_name if alt_product.category_name else alt_product.name" t-field="alt_product.category_name if alt_product.category_name else alt_product.name"-->
-<!--                                                          class="o_text_overflow"/>-->
+    <!--    <span t-att-title="alt_product.category_name if alt_product.category_name else alt_product.name" t-field="alt_product.category_name if alt_product.category_name else alt_product.name"-->
+    <!--                                                          class="o_text_overflow"/>-->
 </odoo>
