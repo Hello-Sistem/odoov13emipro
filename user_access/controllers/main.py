@@ -50,7 +50,13 @@ class EptUserAccess(http.Controller):
         email = kwargs.get('email', False)
         userId = request.env['res.users'].sudo().search([('login', '=', email)])
         if userId:
+            sale_order = request.website.sale_get_order()
+            access_token = sale_order.get_portal_url()
             if userId.user_role in ['l2','l3']:
+                template = request.env.ref('user_access.mail_template_send_quote_template',
+                                           raise_if_not_found=False)
+                template.sudo().send_mail(sale_order.id, force_send=True,email_values={'email_to': email})
+
                 return True
         return False
 

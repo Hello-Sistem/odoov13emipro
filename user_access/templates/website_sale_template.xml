@@ -67,7 +67,6 @@
         </xpath>
         <xpath expr="//a[@role='button']" position="after">
             <t t-if="user_id.user_role == 'l1'">
-                <t t-esc="user_id.partner_id"/>
                 <span t-if="website_sale_order and website_sale_order.website_order_line"
                    class="btn btn-primary float-left d-none d-xl-inline-block te_theme_button mb-2">
                     <span>Send quote</span>
