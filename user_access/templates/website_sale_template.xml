@@ -60,14 +60,14 @@
     <template id="short_cart_summary_ept" inherit_id="website_sale.short_cart_summary">
         <xpath expr="//a[@role='button']" position="replace">
             <a role="button"
-               t-if="user_id.user_role in ['l2','l3'] and website_sale_order and website_sale_order.website_order_line or not user_id.share"
+               t-if="user_id.user_role in ['l2'] and website_sale_order and website_sale_order.website_order_line or not user_id.share"
                class="btn btn-secondary float-right d-none d-xl-inline-block" href="/shop/checkout?express=1">
                 <span>Process Order</span>
             </a>
         </xpath>
         <xpath expr="//a[@role='button']" position="after">
             <div class="te_quote_btns">
-                <t t-if="user_id.user_role in ['l1','l2','l3'] or not user_id.share">
+                <t t-if="user_id.user_role in ['l1','l2'] or not user_id.share">
                     <a role="button" t-if="website_sale_order and website_sale_order.website_order_line"
                        class="btn btn-primary d-inline-block te_theme_button mb-2 mr-2"
                        href="/create_order_quote">
@@ -129,7 +129,7 @@
     <template id="cart_extended" inherit_id="website_sale.cart">
         <xpath expr="//div[hasclass('col-lg-12')]/a[hasclass('btn-primary')]" position="replace">
             <a role="button"
-               t-if="user_id.user_role in ['l2','l3'] and website_sale_order and website_sale_order.website_order_line or not user_id.share"
+               t-if="user_id.user_role in ['l2'] and website_sale_order and website_sale_order.website_order_line or not user_id.share"
                class="btn btn-primary float-right d-none d-xl-inline-block te_theme_button"
                href="/shop/checkout?express=1">
                 <span class="">Process Order</span>
@@ -165,17 +165,17 @@
         <xpath expr="//t[@t-if='sale_order.has_to_be_signed(True)']//a[@data-target='#modalaccept']"
                position="attributes">
             <attribute name="t-if">
-                user_id.user_role in ['l2','l3'] or not user_id.share
+                user_id.user_role in ['l2'] or not user_id.share
             </attribute>
         </xpath>
         <xpath expr="//a[@t-if='sale_order.has_to_be_signed(True)']" position="attributes">
             <attribute name="t-if">
-                sale_order.has_to_be_signed(True) and user_id.user_role in ['l2','l3'] or not user_id.share
+                sale_order.has_to_be_signed(True) and user_id.user_role in ['l2'] or not user_id.share
             </attribute>
         </xpath>
         <xpath expr="//a[@t-elif='sale_order.has_to_be_paid(True)']" position="attributes">
             <attribute name="t-if">
-                sale_order.has_to_be_paid(True) and user_id.user_role in ['l2','l3'] or not user_id.share
+                sale_order.has_to_be_paid(True) and user_id.user_role in ['l2'] or not user_id.share
             </attribute>
         </xpath>
         <xpath expr="//div[@t-if='sale_order.has_to_be_signed(True) or sale_order.has_to_be_paid(True)']//div[3]" position="after">

@@ -72,7 +72,7 @@ class EptUserAccess(http.Controller):
             sale_order = request.website.sale_get_order()
             access_token = sale_order.get_portal_url()
             sale_order.email_content = content
-            if userId.user_role in ['l2','l3']:
+            if userId.user_role in ['l2']:
                 template = request.env.ref('user_access.mail_template_send_quote_template',
                                            raise_if_not_found=False)
                 template.sudo().send_mail(sale_order.id, force_send=True,email_values={'recipient_ids': [(4, userId.partner_id.id)]})
@@ -88,7 +88,7 @@ class EptUserAccess(http.Controller):
         if userId and order_id:
             sale_order = request.env['sale.order'].sudo().browse(int(order_id))
             sale_order.email_content = content
-            if userId.user_role in ['l2', 'l3']:
+            if userId.user_role in ['l2']:
                 template = request.env.ref('user_access.mail_template_send_quote_template',
                                            raise_if_not_found=False)
                 template.sudo().send_mail(sale_order.id, force_send=True,
