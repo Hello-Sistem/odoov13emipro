@@ -49,9 +49,13 @@
         <record id="mail_template_send_quote_template" model="mail.template">
             <field name="name">Send Quotation</field>
             <field name="model_id" ref="sale.model_sale_order"/>
-            <field name="email_from">${(object.user_id.email_formatted or user.email_formatted) | safe}</field>
+            <field name="email_from"/>
+            <field name="email_to"/>
             <field name="subject">Send Quotation</field>
             <field name="body_html" type="html">
+                <p>Hello,</p>
+                <br/>
+                <p>${object.email_content}</p>
                 <a href="/my/orders/${object.id}/?access_token=${object.access_token}"
                    style="color:#ffffff!important;display:inline-block;font-weight:500;font-size:16px;line-height:42px;font-family:'Helvetica',Arial,sans-serif;width:auto;white-space:nowrap;height:42px;margin:12px 5px 12px 0;padding:0 22px;text-align:center;border:0;border-radius:3px;vertical-align:top;background-color:#006A65!important"
                    target="_blank">

@@ -17,7 +17,7 @@
                                 <span t-field="c.image_512"
                                       t-options="{'widget': 'image', 'qweb_img_responsive': False, 'class': 'img img-fluid rounded'}"/>
                             </div>
-                             <span class="te_category_name" t-esc="c.name"/>
+                            <span class="te_category_name" t-esc="c.name"/>
                         </a>
                     </li>
                 </t>
@@ -25,6 +25,20 @@
         </xpath>
         <xpath expr="//div[hasclass('o_wsale_products_grid_table_wrapper')]" position="attributes">
             <attribute name="t-if">category and bins</attribute>
+        </xpath>
+    </template>
+
+    <template id="products_add_to_cart_clarico_vega_extended" inherit_id="website_sale.products_add_to_cart"
+              priority="10">
+        <xpath expr="//a[hasclass('a-submit')]" position="attributes">
+            <attribute name="aria-label">Add to Cart</attribute>
+            <attribute name="title">Add to Cart</attribute>
+        </xpath>
+    </template>
+
+    <template id="payment_clarico_vega_extended" inherit_id="website_sale.payment" priority="10">
+        <xpath expr="//t[@t-set='submit_txt']" position="attributes">
+            <attribute name="t-value">'Place Order'</attribute>
         </xpath>
     </template>
     <template id="shop_child_category">
@@ -49,7 +63,8 @@
         </li>
     </template>
 
-    <template id="products_add_to_cart_clarico_vega_extended" inherit_id="website_sale.products_add_to_cart" priority="10">
+    <template id="products_add_to_cart_clarico_vega_extended" inherit_id="website_sale.products_add_to_cart"
+              priority="10">
         <xpath expr="//a[hasclass('a-submit')]" position="attributes">
             <attribute name="aria-label">Add to Cart</attribute>
             <attribute name="title">Add to Cart</attribute>

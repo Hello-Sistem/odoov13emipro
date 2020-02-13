@@ -23,10 +23,25 @@ class CustomerPortal(CustomerPortal):
         result = super(CustomerPortal, self).payment_transaction_token(acquirer_id, order_id, save_token=False, access_token=None, **kwargs)
         user_id = request.session.uid
         partnerId = request.env['res.users'].browse(user_id).partner_id.id
-        request.env['sale.order'].browse(order_id).sudo().message_subscribe(partner_ids=[partnerId])
+        companyPartner = request.env['res.users'].browse(user_id).partner_id.parent_id.id
+        request.env['sale.order'].browse(order_id).sudo().message_subscribe(partner_ids=[partnerId,companyPartner])
         return result
 
-
+    @http.route(['/my/orders/<int:order_id>'], type='http', auth="public", website=True)
+    def portal_order_page(self, order_id, report_type=None, access_token=None, message=False, download=False, **kw):
+        res = super(CustomerPortal, self).portal_order_page(order_id=order_id,report_type=report_type,access_token=access_token,message=message,download=download,**kw)
+        if res.qcontext.get('acquirers',False):
+            default_wire_transfer = request.env.ref('payment.payment_acquirer_transfer')
+            acquirers = res.qcontext.get('acquirers')
+            if default_wire_transfer in acquirers:
+                current_login_user = request.env['res.users'].sudo().search([('id','=',request.session.uid)])
+                if current_login_user and current_login_user.partner_id.parent_id:
+                    if not current_login_user.partner_id.parent_id.property_payment_term_id:
+                        acquirers = acquirers.filtered(lambda acq: not acq == default_wire_transfer)
+                        res.qcontext.update({'acquirers': acquirers})
+        return res
+        
+        
 class EptUserAccess(http.Controller):
 
     @http.route(['/create_order_quote'], type='http', auth="public", website=True, csrf=False)
@@ -34,6 +49,9 @@ class EptUserAccess(http.Controller):
         so = request.website.sale_get_order()
         email_act = so.action_quotation_send()
         email_ctx = email_act.get('context', {})
+        user_id = request.session.uid
+        companyPartner = request.env['res.users'].browse(user_id).partner_id.parent_id.id
+        so.sudo().message_subscribe(partner_ids=[companyPartner])
         so.with_context(**email_ctx).message_post_with_template(email_ctx.get('default_template_id'))
         template = request.env['mail.template'].browse(email_ctx.get('default_template_id'))
         template.sudo().send_mail(so.id, force_send=True)
@@ -48,15 +66,33 @@ class EptUserAccess(http.Controller):
     @http.route(['/send_quote'], type='json', auth="public", website=True,csrf=False)
     def send_quote_with_mail(self, **kwargs):
         email = kwargs.get('email', False)
+        content = kwargs.get('content', False)
         userId = request.env['res.users'].sudo().search([('login', '=', email)])
         if userId:
             sale_order = request.website.sale_get_order()
             access_token = sale_order.get_portal_url()
+            sale_order.email_content = content
             if userId.user_role in ['l2','l3']:
                 template = request.env.ref('user_access.mail_template_send_quote_template',
                                            raise_if_not_found=False)
-                template.sudo().send_mail(sale_order.id, force_send=True,email_values={'email_to': email})
+                template.sudo().send_mail(sale_order.id, force_send=True,email_values={'recipient_ids': [(4, userId.partner_id.id)]})
+                return True
+        return False
 
+    @http.route(['/send_portal_quote'], type='json', auth="public", website=True, csrf=False)
+    def send_quote_with_mail(self, **kwargs):
+        email = kwargs.get('email', False)
+        content = kwargs.get('content', False)
+        order_id = kwargs.get('order_id', False)
+        userId = request.env['res.users'].sudo().search([('login', '=', email)])
+        if userId and order_id:
+            sale_order = request.env['sale.order'].sudo().browse(int(order_id))
+            sale_order.email_content = content
+            if userId.user_role in ['l2', 'l3']:
+                template = request.env.ref('user_access.mail_template_send_quote_template',
+                                           raise_if_not_found=False)
+                template.sudo().send_mail(sale_order.id, force_send=True,
+                                          email_values={'recipient_ids': [(4, userId.partner_id.id)]})
                 return True
         return False
 
@@ -92,6 +128,17 @@ class WebsiteSale(WebsiteSale):
         else:
             raise NotFound()
 
+    def _get_shop_payment_values(self, order, **kwargs):
+        res = super(WebsiteSale, self)._get_shop_payment_values(order=order,**kwargs)
+        default_wire_transfer = request.env.ref('payment.payment_acquirer_transfer')
+        acquirers = res.get('acquirers')
+        current_login_user = request.env['res.users'].sudo().search([('id', '=', request.session.uid)])
+        if current_login_user and default_wire_transfer and acquirers and current_login_user.partner_id.parent_id:
+            if not current_login_user.partner_id.parent_id.property_payment_term_id and default_wire_transfer in acquirers:
+                acquirers = acquirers.filtered(lambda acq: not acq == default_wire_transfer)
+                res.update({'acquirers': acquirers})
+        return res
+
 
 class AuthSignupHome(AuthSignupHome):
 
@@ -125,7 +172,10 @@ class AuthSignupHome(AuthSignupHome):
                             lang=user_sudo.lang,
                             auth_login=werkzeug.url_encode({'auth_login': user_sudo.email}),
                         ).send_mail(user_sudo.id, force_send=True)
-                return request.render("user_access.signup_confirmation")
+                if qcontext.get('token'):
+                    return self.web_login(*args, **kw)
+                else:
+                    return request.render("user_access.signup_confirmation")
             except UserError as e:
                 qcontext['error'] = e.name or e.value
             except (SignupError, AssertionError) as e:

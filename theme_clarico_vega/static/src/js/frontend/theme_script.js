@@ -1145,6 +1145,7 @@ odoo.define('theme_clarico_vega.theme_script', function(require) {
                         if ($(data).find('.oe_signup_form').find('.alert.alert-danger').length) {
                             $("#loginRegisterPopup .oe_signup_form_ept .te_error-success").replaceWith("<div class='te_error-success alert alert-danger'>" + oe_reset_password_form_error + "</div>");
                         } else {
+                            console.log("calling");
                             $(location).attr('href', '/send/confirmation/mail')
                         }
                     },

@@ -22,3 +22,80 @@ div#product_details h1 {
     padding-left:9px;
     margin: 5px 0;
 }
+.ept_custom_ajax_form{
+    display: none;
+    .form-control.o_website_form_input{
+        display: inline-block;
+        width: 100%;
+        margin-top: 5px;
+        margin-bottom: 10px;
+    }
+    .o_input.o_composer_text_field{
+        width: 100%;
+        border-color: #ced4da;
+        margin-top: 5px;
+        padding: 0.675rem 1rem;
+    }
+    .te_send_quote_button{
+        float:right;
+        padding: 0.675rem 1.8rem;
+        margin-top: 10px;
+        @include media-breakpoint-down(lg){
+            padding: 0.675rem 2.3rem    
+        }
+        @include media-breakpoint-down(xs){
+            padding: 0.475rem 1.8rem;
+        }
+    }
+    textarea::placeholder {
+      color: #b1b1b1;  
+    }
+    .te_error_msg{
+        color:#ff0000;
+    }
+}
+.send-quote-msg{
+    color:#999;
+    display: inline-block;
+    width: 100%;
+}
+.te_quote_btns{
+    text-align: right;
+    @include media-breakpoint-down(lg){
+        text-align: left;
+        .te_cart_send_quote{
+            float:right;
+        }
+    }
+    .te_cart_send_quote{
+        &:after{
+            display: inline-block;
+            margin-left: 0.255em;
+            vertical-align: 0.255em;
+            content: "";
+            border-top: 0.3em solid;
+            border-right: 0.3em solid transparent;
+            border-bottom: 0;
+            border-left: 0.3em solid transparent;
+        }
+    }
+}
+#quote_content{
+    .ept_custom_ajax_form .te_send_portal_quote_button{
+        float:unset;
+        @include media-breakpoint-down(xs){
+            width: auto;
+        }
+    }
+    .te_success_msg{
+        color: #00b115;
+    }
+}
+.te_user_template_common{
+    @include media-breakpoint-down(xs){
+        h4{
+            font-size: 0.8125rem;
+            padding: 0 5px;
+        }    
+    }
+}

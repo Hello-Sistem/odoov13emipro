@@ -60,32 +60,37 @@
     <template id="short_cart_summary_ept" inherit_id="website_sale.short_cart_summary">
         <xpath expr="//a[@role='button']" position="replace">
             <a role="button"
-               t-if="user_id.user_role == 'l2' and website_sale_order and website_sale_order.website_order_line or not user_id.share"
+               t-if="user_id.user_role in ['l2','l3'] and website_sale_order and website_sale_order.website_order_line or not user_id.share"
                class="btn btn-secondary float-right d-none d-xl-inline-block" href="/shop/checkout?express=1">
                 <span>Process Order</span>
             </a>
         </xpath>
         <xpath expr="//a[@role='button']" position="after">
-            <t t-if="user_id.user_role == 'l1'">
-                <span t-if="website_sale_order and website_sale_order.website_order_line"
-                   class="btn btn-primary float-left d-none d-xl-inline-block te_theme_button mb-2">
-                    <span>Send quote</span>
-                </span>
-            </t>
-            <t t-if="user_id.user_role in ['l1','l2'] or not user_id.share">
-                <a role="button" t-if="website_sale_order and website_sale_order.website_order_line"
-                   class="btn btn-primary float-right d-none d-xl-inline-block te_theme_button mb-2"
-                   href="/create_order_quote">
-                    <span>Save quote</span>
-                </a>
-            </t>
+            <div class="te_quote_btns">
+                <t t-if="user_id.user_role in ['l1','l2','l3'] or not user_id.share">
+                    <a role="button" t-if="website_sale_order and website_sale_order.website_order_line"
+                       class="btn btn-primary d-inline-block te_theme_button mb-2 mr-2"
+                       href="/create_order_quote">
+                        <span>Save quote</span>
+                    </a>
+                </t>
+                <t t-if="user_id.user_role == 'l1'">
+                    <span t-if="website_sale_order and website_sale_order.website_order_line"
+                       class="btn btn-primary d-inline-block te_theme_button te_cart_send_quote mb-2">
+                        <span>Send quote</span>
+                    </span>
+                </t>
+            </div>
             <t t-if="user_id.user_role == 'l1'">
                 <div class="ept_custom_ajax_form">
-                    <input type="email" class="form-control o_website_form_input" name="email_from"
+                    <span class="d-block">Email : </span>
+                    <input type="email" class="form-control o_website_form_input" name="email_from" placeholder="Email Address"
                            required=""/>
-                    <span class="te_error_msg"/>
+                    <span class="te_error_msg pb-1 d-block"/>
+                    <span class="d-block">Email Content : </span>
+                    <textarea class="o_input o_composer_text_field" tabindex="2" placeholder="Write something..."/>
                     <button type="submit"
-                            class="btn btn-primary float-left d-none d-xl-inline-block te_theme_button mb-2 te_send_quote_button">
+                            class="btn btn-primary d-inline-block te_theme_button mb-2 te_send_quote_button">
                         Send
                     </button>
                 </div>
@@ -124,22 +129,28 @@
     <template id="cart_extended" inherit_id="website_sale.cart">
         <xpath expr="//div[hasclass('col-lg-12')]/a[hasclass('btn-primary')]" position="replace">
             <a role="button"
-               t-if="user_id.user_role == 'l2' and website_sale_order and website_sale_order.website_order_line or not user_id.share"
+               t-if="user_id.user_role in ['l2','l3'] and website_sale_order and website_sale_order.website_order_line or not user_id.share"
                class="btn btn-primary float-right d-none d-xl-inline-block te_theme_button"
                href="/shop/checkout?express=1">
                 <span class="">Process Order</span>
                 <span class="fa fa-chevron-right"/>
             </a>
         </xpath>
-        <xpath expr="//div[@id='o_cart_summary']//a[@href='/shop/checkout?express=1']" position="after">
-            <t t-if="user_id.user_role in ['l1','l2'] or not user_id.share">
+        <!-- <xpath expr="//div[@id='o_cart_summary']//a[@href='/shop/checkout?express=1']" position="after">
+            <t t-if="user_id.user_role in ['l1','l2','l3'] or not user_id.share">
                 <a role="button" t-if="website_sale_order and website_sale_order.website_order_line"
                    class="btn btn-primary float-right te_theme_button mb-2"
                    href="/create_order_quote">
                     <span>Save quote</span>
                 </a>
             </t>
-        </xpath>
+            <t t-if="user_id.user_role == 'l1'">
+                <span t-if="website_sale_order and website_sale_order.website_order_line"
+                   class="btn btn-primary d-xl-inline-block te_theme_button te_cart_send_quote mb-2">
+                    <span>Send quote</span>
+                </span>
+            </t>
+        </xpath> -->
     </template>
     <template id="website_sale_products_search_box_ept" inherit_id="website_sale.website_sale_products_search_box">
         <xpath expr="//input[@name='search']" position="attributes">
@@ -154,18 +165,45 @@
         <xpath expr="//t[@t-if='sale_order.has_to_be_signed(True)']//a[@data-target='#modalaccept']"
                position="attributes">
             <attribute name="t-if">
-                user_id.user_role == 'l2' or not user_id.share
+                user_id.user_role in ['l2','l3'] or not user_id.share
             </attribute>
         </xpath>
         <xpath expr="//a[@t-if='sale_order.has_to_be_signed(True)']" position="attributes">
             <attribute name="t-if">
-                sale_order.has_to_be_signed(True) and user_id.user_role == 'l2' or not user_id.share
+                sale_order.has_to_be_signed(True) and user_id.user_role in ['l2','l3'] or not user_id.share
             </attribute>
         </xpath>
         <xpath expr="//a[@t-elif='sale_order.has_to_be_paid(True)']" position="attributes">
             <attribute name="t-if">
-                sale_order.has_to_be_paid(True) and user_id.user_role == 'l2' or not user_id.share
+                sale_order.has_to_be_paid(True) and user_id.user_role in ['l2','l3'] or not user_id.share
             </attribute>
+        </xpath>
+        <xpath expr="//div[@t-if='sale_order.has_to_be_signed(True) or sale_order.has_to_be_paid(True)']//div[3]" position="after">
+            <div class="te_quote_btns mt8 col-sm-auto">
+                <t t-if="user_id.user_role == 'l1'">
+                    <span class="btn btn-primary d-inline-block te_theme_button te_cart_send_quote">
+                        <span>Send quote</span>
+                    </span>
+                </t>
+            </div>
+        </xpath>
+        <xpath expr="//div[@id='sale_order_communication']" position="before">
+            <t t-if="user_id.user_role == 'l1'">
+                <div class="ept_custom_ajax_form">
+                    <span class="d-block">Email : </span>
+                    <input type="email" class="form-control o_website_form_input" name="email_from" placeholder="Email Address"
+                           required=""/>
+                    <span class="te_error_msg pb-1 d-block"/>
+                    <span class="d-block">Email Content : </span>
+                    <textarea class="o_input o_composer_text_field" tabindex="2" placeholder="Write something..."/>
+                    <span class="te_success_msg pb-1 d-block"/>
+                    <button t-att-order-id="sale_order.id" type="submit"
+                            class="btn btn-primary d-block ml-auto te_theme_button mb-2 te_send_portal_quote_button">
+                        Send
+                    </button>
+
+                </div>
+            </t>
         </xpath>
     </template>
 

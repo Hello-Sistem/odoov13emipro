@@ -308,7 +308,7 @@
                             <t t-esc="website_sale_order.cart_quantity"/>
                             items)
                         </a>
-                        <t t-if="user_id.user_role == 'l2' or not user_id.share">
+                        <t t-if="user_id.user_role in ['l2','l3'] or not user_id.share">
                             <a role="button" class="btn btn-primary te_theme_button" href="/shop/checkout?express=1">
                                 Process Order
                             </a>
@@ -349,8 +349,15 @@
     </template>
     <template id="wizard_checkout_ept" inherit_id="website_sale.wizard_checkout">
         <xpath expr="//div[hasclass('col-xl')]" position="attributes">
-            <attribute name="class">col-xl text-lg-right text-md-right te_cart_wizard_main</attribute>
+            <attribute name="class">col-xl text-lg-right text-md-right te_cart_wizard_main p-4</attribute>
+
         </xpath>
+         <xpath expr="//div[hasclass('wizard')]" position="attributes">
+            <attribute name="t-if">
+                user_id.user_role in ['l2','l3'] or not user_id.share
+            </attribute>
+        </xpath>
+
     </template>
     <template id="payment_section" inherit_id="website_sale.payment">
         <xpath expr="//t[@t-set='submit_class']" position="attributes">
