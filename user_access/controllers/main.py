@@ -33,12 +33,18 @@ class CustomerPortal(CustomerPortal):
         if res.qcontext.get('acquirers',False):
             default_wire_transfer = request.env.ref('payment.payment_acquirer_transfer')
             acquirers = res.qcontext.get('acquirers')
-            if default_wire_transfer in acquirers:
-                current_login_user = request.env['res.users'].sudo().search([('id','=',request.session.uid)])
-                if current_login_user and current_login_user.partner_id.parent_id:
-                    if not current_login_user.partner_id.parent_id.property_payment_term_id:
-                        acquirers = acquirers.filtered(lambda acq: not acq == default_wire_transfer)
-                        res.qcontext.update({'acquirers': acquirers})
+            if default_wire_transfer and acquirers:
+                if default_wire_transfer in acquirers:
+                    current_login_user = request.env['res.users'].sudo().search([('id','=',request.session.uid)])
+                    if current_login_user:
+                        if current_login_user.partner_id.company_type == 'company':
+                            if not current_login_user.partner_id.property_payment_term_id:
+                                acquirers = acquirers.filtered(lambda acq: not acq == default_wire_transfer)
+                                res.qcontext.update({'acquirers': acquirers})
+                        else:
+                            if not current_login_user.partner_id.parent_id.property_payment_term_id or not current_login_user.partner_id.parent_id:
+                                acquirers = acquirers.filtered(lambda acq: not acq == default_wire_transfer)
+                                res.qcontext.update({'acquirers': acquirers})
         return res
         
         
@@ -129,16 +135,22 @@ class WebsiteSale(WebsiteSale):
             raise NotFound()
 
     def _get_shop_payment_values(self, order, **kwargs):
-        res = super(WebsiteSale, self)._get_shop_payment_values(order=order,**kwargs)
-        default_wire_transfer = request.env.ref('payment.payment_acquirer_transfer')
+        res = super(WebsiteSale, self)._get_shop_payment_values(order=order, **kwargs)
         acquirers = res.get('acquirers')
-        current_login_user = request.env['res.users'].sudo().search([('id', '=', request.session.uid)])
-        if current_login_user and default_wire_transfer and acquirers and current_login_user.partner_id.parent_id:
-            if not current_login_user.partner_id.parent_id.property_payment_term_id and default_wire_transfer in acquirers:
-                acquirers = acquirers.filtered(lambda acq: not acq == default_wire_transfer)
-                res.update({'acquirers': acquirers})
+        default_wire_transfer = request.env.ref('payment.payment_acquirer_transfer')
+        if acquirers and default_wire_transfer:
+            if default_wire_transfer in acquirers:
+                current_login_user = request.env['res.users'].sudo().search([('id', '=', request.session.uid)])
+                if current_login_user:
+                    if current_login_user.partner_id.company_type == 'company':
+                        if not current_login_user.partner_id.property_payment_term_id:
+                            acquirers.pop(acquirers.index(default_wire_transfer))
+                            res.update({'acquirers': acquirers})
+                    else:
+                        if not current_login_user.partner_id.parent_id.property_payment_term_id or not current_login_user.partner_id.parent_id:
+                            acquirers.pop(acquirers.index(default_wire_transfer))
+                            res.update({'acquirers': acquirers})
         return res
-
 
 class AuthSignupHome(AuthSignupHome):
 
